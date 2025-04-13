@@ -1,427 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-		<!-- Favicons -->
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
-		<link rel="shortcut icon" href="/favicon.jpeg">
-		<meta name="theme-color" content="#000000">
-		
-		<!-- Open Graph Meta Tags -->
-		<meta property="og:title" content="Free App Store ASO Keyword Optimization Tool">
-		<meta property="og:description" content="Boost your app visibility with this free ASO keyword optimizer. Clean UI, real-time feedback, and browser-only privacy.">
-		<meta property="og:url" content="https://appkeywords.pro/">
-		<meta property="og:image" content="https://appkeywords.pro/android-chrome-512x512.png">
-		<meta property="og:type" content="website">
-
-		<!-- Twitter Card Meta Tags -->
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Free App Store ASO Keyword Optimization Tool">
-		<meta name="twitter:description" content="Boost your App Store SEO with a fast and simple keyword optimization tool. No login. No data collection.">
-		<meta name="twitter:image" content="https://appkeywords.pro/android-chrome-512x512.png">
-		
-        <meta charset="UTF-8">
-            <title>Free App Store ASO Keyword Optimization</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-                <meta name="description" content="Optimize your App Store metadata for free with this powerful ASO keyword optimization tool. Improve your app title, subtitle, and keyword strategy to boost visibility and downloads. Perfect for developers and marketers seeking better App Store SEO.">
-                    <meta name="keywords" content="app store, ASO, keyword optimizer, app metadata, free ASO tool, app store optimization, app subtitle, app title, app keywords, app SEO, app store search ranking">
-                        <meta name="robots" content="index, follow">
-                            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-                                <style>
-                                    label.form-label {
-                                        font-size: 0.85rem;
-                                        font-weight: 600;
-                                    }
-                                    .char-count {
-                                        font-size: 0.75rem;
-                                        color: #6c757d;
-                                        margin-top: 4px;
-                                    }
-                                    .char-count.warning {
-                                        color: #dc3545;
-                                    }
-                                    .char-count.ok {
-                                        color: #198754;
-                                    }
-                                    .keyword-bubble {
-                                        display: inline-block;
-                                        margin: 5px 6px 0 0;
-                                        cursor: pointer;
-                                    }
-                                    .input-warning {
-                                        border-color: #dc3545 !important;
-                                    }
-                                </style>
-                            </head>
-    <body class="bg-light py-5">
-        <div class="container">
-            <h1 class="mb-4 text-center">Free App Store ASO Keyword Optimization</h1>
+<head>
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="shortcut icon" href="/favicon.jpeg">
+	<meta name="theme-color" content="#000000">
+                                
+	<!-- Open Graph Meta Tags -->
+	<meta property="og:title" content="Free App Store ASO Keyword Optimization Tool">
+	<meta property="og:description" content="Boost your app visibility with this free ASO keyword optimizer. Clean UI, real-time feedback, and browser-only privacy.">
+	<meta property="og:url" content="https://appkeywords.pro/">
+	<meta property="og:image" content="https://appkeywords.pro/android-chrome-512x512.png">
+	<meta property="og:type" content="website">
+                                                    
+	<!-- Twitter Card Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Free App Store ASO Keyword Optimization Tool">
+	<meta name="twitter:description" content="Boost your App Store SEO with a fast and simple keyword optimization tool. No login. No data collection.">
+	<meta name="twitter:image" content="https://appkeywords.pro/android-chrome-512x512.png">
+                                                                    
+	<meta charset="UTF-8">
+	<title>Free App Store ASO Keyword Optimization</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Optimize your App Store metadata for free with this powerful ASO keyword optimization tool. Improve your app title, subtitle, and keyword strategy to boost visibility and downloads. Perfect for developers and marketers seeking better App Store SEO.">
+	<meta name="keywords" content="app store, ASO, keyword optimizer, app metadata, free ASO tool, app store optimization, app subtitle, app title, app keywords, app SEO, app store search ranking">
+	<meta name="robots" content="index, follow">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		label.form-label {
+			font-size: 0.85rem;
+			font-weight: 600;
+		}
+		.char-count {
+			font-size: 0.75rem;
+			text-align: right;
+			color: #6c757d;
+			margin-top: 4px;
+		}
+		.char-count.warning {
+			color: #dc3545;
+		}
+		.char-count.ok {
+			color: #6c757d;
+		}
+		.keyword-bubble {
+			display: inline-block;
+			margin: 5px 6px 0 0;
+			cursor: pointer;
+		}
+		.input-warning {
+			border-color: #dc3545 !important;
+		}
+		</style>
+	</head>
+	<body class="bg-light py-5">
+		<div class="container">
+			<h1 class="mb-4 text-center">Free App Store ASO Keyword Optimization</h1>
             
 			<div class="bg-white border rounded p-3 small text-muted text-center mb-4">
-			  This free tool helps you optimize your App Store metadata (title, subtitle, and keywords) for better ASO results.<br>
-			  Your data is stored only in your browser's local storage and never uploaded. We do not collect, transmit, or store any user information.<br>
-			  Use at your own risk. No responsibility is taken for any outcomes resulting from the use of this site.
+				This free tool helps you optimize your App Store metadata (title, subtitle, and keywords) for better ASO results.<br>
+				Your data is stored only in your browser's local storage and never uploaded. We do not collect, transmit, or store any user information.<br>
+				Use at your own risk. No responsibility is taken for any outcomes resulting from the use of this site.
 			</div>
-
-            <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mb-4">
-                <button class="btn btn-success" onclick="exportToJSON()">Export to JSON</button>
-                
-                <input type="file" id="importFile" accept=".json"
-                    class="form-control form-control-sm w-auto d-none"
-                    onchange="importFromJSON(event)">
-                    
-                    <button class="btn btn-primary" onclick="document.getElementById('importFile').click()">Import from JSON</button>
-                    
-                    <button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
-                    
-                    <div class="form-check form-switch ms-3">
-                        <input class="form-check-input" type="checkbox" id="autosaveToggle" checked />
-                        <label class="form-check-label" for="autosaveToggle">Autosave</label>
-                    </div>
-                    
-            </div>
             
-            <div id="locale-sections"></div>
-        </div>
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        
-        <script>
-            const STORAGE_KEY = 'app_store_metadata_local';
-            const AUTOSAVE_ENABLED_KEY = 'autosave_enabled';
-            
-            function saveToLocalStorage() {
-                if (!document.getElementById('autosaveToggle').checked) return;
-                const data = {};
-                document.querySelectorAll('[data-key]').forEach(el => {
-                    const key = el.dataset.key;
-                    if (!data[key]) data[key] = {};
-                    const type = el.classList.contains('locale-title') ? 'title'
-                    : el.classList.contains('locale-subtitle') ? 'subtitle'
-                    : el.classList.contains('locale-keywords') ? 'keywords'
-                    : null;
-                    if (type && el.value.trim() !== '') {
-                        data[key][type] = el.value.trim();
-                    }
-                });
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            }
-            
-            function loadFromLocalStorage() {
-                try {
-                    const saved = localStorage.getItem(AUTOSAVE_ENABLED_KEY);
-                    const autosave = saved !== 'false'; // Default to true if null
-                    document.getElementById('autosaveToggle').checked = autosave;
+			<div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mb-4">
+				<button class="btn btn-success" onclick="exportToJSON()">Export to JSON</button>
+                
+				<input type="file" id="importFile" accept=".json"
+				class="form-control form-control-sm w-auto d-none"
+				onchange="importFromJSON(event)">
                     
-                    if (!autosave) return; // 🚫 Prevent loading saved data if autosave is disabled
+				<button class="btn btn-primary" onclick="document.getElementById('importFile').click()">Import from JSON</button>
                     
-                    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-                    for (const [localeKey, values] of Object.entries(data)) {
-                        if (values.title) {
-                            const el = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
-                            if (el) {
-                                el.value = values.title;
-                                updateLength(el, 30, `count-title-${localeKey}`);
-                            }
-                        }
-                        if (values.subtitle) {
-                            const el = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
-                            if (el) {
-                                el.value = values.subtitle;
-                                updateLength(el, 30, `count-subtitle-${localeKey}`);
-                            }
-                        }
-                        if (values.keywords) {
-                            const el = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
-                            if (el) {
-                                el.value = values.keywords;
-                                updateLength(el, 100, `count-keywords-${localeKey}`);
-                                optimize(localeKey);
-                            }
-                        }
-                    }
-                } catch (e) {
-                    console.warn('Failed to load from localStorage');
-                }
-            }
-            
-            document.addEventListener('input', function (e) {
-                if (
-                    document.getElementById('autosaveToggle')?.checked &&
-                    (e.target.matches('.locale-title') || e.target.matches('.locale-subtitle') || e.target.matches('.locale-keywords'))
-                    ) {
-                        saveToLocalStorage();
-                    }
-            });
-            
-            document.getElementById('autosaveToggle').addEventListener('change', () => {
-                const isEnabled = document.getElementById('autosaveToggle').checked;
-                localStorage.setItem(AUTOSAVE_ENABLED_KEY, isEnabled);
-                
-                if (isEnabled) {
-                    saveToLocalStorage(); // 🔁 Immediately save current state
-                }
-            });
-            
-            window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
-        </script>
-        
-        <script>
-            function clearAllData() {
-                if (!confirm("Are you sure you want to clear all metadata and reset the form?")) return;
-                
-                localStorage.removeItem(STORAGE_KEY);
-                
-                document.querySelectorAll('[data-key]').forEach(el => {
-                    el.value = '';
-                });
-                
-                document.querySelectorAll('.char-count').forEach(el => {
-                    el.textContent = el.id.includes('keywords') ? '0 / 100' : '0 / 30';
-                    el.className = 'char-count';
-                });
-                
-                document.querySelectorAll('.input-warning').forEach(el => {
-                    el.classList.remove('input-warning');
-                });
-                
-                document.querySelectorAll('[id^="bubbles-"]').forEach(container => {
-                    container.innerHTML = '';
-                });
-            }
-        </script>
-        
-        <script>
-            function importFromJSON(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    try {
-                        const data = JSON.parse(e.target.result);
-                        for (const [localeKey, values] of Object.entries(data)) {
-                            if (values.title) {
-                                const titleEl = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
-                                if (titleEl) {
-                                    titleEl.value = values.title;
-                                    updateLength(titleEl, 30, `count-title-${localeKey}`);
-                                }
-                            }
-                            if (values.subtitle) {
-                                const subtitleEl = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
-                                if (subtitleEl) {
-                                    subtitleEl.value = values.subtitle;
-                                    updateLength(subtitleEl, 30, `count-subtitle-${localeKey}`);
-                                }
-                            }
-                            if (values.keywords) {
-                                const keywordsEl = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
-                                if (keywordsEl) {
-                                    keywordsEl.value = values.keywords;
-                                    updateLength(keywordsEl, 100, `count-keywords-${localeKey}`);
-                                    optimize(localeKey);
-                                }
-                            }
-                        }
-                    } catch (err) {
-                        alert('Invalid JSON file');
-                    }
-                };
-                reader.readAsText(file);
-            }
-        </script>
-        
-        <script>
-            function exportToJSON() {
-                const data = {};
-                
-                document.querySelectorAll('[data-key]').forEach(el => {
-                    const key = el.dataset.key;
-                    if (!data[key]) data[key] = {};
+				<button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
                     
-                    const type = el.classList.contains('locale-title') ? 'title'
-                    : el.classList.contains('locale-subtitle') ? 'subtitle'
-                    : el.classList.contains('locale-keywords') ? 'keywords'
-                    : null;
+				<div class="form-check form-switch ms-3">
+					<input class="form-check-input" type="checkbox" id="autosaveToggle" checked />
+					<label class="form-check-label" for="autosaveToggle">Autosave</label>
+				</div>
                     
-                    if (type && el.value.trim() !== '') {
-                        data[key][type] = el.value.trim();
-                    }
-                });
+			</div>
+            
+			<div id="locale-sections"></div>
+		</div>
+        
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        
+		<script>
+			const STORAGE_KEY = 'app_store_metadata_local';
+			const AUTOSAVE_ENABLED_KEY = 'autosave_enabled';
+            
+			function saveToLocalStorage() {
+				if (!document.getElementById('autosaveToggle').checked) return;
+				const data = {};
+				document.querySelectorAll('[data-key]').forEach(el => {
+					const key = el.dataset.key;
+					if (!data[key]) data[key] = {};
+					const type = el.classList.contains('locale-title') ? 'title'
+					: el.classList.contains('locale-subtitle') ? 'subtitle'
+					: el.classList.contains('locale-keywords') ? 'keywords'
+					: null;
+					if (type && el.value.trim() !== '') {
+						data[key][type] = el.value.trim();
+					}
+				});
+				localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+			}
+            
+			function loadFromLocalStorage() {
+				try {
+					const saved = localStorage.getItem(AUTOSAVE_ENABLED_KEY);
+					const autosave = saved !== 'false'; // Default to true if null
+					document.getElementById('autosaveToggle').checked = autosave;
+                    
+					if (!autosave) return; // 🚫 Prevent loading saved data if autosave is disabled
+                    
+					const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+					for (const [localeKey, values] of Object.entries(data)) {
+						if (values.title) {
+							const el = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
+							if (el) {
+								el.value = values.title;
+								updateLength(el, 30, `count-title-${localeKey}`);
+							}
+						}
+						if (values.subtitle) {
+							const el = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
+							if (el) {
+								el.value = values.subtitle;
+								updateLength(el, 30, `count-subtitle-${localeKey}`);
+							}
+						}
+						if (values.keywords) {
+							const el = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
+							if (el) {
+								el.value = values.keywords;
+								updateLength(el, 100, `count-keywords-${localeKey}`);
+								optimize(localeKey);
+							}
+						}
+					}
+				} catch (e) {
+					console.warn('Failed to load from localStorage');
+				}
+			}
+            
+			document.addEventListener('input', function (e) {
+				if (
+					document.getElementById('autosaveToggle')?.checked &&
+					(e.target.matches('.locale-title') || e.target.matches('.locale-subtitle') || e.target.matches('.locale-keywords'))
+				) {
+					saveToLocalStorage();
+				}
+			});
+            
+			document.getElementById('autosaveToggle').addEventListener('change', () => {
+				const isEnabled = document.getElementById('autosaveToggle').checked;
+				localStorage.setItem(AUTOSAVE_ENABLED_KEY, isEnabled);
                 
-                // Remove keys with no data
-                Object.keys(data).forEach(k => {
-                    if (!data[k].title && !data[k].subtitle && !data[k].keywords) {
-                        delete data[k];
-                    }
-                });
+				if (isEnabled) {
+					saveToLocalStorage(); // 🔁 Immediately save current state
+				}
+			});
+            
+			window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+			</script>
+        
+			<script>
+			function clearAllData() {
+				if (!confirm("Are you sure you want to clear all metadata and reset the form?")) return;
                 
-                const jsonString = JSON.stringify(data, null, 2);
-                const blob = new Blob([jsonString], { type: "application/json" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
+				localStorage.removeItem(STORAGE_KEY);
                 
-                a.href = url;
-                a.download = "app_store_metadata.json";
-                a.click();
-                URL.revokeObjectURL(url);
-            }
-        </script>
+				document.querySelectorAll('[data-key]').forEach(el => {
+					el.value = '';
+				});
+                
+				document.querySelectorAll('.char-count').forEach(el => {
+					el.textContent = el.id.includes('keywords') ? '0 / 100' : '0 / 30';
+					el.className = 'char-count';
+				});
+                
+				document.querySelectorAll('.input-warning').forEach(el => {
+					el.classList.remove('input-warning');
+				});
+                
+				document.querySelectorAll('[id^="bubbles-"]').forEach(container => {
+					container.innerHTML = '';
+				});
+			}
+			</script>
+        
+			<script>
+			function importFromJSON(event) {
+				const file = event.target.files[0];
+				if (!file) return;
+                
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					try {
+						const data = JSON.parse(e.target.result);
+						for (const [localeKey, values] of Object.entries(data)) {
+							if (values.title) {
+								const titleEl = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
+								if (titleEl) {
+									titleEl.value = values.title;
+									updateLength(titleEl, 30, `count-title-${localeKey}`);
+								}
+							}
+							if (values.subtitle) {
+								const subtitleEl = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
+								if (subtitleEl) {
+									subtitleEl.value = values.subtitle;
+									updateLength(subtitleEl, 30, `count-subtitle-${localeKey}`);
+								}
+							}
+							if (values.keywords) {
+								const keywordsEl = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
+								if (keywordsEl) {
+									keywordsEl.value = values.keywords;
+									updateLength(keywordsEl, 100, `count-keywords-${localeKey}`);
+									optimize(localeKey);
+								}
+							}
+						}
+					} catch (err) {
+						alert('Invalid JSON file');
+					}
+				};
+				reader.readAsText(file);
+			}
+			</script>
+        
+			<script>
+			function exportToJSON() {
+				const data = {};
+                
+				document.querySelectorAll('[data-key]').forEach(el => {
+					const key = el.dataset.key;
+					if (!data[key]) data[key] = {};
+                    
+					const type = el.classList.contains('locale-title') ? 'title'
+					: el.classList.contains('locale-subtitle') ? 'subtitle'
+					: el.classList.contains('locale-keywords') ? 'keywords'
+					: null;
+                    
+					if (type && el.value.trim() !== '') {
+						data[key][type] = el.value.trim();
+					}
+				});
+                
+				// Remove keys with no data
+				Object.keys(data).forEach(k => {
+					if (!data[k].title && !data[k].subtitle && !data[k].keywords) {
+						delete data[k];
+					}
+				});
+                
+				const jsonString = JSON.stringify(data, null, 2);
+				const blob = new Blob([jsonString], { type: "application/json" });
+				const url = URL.createObjectURL(blob);
+				const a = document.createElement('a');
+                
+				a.href = url;
+				a.download = "app_store_metadata.json";
+				a.click();
+				URL.revokeObjectURL(url);
+			}
+			</script>
         
         
-        <script>
-            const locales = [
-                             { key: "en-US", name: "English (U.S.)" },
-                             { key: "en-AU", name: "English (A.U.)" },
-                             { key: "en-CA", name: "English (C.A.)" },
-                             { key: "en-GB", name: "English (G.B.)" },
-                             { key: "ar-SA", name: "Arabic" },
-                             { key: "ca", name: "Catalan" },
-                             { key: "cs", name: "Czech" },
-                             { key: "da", name: "Danish" },
-                             { key: "de-DE", name: "German" },
-                             { key: "el", name: "Greek" },
-                             { key: "es-ES", name: "Spanish ES" },
-                             { key: "es-MX", name: "Spanish MX" },
-                             { key: "fi", name: "Finnish" },
-                             { key: "fr-CA", name: "French CA" },
-                             { key: "fr-FR", name: "French FR" },
-                             { key: "he", name: "Hebrew" },
-                             { key: "hi", name: "Hindi" },
-                             { key: "hr", name: "Croatian" },
-                             { key: "hu", name: "Hungarian" },
-                             { key: "id", name: "Indonesian" },
-                             { key: "it", name: "Italian" },
-                             { key: "ja", name: "Japanese" },
-                             { key: "ko", name: "Korean" },
-                             { key: "ms", name: "Malay" },
-                             { key: "nl-NL", name: "Dutch" },
-                             { key: "no", name: "Norwegian (Bokmal)" },
-                             { key: "pl", name: "Polish" },
-                             { key: "pt-BR", name: "Portuguese (BR)" },
-                             { key: "pt-PT", name: "Portuguese (PT)" },
-                             { key: "ro", name: "Romanian" },
-                             { key: "ru", name: "Russian" },
-                             { key: "sk", name: "Slovak" },
-                             { key: "sv", name: "Swedish" },
-                             { key: "th", name: "Thai" },
-                             { key: "tr", name: "Turkish" },
-                             { key: "uk", name: "Ukrainian" },
-                             { key: "vi", name: "Vietnamese" },
-                             { key: "zh-Hans", name: "Chinese (Simplified)" },
-                             { key: "zh-Hant", name: "Chinese (Traditional)" }
-                             ];
+			<script>
+			const locales = [
+				{ key: "en-US", name: "English (U.S.)" },
+				{ key: "en-AU", name: "English (A.U.)" },
+				{ key: "en-CA", name: "English (C.A.)" },
+				{ key: "en-GB", name: "English (G.B.)" },
+				{ key: "ar-SA", name: "Arabic" },
+				{ key: "ca", name: "Catalan" },
+				{ key: "cs", name: "Czech" },
+				{ key: "da", name: "Danish" },
+				{ key: "de-DE", name: "German" },
+				{ key: "el", name: "Greek" },
+				{ key: "es-ES", name: "Spanish ES" },
+				{ key: "es-MX", name: "Spanish MX" },
+				{ key: "fi", name: "Finnish" },
+				{ key: "fr-CA", name: "French CA" },
+				{ key: "fr-FR", name: "French FR" },
+				{ key: "he", name: "Hebrew" },
+				{ key: "hi", name: "Hindi" },
+				{ key: "hr", name: "Croatian" },
+				{ key: "hu", name: "Hungarian" },
+				{ key: "id", name: "Indonesian" },
+				{ key: "it", name: "Italian" },
+				{ key: "ja", name: "Japanese" },
+				{ key: "ko", name: "Korean" },
+				{ key: "ms", name: "Malay" },
+				{ key: "nl-NL", name: "Dutch" },
+				{ key: "no", name: "Norwegian (Bokmal)" },
+				{ key: "pl", name: "Polish" },
+				{ key: "pt-BR", name: "Portuguese (BR)" },
+				{ key: "pt-PT", name: "Portuguese (PT)" },
+				{ key: "ro", name: "Romanian" },
+				{ key: "ru", name: "Russian" },
+				{ key: "sk", name: "Slovak" },
+				{ key: "sv", name: "Swedish" },
+				{ key: "th", name: "Thai" },
+				{ key: "tr", name: "Turkish" },
+				{ key: "uk", name: "Ukrainian" },
+				{ key: "vi", name: "Vietnamese" },
+				{ key: "zh-Hans", name: "Chinese (Simplified)" },
+				{ key: "zh-Hant", name: "Chinese (Traditional)" }
+			];
                              
-                             const container = document.getElementById('locale-sections');
+			const container = document.getElementById('locale-sections');
                              
-                             locales.forEach(locale => {
-                                 const section = document.createElement('section');
-                                 section.classList.add('mb-5');
-                                 section.innerHTML = `
-        <h4 class="mt-4 mb-3 border-bottom pb-1">${locale.name} (${locale.key})</h4>
-        <div class="mb-3">
-          <label class="form-label">Title</label>
-          <input type="text" class="form-control locale-title" data-key="${locale.key}">
-          <div class="char-count" id="count-title-${locale.key}">0 / 30</div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Subtitle</label>
-          <input type="text" class="form-control locale-subtitle" data-key="${locale.key}">
-          <div class="char-count" id="count-subtitle-${locale.key}">0 / 30</div>
-        </div>
-        <div class="mb-2 d-flex align-items-center">
-          <label class="form-label me-2 mb-0">Keywords</label>
-          <button class="btn btn-sm btn-outline-primary" onclick="optimize('${locale.key}')">Optimize</button>
-        </div>
-        <div class="mb-2">
-          <input type="text" class="form-control locale-keywords" data-key="${locale.key}">
-          <div class="char-count" id="count-keywords-${locale.key}">0 / 100</div>
-        </div>
-        <div id="bubbles-${locale.key}"></div>
-      `;
-      container.appendChild(section);
-                             });
+			locales.forEach(locale => {
+				const section = document.createElement('section');
+				section.classList.add('mb-5');
+				section.innerHTML = `
+				<h4 class="mt-4 mb-3 border-bottom pb-1">${locale.name} (${locale.key})</h4>
+				<div class="mb-3">
+				<label class="form-label">Title</label>
+				<input type="text" class="form-control locale-title" data-key="${locale.key}">
+				<div class="char-count" id="count-title-${locale.key}">30</div>
+				</div>
+				<div class="mb-3">
+				<label class="form-label">Subtitle</label>
+				<input type="text" class="form-control locale-subtitle" data-key="${locale.key}">
+				<div class="char-count" id="count-subtitle-${locale.key}">30</div>
+				</div>
+				<div class="mb-2 d-flex align-items-center">
+				<label class="form-label me-2 mb-0">Keywords</label>
+				<button class="btn btn-sm btn-outline-primary" onclick="optimize('${locale.key}')">Optimize</button>
+				</div>
+				<div class="mb-2">
+				<input type="text" class="form-control locale-keywords" data-key="${locale.key}">
+				<div class="char-count" id="count-keywords-${locale.key}">100</div>
+				</div>
+				<div id="bubbles-${locale.key}"></div>
+				`;
+				container.appendChild(section);
+			});
             
-            document.addEventListener('input', function (e) {
-                if (e.target.matches('.locale-title')) {
-                    updateLength(e.target, 30, `count-title-${e.target.dataset.key}`);
-                }
-                if (e.target.matches('.locale-subtitle')) {
-                    updateLength(e.target, 30, `count-subtitle-${e.target.dataset.key}`);
-                }
-                if (e.target.matches('.locale-keywords')) {
-                    updateLength(e.target, 100, `count-keywords-${e.target.dataset.key}`);
-                }
-            });
+			document.addEventListener('input', function (e) {
+				if (e.target.matches('.locale-title')) {
+					updateLength(e.target, 30, `count-title-${e.target.dataset.key}`);
+				}
+				if (e.target.matches('.locale-subtitle')) {
+					updateLength(e.target, 30, `count-subtitle-${e.target.dataset.key}`);
+				}
+				if (e.target.matches('.locale-keywords')) {
+					updateLength(e.target, 100, `count-keywords-${e.target.dataset.key}`);
+				}
+			});
             
-            function updateLength(input, max, countId) {
-                const len = input.value.length;
-                const count = document.getElementById(countId);
-                count.textContent = `${len} / ${max}`;
-                count.className = 'char-count ' + (len > max ? 'warning' : 'ok');
-                input.classList.toggle('input-warning', len > max);
-            }
+			function updateLength(input, max, countId) {
+				const len = input.value.length;
+				const count = document.getElementById(countId);
+				const remaining = max - len;
+				count.textContent = remaining >= 0 ? `${remaining}` : `-${Math.abs(remaining)}`;
+				count.className = 'char-count ' + (remaining < 0 ? 'warning' : 'ok');
+				input.classList.toggle('input-warning', remaining < 0);
+			}
             
-            function optimize(localeKey) {
-                const title = document.querySelector(`.locale-title[data-key="${localeKey}"]`).value.toLowerCase();
-                const subtitle = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`).value.toLowerCase();
-                const input = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
-                const container = document.getElementById(`bubbles-${localeKey}`);
+			function optimize(localeKey) {
+				const title = document.querySelector(`.locale-title[data-key="${localeKey}"]`).value.toLowerCase();
+				const subtitle = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`).value.toLowerCase();
+				const input = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
+				const container = document.getElementById(`bubbles-${localeKey}`);
                 
-                let raw = input.value.split(',').map(k => k.trim()).filter(Boolean);
-                let seen = new Set();
-                let deduped = [];
+				let raw = input.value.split(',').map(k => k.trim()).filter(Boolean);
+				let seen = new Set();
+				let deduped = [];
                 
-                raw.forEach(k => {
-                    const lower = k.toLowerCase();
-                    if (!seen.has(lower)) {
-                        seen.add(lower);
-                        deduped.push(k);
-                    }
-                });
+				raw.forEach(k => {
+					const lower = k.toLowerCase();
+					if (!seen.has(lower)) {
+						seen.add(lower);
+						deduped.push(k);
+					}
+				});
                 
-                input.value = deduped.join(',');
-                updateLength(input, 100, `count-keywords-${localeKey}`);
-                container.innerHTML = '';
+				input.value = deduped.join(',');
+				updateLength(input, 100, `count-keywords-${localeKey}`);
+				container.innerHTML = '';
                 
-                deduped.forEach(keyword => {
-                    const lower = keyword.toLowerCase();
-                    const inTitle = title.includes(lower);
-                    const inSubtitle = subtitle.includes(lower);
-                    const isDuplicate = raw.filter(k => k.toLowerCase() === lower).length > 1;
+				deduped.forEach(keyword => {
+					const lower = keyword.toLowerCase();
+					const inTitle = title.includes(lower);
+					const inSubtitle = subtitle.includes(lower);
+					const isDuplicate = raw.filter(k => k.toLowerCase() === lower).length > 1;
                     
-                    let badgeClass = 'bg-primary';
-                    let tooltip = 'Unique keyword';
+					let badgeClass = 'bg-primary';
+					let tooltip = 'Unique keyword';
                     
-                    if (inTitle || inSubtitle || isDuplicate) {
-                        badgeClass = 'bg-danger';
-                        tooltip = inTitle ? 'Exists in title'
-                        : inSubtitle ? 'Exists in subtitle'
-                        : 'Duplicate keyword';
-                    }
+					if (inTitle || inSubtitle || isDuplicate) {
+						badgeClass = 'bg-danger';
+						tooltip = inTitle ? 'Exists in title'
+						: inSubtitle ? 'Exists in subtitle'
+						: 'Duplicate keyword';
+					}
                     
-                    const badge = document.createElement('span');
-                    badge.className = `badge ${badgeClass} text-white keyword-bubble px-3 py-2 rounded-pill`;
-                    badge.innerText = keyword;
-                    badge.title = tooltip;
-                    new bootstrap.Tooltip(badge);
-                    badge.onclick = () => {
-                        const newKeywords = deduped.filter(k => k.toLowerCase() !== lower);
-                        input.value = newKeywords.join(',');
-                        optimize(localeKey);
-                    };
+					const badge = document.createElement('span');
+					badge.className = `badge ${badgeClass} text-white keyword-bubble px-3 py-2 rounded-pill`;
+					badge.innerText = keyword;
+					badge.title = tooltip;
+					new bootstrap.Tooltip(badge);
+					badge.onclick = () => {
+						const newKeywords = deduped.filter(k => k.toLowerCase() !== lower);
+						input.value = newKeywords.join(',');
+						optimize(localeKey);
+					};
                     
-                    container.appendChild(badge);
-                });
-            }
-        </script>
+					container.appendChild(badge);
+				});
+			}
+			</script>
         
-		  <footer class="text-center mt-5 text-muted small">
-		    <p class="mb-0">&copy; 2025 <a href="https://www.everappz.com/" target="_blank" class="text-decoration-none">EVERAPPZ SL</a></p>
-		  </footer>
+			<footer class="text-center mt-5 text-muted small">
+			<p class="mb-0">&copy; 2025 <a href="https://www.everappz.com/" target="_blank" class="text-decoration-none">EVERAPPZ SL</a></p>
+			</footer>
         
-    </body>
-</html>
+			</body>
+			</html>
