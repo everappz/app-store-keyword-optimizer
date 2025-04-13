@@ -14,27 +14,30 @@ A lightweight web-based tool to help iOS developers optimize their App Store met
    ```bash
    git clone https://github.com/YOUR_USERNAME/app-store-keyword-optimizer.git
    
-2.	Open index.html in your browser — no build step needed.
+2. Open index.html in your browser — no build step needed.
 
-3.	Or host it via GitHub Pages:
-	•	Go to your repo > Settings > Pages
-	•	Set the source to your main branch /root
-	•	Your tool will be live at https://your-username.github.io/app-store-keyword-optimizer
+3. Or host it via GitHub Pages:
+   
+• Go to your repo > Settings > Pages
+• Set the source to your main branch /root
+• Your tool will be live at https://your-username.github.io/app-store-keyword-optimizer
 
-✨ Features
-	•	Clean UI using Bootstrap 5
-	•	Real-time feedback on keyword limits (30/30/100)
-	•	Tooltip explanations for:
-	•	Duplicates
-	•	Title/subtitle matches
-	•	Keyword cleanup (removes whitespace & duplicates)
-	•	Google keyword suggestions via suggestqueries.google.com
+## ✨ Features
 
-🧠 Ideal For
-	•	Indie iOS developers
-	•	ASO specialists
-	•	Teams optimizing metadata for better search visibility
+• Clean UI using Bootstrap 5
+• Real-time feedback on keyword limits (30/30/100)
+• Tooltip explanations for:
+• Duplicates
+• Title/subtitle matches
+• Keyword cleanup (removes whitespace & duplicates)
+• Google keyword suggestions via suggestqueries.google.com
 
-📝 License
+## 🧠 Ideal For
+
+• Indie iOS developers
+• ASO specialists
+• Teams optimizing metadata for better search visibility
+
+## 📝 License
 
 MIT — use freely, contribute if you’d like!
