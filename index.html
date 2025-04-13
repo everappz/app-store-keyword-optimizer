@@ -21,26 +21,8 @@
       margin: 5px 6px 0 0;
       cursor: pointer;
     }
-    .tooltip-inner {
-      max-width: 220px;
-      text-align: center;
-    }
-    #suggestions {
-      position: absolute;
-      z-index: 1000;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      max-height: 180px;
-      overflow-y: auto;
-      width: 100%;
-    }
-    .suggestion-item {
-      padding: 8px 10px;
-      cursor: pointer;
-    }
-    .suggestion-item:hover {
-      background-color: #f8f9fa;
+    .input-warning {
+      border-color: #dc3545 !important;
     }
   </style>
 </head>
@@ -64,10 +46,9 @@
       <label class="form-label fw-bold me-2 mb-0">Keywords (max 100 characters)</label>
       <button class="btn btn-sm btn-outline-primary" onclick="optimizeKeywords()">Optimize</button>
     </div>
-    <div class="mb-2 position-relative">
+    <div class="mb-2">
       <input type="text" class="form-control" id="keywordsInput" placeholder="Enter keywords...">
       <div id="keywordsCount" class="char-count">0 / 100</div>
-      <div id="suggestions" class="d-none"></div>
     </div>
 
     <div id="keywordsBubbleContainer" class="mt-3"></div>
@@ -75,20 +56,17 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    function updateCount(id, maxLength) {
+    const updateCount = (id, maxLength) => {
       const input = document.getElementById(id + 'Input');
       const count = document.getElementById(id + 'Count');
-
-      function update() {
+      input.addEventListener('input', () => {
         const len = input.value.length;
         count.textContent = `${len} / ${maxLength}`;
-        count.className = 'char-count ' + (len > maxLength ? 'warning' : 'ok');
-        input.classList.toggle('is-invalid', len > maxLength);
-      }
-
-      input.addEventListener('input', update);
-      update();
-    }
+        const isOver = len > maxLength;
+        count.className = 'char-count ' + (isOver ? 'warning' : 'ok');
+        input.classList.toggle('input-warning', isOver);
+      });
+    };
 
     updateCount('title', 30);
     updateCount('subtitle', 30);
@@ -100,43 +78,62 @@
       const keywordsField = document.getElementById('keywordsInput');
       const container = document.getElementById('keywordsBubbleContainer');
 
-      const keywords = keywordsField.value
-        .split(',')
-        .map(k => k.trim())
-        .filter((k, i, arr) => k && arr.indexOf(k) === i); // unique & trimmed
+      let rawKeywords = keywordsField.value.split(',').map(k => k.trim()).filter(Boolean);
+      let seen = new Set();
+      let cleanedKeywords = [];
 
-      keywordsField.value = keywords.join(',');
-      updateCount('keywords', 100);
+      rawKeywords.forEach(k => {
+        const lower = k.toLowerCase();
+        if (!seen.has(lower)) {
+          seen.add(lower);
+          cleanedKeywords.push(k);
+        }
+      });
+
+      keywordsField.value = cleanedKeywords.join(',');
+      updateKeywordCount();
+
       container.innerHTML = '';
 
-      keywords.forEach(keyword => {
-        const lower = keyword.toLowerCase();
-        const inTitle = title.includes(lower);
-        const inSubtitle = subtitle.includes(lower);
-        const duplicate = keywords.filter(k => k.toLowerCase() === lower).length > 1;
+      const dupes = rawKeywords.filter((item, index, arr) =>
+        arr.findIndex(el => el.toLowerCase() === item.toLowerCase()) !== index
+      ).map(d => d.toLowerCase());
 
-        let reason = '';
+      rawKeywords.forEach(k => {
+        const keyword = k.trim();
+        const keywordLower = keyword.toLowerCase();
+        const isDuplicate = dupes.includes(keywordLower);
+        const inTitle = title.includes(keywordLower);
+        const inSubtitle = subtitle.includes(keywordLower);
+
         let badgeClass = 'bg-primary';
-        if (inTitle || inSubtitle || duplicate) {
+        let tooltip = 'Unique keyword';
+
+        if (inTitle || inSubtitle || isDuplicate) {
           badgeClass = 'bg-danger';
-          reason = duplicate
-            ? 'Duplicate keyword'
-            : inTitle
-              ? 'Keyword in title'
-              : 'Keyword in subtitle';
+          tooltip = inTitle ? 'Exists in title'
+                   : inSubtitle ? 'Exists in subtitle'
+                   : 'Duplicate keyword';
         }
 
         const badge = document.createElement('span');
         badge.className = `badge ${badgeClass} text-white keyword-bubble px-3 py-2 rounded-pill`;
-        badge.setAttribute('data-bs-toggle', 'tooltip');
-        badge.setAttribute('data-bs-placement', 'top');
-        badge.setAttribute('title', reason || 'Click to remove');
         badge.innerText = keyword;
-        badge.onclick = () => removeKeyword(keyword);
-
-        container.appendChild(badge);
+        badge.setAttribute('title', tooltip);
         new bootstrap.Tooltip(badge);
+        badge.onclick = () => removeKeyword(keyword);
+        container.appendChild(badge);
       });
+    }
+
+    function updateKeywordCount() {
+      const keywordsField = document.getElementById('keywordsInput');
+      const count = document.getElementById('keywordsCount');
+      const value = keywordsField.value;
+      count.textContent = `${value.length} / 100`;
+      const isOver = value.length > 100;
+      count.className = 'char-count ' + (isOver ? 'warning' : 'ok');
+      keywordsField.classList.toggle('input-warning', isOver);
     }
 
     function removeKeyword(keyword) {
@@ -145,55 +142,9 @@
         .split(',')
         .map(k => k.trim())
         .filter(k => k.toLowerCase() !== keyword.toLowerCase());
-
       keywordsField.value = keywords.join(',');
       optimizeKeywords();
     }
-
-    // Auto-suggest logic
-    const keywordInput = document.getElementById('keywordsInput');
-    const suggestionsBox = document.getElementById('suggestions');
-
-    keywordInput.addEventListener('input', async (e) => {
-      const query = e.target.value.split(',').pop().trim();
-      if (!query) {
-        suggestionsBox.classList.add('d-none');
-        return;
-      }
-
-      try {
-        const url = `https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}`;
-        const res = await fetch(url);
-        const data = await res.json();
-        const suggestions = data[1];
-
-        suggestionsBox.innerHTML = '';
-        suggestions.forEach(s => {
-          const item = document.createElement('div');
-          item.className = 'suggestion-item';
-          item.textContent = s;
-          item.onclick = () => {
-            const parts = keywordInput.value.split(',');
-            parts[parts.length - 1] = s;
-            keywordInput.value = parts.join(', ').replace(/\s*,\s*/g, ',');
-            suggestionsBox.classList.add('d-none');
-            optimizeKeywords();
-          };
-          suggestionsBox.appendChild(item);
-        });
-
-        suggestionsBox.classList.remove('d-none');
-      } catch (err) {
-        console.error('Suggestion fetch failed:', err);
-        suggestionsBox.classList.add('d-none');
-      }
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!suggestionsBox.contains(e.target) && e.target !== keywordInput) {
-        suggestionsBox.classList.add('d-none');
-      }
-    });
   </script>
 </body>
 </html>
