@@ -29,6 +29,7 @@
 	<meta name="keywords" content="app store, ASO, keyword optimizer, app metadata, free ASO tool, app store optimization, app subtitle, app title, app keywords, app SEO, app store search ranking">
 	<meta name="robots" content="index, follow">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 	<style>
 		label.form-label {
 			font-size: 0.85rem;
@@ -54,376 +55,533 @@
 		.input-warning {
 			border-color: #dc3545 !important;
 		}
+		.description-paragraphs p {
+			line-height: 1.8; /* Adjust as desired (e.g., 1.6, 1.8) */
+		}
 		</style>
 	</head>
 	<body class="bg-light py-5">
 		<div class="container">
 			<h1 class="mb-4 text-center">Free App Store ASO Keyword Optimization</h1>
             
-			<div class="bg-white border rounded p-3 small text-muted text-center mb-4">
-				This free tool helps you optimize your App Store metadata (title, subtitle, and keywords) for better ASO results.<br>
-				Your data is stored only in your browser's local storage and never uploaded. We do not collect, transmit, or store any user information.<br>
-				Use at your own risk. No responsibility is taken for any outcomes resulting from the use of this site.
-			</div>
-            
-			<div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mb-4">
-				<button class="btn btn-success" onclick="exportToJSON()">Export to JSON</button>
-                
-				<input type="file" id="importFile" accept=".json"
-				class="form-control form-control-sm w-auto d-none"
-				onchange="importFromJSON(event)">
-                    
-				<button class="btn btn-primary" onclick="document.getElementById('importFile').click()">Import from JSON</button>
-                    
-				<button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
-                    
-				<div class="form-check form-switch ms-3">
-					<input class="form-check-input" type="checkbox" id="autosaveToggle" checked />
-					<label class="form-check-label" for="autosaveToggle">Autosave</label>
+			<div class="bg-white border rounded p-3 small text-muted text-start mb-4 description-paragraphs">
+				<p class="mb-2"><strong>About this tool:</strong><br>
+					This free tool helps you optimize your App Store metadata (title, subtitle, and keywords) for better ASO results.
+				</p>
+
+				<p class="mb-2"><strong>What the <code>Optimize</code> button does:</strong><br>
+					– Replaces all whitespace with commas: <code>media file</code> ➝ <code>media,file</code><br>
+					– Trims excess commas and spaces: <code>media,, ,file,,</code> ➝ <code>media,file</code><br>
+					– Shows each keyword as a colored bubble:<br>
+					&nbsp;&nbsp;&nbsp;• <strong style="color: #dc3545;">Red</strong> = duplicate, appears in title/subtitle, or found in primary language (en-US)<br>
+					&nbsp;&nbsp;&nbsp;• <strong class="text-primary">Blue</strong> = valid, unique keyword<br>
+					– Hover over a bubble to see why it's flagged.<br>
+					– Click a bubble to remove that keyword from the input field.
+				</p>
+
+				<p class="mb-2"><strong><i class="bi bi-translate"></i>
+					Primary language (en-US) check:</strong><br>
+					For all non-en locales, keywords are also checked against en-US fields (title, subtitle, keywords).<br>
+					For example, if <code>download</code> is used in the en-US title and again in the es-ES keywords, it will be marked.
+				</p>
+
+				<p class="mb-2"><strong><i class="bi bi-download"></i>
+					Import from JSON:</strong><br>
+					Load metadata from a previously exported file.<br>
+					<em>Example structure:</em>
+					<pre class="border rounded bg-light p-2 text-start small" style="font-size: 0.75rem; line-height: 1.3;">
+						{
+							"en-US": {
+								"title": "Offline Music",
+								"subtitle": "Download and play",
+								"keywords": "cloud,player"
+							},
+							"es-ES": {
+								"title": "Música offline",
+								"subtitle": "Descarga y reproduce",
+								"keywords": "cloud,player,offline"
+							}
+						}</pre>
+					</p>
+
+					<p class="mb-2"><strong><i class="bi bi-upload"></i>
+						Export to JSON:</strong><br>
+						Saves all current inputs to a downloadable JSON file.
+					</p>
+
+					<p class="mb-2"><strong><i class="bi bi-trash3-fill"></i>
+						Clear All Data:</strong><br>
+						Removes all text fields and clears local storage. This action cannot be undone.
+					</p>
+
+					<p class="mb-2"><strong><i class="bi bi-floppy2-fill"></i>
+						Autosave:</strong><br>
+						When enabled, your inputs are automatically stored in your browser as you type. Data is <strong>never uploaded</strong> or sent anywhere.
+					</p>
+
+					<p class="mb-2"><strong><i class="bi bi-shield-lock-fill"></i>
+						Privacy:</strong><br>
+						All data is stored locally in your browser. This tool does not collect, send, or store any information externally.
+					</p>
+
+					<p class="mb-2">
+						<strong><i class="bi bi-github"></i> Contribute on GitHub:</strong><br>
+						This tool is open-source! If you'd like to improve it, report bugs, or suggest features, visit the project page:<br>
+						<a href="https://github.com/everappz/app-store-keyword-optimizer" target="_blank" class="text-decoration-none">
+							https://github.com/everappz/app-store-keyword-optimizer
+						</a>
+					</p>
+
+					<hr class="my-3">
+					<p class="mb-0"><strong><i class="bi bi-exclamation-triangle-fill text-warning"></i>
+						Disclaimer:</strong><br>
+						This tool is provided "as-is" without any guarantees. Use at your own risk. We are not responsible for any data loss, metadata rejections, or app performance changes resulting from use of this tool.
+					</p>
 				</div>
+            
+				<div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mb-4">
+					<button class="btn btn-success" onclick="exportToJSON()">
+						<i class="bi bi-upload me-1"></i> Export to JSON
+					</button>
+
+					<input type="file" id="importFile" accept=".json"
+					class="form-control form-control-sm w-auto d-none"
+					onchange="importFromJSON(event)">
+
+					<button class="btn btn-primary" onclick="document.getElementById('importFile').click()">
+						<i class="bi bi-download me-1"></i> Import from JSON
+					</button>
+
+					<button class="btn btn-danger" onclick="clearAllData()">
+						<i class="bi bi-trash3-fill me-1"></i> Clear All Data
+					</button>
                     
+					<div class="form-check form-switch ms-3">
+						<input class="form-check-input" type="checkbox" id="autosaveToggle" checked />
+						<label class="form-check-label" for="autosaveToggle">Autosave</label>
+					</div>
+                    
+				</div>
+            
+				<div id="locale-sections"></div>
 			</div>
-            
-			<div id="locale-sections"></div>
-		</div>
         
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        
-		<script>
-			const STORAGE_KEY = 'app_store_metadata_local';
-			const AUTOSAVE_ENABLED_KEY = 'autosave_enabled';
-            
-			function saveToLocalStorage() {
-				if (!document.getElementById('autosaveToggle').checked) return;
-				const data = {};
-				document.querySelectorAll('[data-key]').forEach(el => {
-					const key = el.dataset.key;
-					if (!data[key]) data[key] = {};
-					const type = el.classList.contains('locale-title') ? 'title'
-					: el.classList.contains('locale-subtitle') ? 'subtitle'
-					: el.classList.contains('locale-keywords') ? 'keywords'
-					: null;
-					if (type && el.value.trim() !== '') {
-						data[key][type] = el.value.trim();
-					}
-				});
-				localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-			}
-            
-			function loadFromLocalStorage() {
-				try {
-					const saved = localStorage.getItem(AUTOSAVE_ENABLED_KEY);
-					const autosave = saved !== 'false'; // Default to true if null
-					document.getElementById('autosaveToggle').checked = autosave;
-                    
-					if (!autosave) return; // 🚫 Prevent loading saved data if autosave is disabled
-                    
-					const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-					for (const [localeKey, values] of Object.entries(data)) {
-						if (values.title) {
-							const el = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
-							if (el) {
-								el.value = values.title;
-								updateLength(el, 30, `count-title-${localeKey}`);
-							}
-						}
-						if (values.subtitle) {
-							const el = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
-							if (el) {
-								el.value = values.subtitle;
-								updateLength(el, 30, `count-subtitle-${localeKey}`);
-							}
-						}
-						if (values.keywords) {
-							const el = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
-							if (el) {
-								el.value = values.keywords;
-								updateLength(el, 100, `count-keywords-${localeKey}`);
-								optimize(localeKey);
-							}
-						}
-					}
-				} catch (e) {
-					console.warn('Failed to load from localStorage');
-				}
-			}
-            
-			document.addEventListener('input', function (e) {
-				if (
-					document.getElementById('autosaveToggle')?.checked &&
-					(e.target.matches('.locale-title') || e.target.matches('.locale-subtitle') || e.target.matches('.locale-keywords'))
-				) {
-					saveToLocalStorage();
-				}
-			});
-            
-			document.getElementById('autosaveToggle').addEventListener('change', () => {
-				const isEnabled = document.getElementById('autosaveToggle').checked;
-				localStorage.setItem(AUTOSAVE_ENABLED_KEY, isEnabled);
-                
-				if (isEnabled) {
-					saveToLocalStorage(); // 🔁 Immediately save current state
-				}
-			});
-            
-			window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
-			</script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         
 			<script>
-			function clearAllData() {
-				if (!confirm("Are you sure you want to clear all metadata and reset the form?")) return;
-                
-				localStorage.removeItem(STORAGE_KEY);
-                
-				document.querySelectorAll('[data-key]').forEach(el => {
-					el.value = '';
-				});
-                
-				document.querySelectorAll('.char-count').forEach(el => {
-					el.textContent = el.id.includes('keywords') ? '0 / 100' : '0 / 30';
-					el.className = 'char-count';
-				});
-                
-				document.querySelectorAll('.input-warning').forEach(el => {
-					el.classList.remove('input-warning');
-				});
-                
-				document.querySelectorAll('[id^="bubbles-"]').forEach(container => {
-					container.innerHTML = '';
-				});
-			}
-			</script>
-        
-			<script>
-			function importFromJSON(event) {
-				const file = event.target.files[0];
-				if (!file) return;
-                
-				const reader = new FileReader();
-				reader.onload = function (e) {
+				const STORAGE_KEY = 'app_store_metadata_local';
+				const AUTOSAVE_ENABLED_KEY = 'autosave_enabled';
+            
+				function saveToLocalStorage() {
+					if (!document.getElementById('autosaveToggle').checked) return;
+					const data = {};
+					document.querySelectorAll('[data-key]').forEach(el => {
+						const key = el.dataset.key;
+						if (!data[key]) data[key] = {};
+						const type = el.classList.contains('locale-title') ? 'title'
+						: el.classList.contains('locale-subtitle') ? 'subtitle'
+						: el.classList.contains('locale-keywords') ? 'keywords'
+						: null;
+						if (type && el.value.trim() !== '') {
+							data[key][type] = el.value.trim();
+						}
+					});
+					localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+				}
+            
+				function loadFromLocalStorage() {
 					try {
-						const data = JSON.parse(e.target.result);
+						const saved = localStorage.getItem(AUTOSAVE_ENABLED_KEY);
+						const autosave = saved !== 'false'; // Default to true if null
+						document.getElementById('autosaveToggle').checked = autosave;
+                    
+						if (!autosave) return; // 🚫 Prevent loading saved data if autosave is disabled
+                    
+						const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 						for (const [localeKey, values] of Object.entries(data)) {
 							if (values.title) {
-								const titleEl = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
-								if (titleEl) {
-									titleEl.value = values.title;
-									updateLength(titleEl, 30, `count-title-${localeKey}`);
+								const el = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
+								if (el) {
+									el.value = values.title;
+									updateLength(el, 30, `count-title-${localeKey}`);
 								}
 							}
 							if (values.subtitle) {
-								const subtitleEl = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
-								if (subtitleEl) {
-									subtitleEl.value = values.subtitle;
-									updateLength(subtitleEl, 30, `count-subtitle-${localeKey}`);
+								const el = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
+								if (el) {
+									el.value = values.subtitle;
+									updateLength(el, 30, `count-subtitle-${localeKey}`);
 								}
 							}
 							if (values.keywords) {
-								const keywordsEl = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
-								if (keywordsEl) {
-									keywordsEl.value = values.keywords;
-									updateLength(keywordsEl, 100, `count-keywords-${localeKey}`);
+								const el = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
+								if (el) {
+									el.value = values.keywords;
+									updateLength(el, 100, `count-keywords-${localeKey}`);
 									optimize(localeKey);
 								}
 							}
 						}
-					} catch (err) {
-						alert('Invalid JSON file');
+					} catch (e) {
+						console.warn('Failed to load from localStorage');
 					}
-				};
-				reader.readAsText(file);
-			}
-			</script>
-        
-			<script>
-			function exportToJSON() {
-				const data = {};
-                
-				document.querySelectorAll('[data-key]').forEach(el => {
-					const key = el.dataset.key;
-					if (!data[key]) data[key] = {};
-                    
-					const type = el.classList.contains('locale-title') ? 'title'
-					: el.classList.contains('locale-subtitle') ? 'subtitle'
-					: el.classList.contains('locale-keywords') ? 'keywords'
-					: null;
-                    
-					if (type && el.value.trim() !== '') {
-						data[key][type] = el.value.trim();
+				}
+            
+				document.addEventListener('input', function (e) {
+					if (
+						document.getElementById('autosaveToggle')?.checked &&
+						(e.target.matches('.locale-title') || e.target.matches('.locale-subtitle') || e.target.matches('.locale-keywords'))
+					) {
+						saveToLocalStorage();
 					}
 				});
+            
+				document.getElementById('autosaveToggle').addEventListener('change', () => {
+					const isEnabled = document.getElementById('autosaveToggle').checked;
+					localStorage.setItem(AUTOSAVE_ENABLED_KEY, isEnabled);
                 
-				// Remove keys with no data
-				Object.keys(data).forEach(k => {
-					if (!data[k].title && !data[k].subtitle && !data[k].keywords) {
-						delete data[k];
+					if (isEnabled) {
+						saveToLocalStorage(); // 🔁 Immediately save current state
 					}
 				});
-                
-				const jsonString = JSON.stringify(data, null, 2);
-				const blob = new Blob([jsonString], { type: "application/json" });
-				const url = URL.createObjectURL(blob);
-				const a = document.createElement('a');
-                
-				a.href = url;
-				a.download = "app_store_metadata.json";
-				a.click();
-				URL.revokeObjectURL(url);
-			}
-			</script>
+            
+				window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+				</script>
         
+				<script>
+				function clearAllData() {
+					if (!confirm("Are you sure you want to clear all metadata and reset the form?")) return;
+                
+					localStorage.removeItem(STORAGE_KEY);
+                
+					document.querySelectorAll('[data-key]').forEach(el => {
+						el.value = '';
+					});
+                
+					document.querySelectorAll('.char-count').forEach(el => {
+						el.textContent = el.id.includes('keywords') ? '0 / 100' : '0 / 30';
+						el.className = 'char-count';
+					});
+                
+					document.querySelectorAll('.input-warning').forEach(el => {
+						el.classList.remove('input-warning');
+					});
+                
+					document.querySelectorAll('[id^="bubbles-"]').forEach(container => {
+						container.innerHTML = '';
+					});
+				}
+				</script>
         
-			<script>
-			const locales = [
-				{ key: "en-US", name: "English (U.S.)" },
-				{ key: "en-AU", name: "English (A.U.)" },
-				{ key: "en-CA", name: "English (C.A.)" },
-				{ key: "en-GB", name: "English (G.B.)" },
-				{ key: "ar-SA", name: "Arabic" },
-				{ key: "ca", name: "Catalan" },
-				{ key: "cs", name: "Czech" },
-				{ key: "da", name: "Danish" },
-				{ key: "de-DE", name: "German" },
-				{ key: "el", name: "Greek" },
-				{ key: "es-ES", name: "Spanish ES" },
-				{ key: "es-MX", name: "Spanish MX" },
-				{ key: "fi", name: "Finnish" },
-				{ key: "fr-CA", name: "French CA" },
-				{ key: "fr-FR", name: "French FR" },
-				{ key: "he", name: "Hebrew" },
-				{ key: "hi", name: "Hindi" },
-				{ key: "hr", name: "Croatian" },
-				{ key: "hu", name: "Hungarian" },
-				{ key: "id", name: "Indonesian" },
-				{ key: "it", name: "Italian" },
-				{ key: "ja", name: "Japanese" },
-				{ key: "ko", name: "Korean" },
-				{ key: "ms", name: "Malay" },
-				{ key: "nl-NL", name: "Dutch" },
-				{ key: "no", name: "Norwegian (Bokmal)" },
-				{ key: "pl", name: "Polish" },
-				{ key: "pt-BR", name: "Portuguese (BR)" },
-				{ key: "pt-PT", name: "Portuguese (PT)" },
-				{ key: "ro", name: "Romanian" },
-				{ key: "ru", name: "Russian" },
-				{ key: "sk", name: "Slovak" },
-				{ key: "sv", name: "Swedish" },
-				{ key: "th", name: "Thai" },
-				{ key: "tr", name: "Turkish" },
-				{ key: "uk", name: "Ukrainian" },
-				{ key: "vi", name: "Vietnamese" },
-				{ key: "zh-Hans", name: "Chinese (Simplified)" },
-				{ key: "zh-Hant", name: "Chinese (Traditional)" }
-			];
-                             
-			const container = document.getElementById('locale-sections');
-                             
-			locales.forEach(locale => {
-				const section = document.createElement('section');
-				section.classList.add('mb-5');
-				section.innerHTML = `
-				<h4 class="mt-4 mb-3 border-bottom pb-1">${locale.name} (${locale.key})</h4>
-				<div class="mb-3">
-				<label class="form-label">Title</label>
-				<input type="text" class="form-control locale-title" data-key="${locale.key}">
-				<div class="char-count" id="count-title-${locale.key}">30</div>
-				</div>
-				<div class="mb-3">
-				<label class="form-label">Subtitle</label>
-				<input type="text" class="form-control locale-subtitle" data-key="${locale.key}">
-				<div class="char-count" id="count-subtitle-${locale.key}">30</div>
-				</div>
-				<div class="mb-2 d-flex align-items-center">
-				<label class="form-label me-2 mb-0">Keywords</label>
-				<button class="btn btn-sm btn-outline-primary" onclick="optimize('${locale.key}')">Optimize</button>
-				</div>
-				<div class="mb-2">
-				<input type="text" class="form-control locale-keywords" data-key="${locale.key}">
-				<div class="char-count" id="count-keywords-${locale.key}">100</div>
-				</div>
-				<div id="bubbles-${locale.key}"></div>
-				`;
-				container.appendChild(section);
-			});
-            
-			document.addEventListener('input', function (e) {
-				if (e.target.matches('.locale-title')) {
-					updateLength(e.target, 30, `count-title-${e.target.dataset.key}`);
-				}
-				if (e.target.matches('.locale-subtitle')) {
-					updateLength(e.target, 30, `count-subtitle-${e.target.dataset.key}`);
-				}
-				if (e.target.matches('.locale-keywords')) {
-					updateLength(e.target, 100, `count-keywords-${e.target.dataset.key}`);
-				}
-			});
-            
-			function updateLength(input, max, countId) {
-				const len = input.value.length;
-				const count = document.getElementById(countId);
-				const remaining = max - len;
-				count.textContent = remaining >= 0 ? `${remaining}` : `-${Math.abs(remaining)}`;
-				count.className = 'char-count ' + (remaining < 0 ? 'warning' : 'ok');
-				input.classList.toggle('input-warning', remaining < 0);
-			}
-            
-			function optimize(localeKey) {
-				const title = document.querySelector(`.locale-title[data-key="${localeKey}"]`).value.toLowerCase();
-				const subtitle = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`).value.toLowerCase();
-				const input = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
-				const container = document.getElementById(`bubbles-${localeKey}`);
+				<script>
+				function importFromJSON(event) {
+					const file = event.target.files[0];
+					if (!file) return;
                 
-				let raw = input.value.split(',').map(k => k.trim()).filter(Boolean);
-				let seen = new Set();
-				let deduped = [];
-                
-				raw.forEach(k => {
-					const lower = k.toLowerCase();
-					if (!seen.has(lower)) {
-						seen.add(lower);
-						deduped.push(k);
-					}
-				});
-                
-				input.value = deduped.join(',');
-				updateLength(input, 100, `count-keywords-${localeKey}`);
-				container.innerHTML = '';
-                
-				deduped.forEach(keyword => {
-					const lower = keyword.toLowerCase();
-					const inTitle = title.includes(lower);
-					const inSubtitle = subtitle.includes(lower);
-					const isDuplicate = raw.filter(k => k.toLowerCase() === lower).length > 1;
-                    
-					let badgeClass = 'bg-primary';
-					let tooltip = 'Unique keyword';
-                    
-					if (inTitle || inSubtitle || isDuplicate) {
-						badgeClass = 'bg-danger';
-						tooltip = inTitle ? 'Exists in title'
-						: inSubtitle ? 'Exists in subtitle'
-						: 'Duplicate keyword';
-					}
-                    
-					const badge = document.createElement('span');
-					badge.className = `badge ${badgeClass} text-white keyword-bubble px-3 py-2 rounded-pill`;
-					badge.innerText = keyword;
-					badge.title = tooltip;
-					new bootstrap.Tooltip(badge);
-					badge.onclick = () => {
-						const newKeywords = deduped.filter(k => k.toLowerCase() !== lower);
-						input.value = newKeywords.join(',');
-						optimize(localeKey);
+					const reader = new FileReader();
+					reader.onload = function (e) {
+						try {
+							const data = JSON.parse(e.target.result);
+							for (const [localeKey, values] of Object.entries(data)) {
+								if (values.title) {
+									const titleEl = document.querySelector(`.locale-title[data-key="${localeKey}"]`);
+									if (titleEl) {
+										titleEl.value = values.title;
+										updateLength(titleEl, 30, `count-title-${localeKey}`);
+									}
+								}
+								if (values.subtitle) {
+									const subtitleEl = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`);
+									if (subtitleEl) {
+										subtitleEl.value = values.subtitle;
+										updateLength(subtitleEl, 30, `count-subtitle-${localeKey}`);
+									}
+								}
+								if (values.keywords) {
+									const keywordsEl = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
+									if (keywordsEl) {
+										keywordsEl.value = values.keywords;
+										updateLength(keywordsEl, 100, `count-keywords-${localeKey}`);
+										optimize(localeKey);
+									}
+								}
+							}
+						} catch (err) {
+							alert('Invalid JSON file');
+						}
 					};
+					reader.readAsText(file);
+				}
+				</script>
+        
+				<script>
+				function exportToJSON() {
+					const data = {};
+                
+					document.querySelectorAll('[data-key]').forEach(el => {
+						const key = el.dataset.key;
+						if (!data[key]) data[key] = {};
                     
-					container.appendChild(badge);
+						const type = el.classList.contains('locale-title') ? 'title'
+						: el.classList.contains('locale-subtitle') ? 'subtitle'
+						: el.classList.contains('locale-keywords') ? 'keywords'
+						: null;
+                    
+						if (type && el.value.trim() !== '') {
+							data[key][type] = el.value.trim();
+						}
+					});
+                
+					// Remove keys with no data
+					Object.keys(data).forEach(k => {
+						if (!data[k].title && !data[k].subtitle && !data[k].keywords) {
+							delete data[k];
+						}
+					});
+                
+					const jsonString = JSON.stringify(data, null, 2);
+					const blob = new Blob([jsonString], { type: "application/json" });
+					const url = URL.createObjectURL(blob);
+					const a = document.createElement('a');
+                
+					a.href = url;
+					a.download = "app_store_metadata.json";
+					a.click();
+					URL.revokeObjectURL(url);
+				}
+				</script>
+        
+				<script>
+				const locales = [
+					{ key: "en-US", name: "English (U.S.)" },
+					{ key: "en-AU", name: "English (A.U.)" },
+					{ key: "en-CA", name: "English (C.A.)" },
+					{ key: "en-GB", name: "English (G.B.)" },
+					{ key: "ar-SA", name: "Arabic" },
+					{ key: "ca", name: "Catalan" },
+					{ key: "cs", name: "Czech" },
+					{ key: "da", name: "Danish" },
+					{ key: "de-DE", name: "German" },
+					{ key: "el", name: "Greek" },
+					{ key: "es-ES", name: "Spanish ES" },
+					{ key: "es-MX", name: "Spanish MX" },
+					{ key: "fi", name: "Finnish" },
+					{ key: "fr-CA", name: "French CA" },
+					{ key: "fr-FR", name: "French FR" },
+					{ key: "he", name: "Hebrew" },
+					{ key: "hi", name: "Hindi" },
+					{ key: "hr", name: "Croatian" },
+					{ key: "hu", name: "Hungarian" },
+					{ key: "id", name: "Indonesian" },
+					{ key: "it", name: "Italian" },
+					{ key: "ja", name: "Japanese" },
+					{ key: "ko", name: "Korean" },
+					{ key: "ms", name: "Malay" },
+					{ key: "nl-NL", name: "Dutch" },
+					{ key: "no", name: "Norwegian (Bokmal)" },
+					{ key: "pl", name: "Polish" },
+					{ key: "pt-BR", name: "Portuguese (BR)" },
+					{ key: "pt-PT", name: "Portuguese (PT)" },
+					{ key: "ro", name: "Romanian" },
+					{ key: "ru", name: "Russian" },
+					{ key: "sk", name: "Slovak" },
+					{ key: "sv", name: "Swedish" },
+					{ key: "th", name: "Thai" },
+					{ key: "tr", name: "Turkish" },
+					{ key: "uk", name: "Ukrainian" },
+					{ key: "vi", name: "Vietnamese" },
+					{ key: "zh-Hans", name: "Chinese (Simplified)" },
+					{ key: "zh-Hant", name: "Chinese (Traditional)" }
+				];
+                             
+				const container = document.getElementById('locale-sections');
+                             
+				locales.forEach(locale => {
+					const section = document.createElement('section');
+					section.classList.add('mb-5');
+					const isMainLocale = locale.key === "en-US";
+					section.innerHTML = `
+					<h4 class="mt-4 mb-3 border-bottom pb-1 d-flex justify-content-between align-items-center">
+					<span>${locale.name} (${locale.key})</span>
+					${isMainLocale ? '<span class="text-muted fw-normal" style="font-size: 0.75rem;">Primary Language</span>' : ''}
+					</h4>
+					<div class="mb-3">
+					<label class="form-label">Title</label>
+					<input type="text" class="form-control locale-title" data-key="${locale.key}">
+					<div class="char-count" id="count-title-${locale.key}">30</div>
+					</div>
+					<div class="mb-3">
+					<label class="form-label">Subtitle</label>
+					<input type="text" class="form-control locale-subtitle" data-key="${locale.key}">
+					<div class="char-count" id="count-subtitle-${locale.key}">30</div>
+					</div>
+					<div class="mb-2 d-flex align-items-center">
+					<label class="form-label me-2 mb-0">Keywords</label>
+					<button class="btn btn-sm btn-outline-primary" onclick="optimize('${locale.key}')"><i class="bi bi-check-circle-fill me-1"></i> Optimize</button>
+					</div>
+					<div class="mb-2">
+					<input type="text" class="form-control locale-keywords" data-key="${locale.key}">
+					<div class="char-count" id="count-keywords-${locale.key}">100</div>
+					</div>
+					<div id="bubbles-${locale.key}"></div>
+					`;
+					container.appendChild(section);
 				});
-			}
-			</script>
+            
+				document.addEventListener('input', function (e) {
+					if (e.target.matches('.locale-title')) {
+						updateLength(e.target, 30, `count-title-${e.target.dataset.key}`);
+					}
+					if (e.target.matches('.locale-subtitle')) {
+						updateLength(e.target, 30, `count-subtitle-${e.target.dataset.key}`);
+					}
+					if (e.target.matches('.locale-keywords')) {
+						updateLength(e.target, 100, `count-keywords-${e.target.dataset.key}`);
+					}
+				});
+            
+				function updateLength(input, max, countId) {
+					const len = input.value.length;
+					const count = document.getElementById(countId);
+					const remaining = max - len;
+					count.textContent = remaining >= 0 ? `${remaining}` : `-${Math.abs(remaining)}`;
+					count.className = 'char-count ' + (remaining < 0 ? 'warning' : 'ok');
+					input.classList.toggle('input-warning', remaining < 0);
+				}
+			
+				function getMainLocaleData() {
+					const enTitle = document.querySelector('.locale-title[data-key="en-US"]')?.value.toLowerCase() || '';
+					const enSubtitle = document.querySelector('.locale-subtitle[data-key="en-US"]')?.value.toLowerCase() || '';
+					const enKeywords = document.querySelector('.locale-keywords[data-key="en-US"]')?.value.toLowerCase() || '';
+					return { enTitle, enSubtitle, enKeywords: enKeywords.split(',').map(k => k.trim()).filter(Boolean) };
+				}
+            
+				function optimize(localeKey) {
+					const title = document.querySelector(`.locale-title[data-key="${localeKey}"]`).value.toLowerCase();
+					const subtitle = document.querySelector(`.locale-subtitle[data-key="${localeKey}"]`).value.toLowerCase();
+					const input = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
+					const container = document.getElementById(`bubbles-${localeKey}`);
+                
+				
+					// Step 1: Clean the input by replacing spaces with commas and normalizing commas
+					let cleaned = input.value
+					.replace(/\s+/g, ',')         // Replace all groups of whitespace (space, tab, etc.) with a single comma
+					// Example: "media   file   download" → "media,file,download"
+
+					.replace(/,+/g, ',')          // Replace multiple consecutive commas with a single comma
+					// Example: "media,,file,,,download" → "media,file,download"
+
+					.replace(/^,|,$/g, '');       // Remove leading or trailing commas
+					// Example: ",media,file,download," → "media,file,download"
+
+					// Update the visible input field with the cleaned version
+					input.value = cleaned;
+					// Now, input.value is normalized like: "media,file,download"
+
+					// Step 2: Split the cleaned input into an array of keywords
+					let raw = cleaned.split(',').filter(Boolean);
+					// This gives you an array like ["media", "file", "download"]
+					// It also filters out any empty strings caused by trailing or double commas
+
+					// Step 3: Further trim and clean up each keyword — just in case
+					raw = raw.map(k => k.trim())      // Trim spaces around each keyword
+					.filter(Boolean);        // Remove any accidentally empty keywords
+					// Example: [" media ", "", "file"] → ["media", "file"]
+
+					// Step 4: Rejoin keywords into a normalized string again for the input field
+					input.value = raw.join(',')       // Join keywords with a single comma
+					.replace(/,+/g, ',')          // Again, ensure no duplicate commas
+					.replace(/^,|,$/g, '');       // And no starting or ending commas
+					// Final example result in input.value: "media,file,download"
+				
+								
+					updateLength(input, 100, `count-keywords-${localeKey}`);
+					container.innerHTML = '';
+                
+					raw.forEach((keyword, i) => {
+						const lower = keyword.toLowerCase();
+						const inTitle = title.includes(lower);
+						const inSubtitle = subtitle.includes(lower);
+						const isDuplicate = raw.filter(k => k.toLowerCase() === lower).length > 1;
+
+						let inMainTitle = false;
+						let inMainSubtitle = false;
+						let inMainKeywords = false;
+
+						// Only run this logic if we are NOT editing the main (en-US) locale
+						if (localeKey !== 'en-US') {
+
+							// Get the title field of the en-US (main) locale, converted to lowercase for comparison
+							const mainTitle = document.querySelector(`.locale-title[data-key="en-US"]`)?.value.toLowerCase() || '';
+							// Example: mainTitle = "music player"
+
+							// Get the subtitle field of the en-US locale
+							const mainSubtitle = document.querySelector(`.locale-subtitle[data-key="en-US"]`)?.value.toLowerCase() || '';
+							// Example: mainSubtitle = "offline audio"
+
+							// Get the keywords field of the en-US locale
+							const mainKeywords = document.querySelector(`.locale-keywords[data-key="en-US"]`)?.value.toLowerCase() || '';
+							// Example: mainKeywords = "download,cloud,music"
+
+							// Check if the current keyword exists in the main locale's title
+							inMainTitle = mainTitle.includes(lower);
+							// Example: keyword = "music" → true
+
+							// Check if it exists in the main locale's subtitle
+							inMainSubtitle = mainSubtitle.includes(lower);
+							// Example: keyword = "offline" → true
+
+							// Only check main locale keywords if this child locale is NOT another English locale (e.g., en-CA)
+							if (!localeKey.startsWith('en')) {
+								// Split the main keywords into an array and check if the current keyword exists there
+								inMainKeywords = mainKeywords.split(',').map(k => k.trim()).includes(lower);
+								// Example: keyword = "cloud" → true
+							}
+						}
+
+						let badgeClass = 'bg-primary';
+						let tooltip = 'This keyword is unique';
+
+						if (inTitle) {
+							badgeClass = 'bg-danger';
+							tooltip = 'This keyword already exists in the title of this locale';
+						} else if (inSubtitle) {
+							badgeClass = 'bg-danger';
+							tooltip = 'This keyword already exists in the subtitle of this locale';
+						} else if (isDuplicate) {
+							badgeClass = 'bg-danger';
+							tooltip = 'This keyword is duplicated within the keywords field';
+						} else if (inMainTitle) {
+							badgeClass = 'bg-danger';
+							tooltip = 'This keyword is also present in the title of the primary language (en-US)';
+						} else if (inMainSubtitle) {
+							badgeClass = 'bg-danger';
+							tooltip = 'This keyword is also present in the subtitle of the primary language (en-US)';
+						} else if (inMainKeywords) {
+							badgeClass = 'bg-danger';
+							tooltip = 'This keyword is also present in the keywords of the primary language (en-US)';
+						}
+
+						const badge = document.createElement('span');
+						badge.className = `badge ${badgeClass} text-white keyword-bubble px-3 py-2 rounded-pill`;
+						badge.innerText = keyword;
+						badge.title = tooltip;
+						new bootstrap.Tooltip(badge);
+
+						badge.onclick = () => {
+							raw.splice(i, 1);
+							input.value = raw.join(',').replace(/,+/g, ',').replace(/^,|,$/g, '');
+							optimize(localeKey);
+						};
+
+						container.appendChild(badge);
+					});
+				}
+				</script>
         
-			<footer class="text-center mt-5 text-muted small">
-			<p class="mb-0">&copy; 2025 <a href="https://www.everappz.com/" target="_blank" class="text-decoration-none">EVERAPPZ SL</a></p>
-			</footer>
+				<footer class="text-center mt-5 text-muted small">
+				<p class="mb-0">&copy; 2025 <a href="https://www.everappz.com/" target="_blank" class="text-decoration-none">EVERAPPZ SL</a></p>
+				</footer>
         
-			</body>
-			</html>
+				</body>
+				</html>
