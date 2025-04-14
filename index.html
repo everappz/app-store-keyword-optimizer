@@ -84,6 +84,7 @@
 	</p>
 
 	<p class="mb-2"><strong>What the <code>Optimize</code> button does:</strong><br>
+		– Normalizes all locale-specific commas to standard: Arabic <code>،</code>, Japanese <code>、</code>, Chinese <code>，</code> ➝ <code>,</code><br>
 		– Replaces all whitespace with commas: <code>media file</code> ➝ <code>media,file</code><br>
 		– Trims excess commas and spaces: <code>media,, ,file,,</code> ➝ <code>media,file</code><br>
 		– Shows each keyword as a colored bubble:<br>
@@ -476,6 +477,17 @@
 		const input = document.querySelector(`.locale-keywords[data-key="${localeKey}"]`);
 		const container = document.getElementById(`bubbles-${localeKey}`);
 
+		const localeCommas = {
+			"ar-SA": "،",     // Arabic comma – U+060C
+			"ja": "、",       // Japanese comma – U+3001
+			"zh-Hans": "，",  // Fullwidth comma – U+FF0C
+			"zh-Hant": "，"   // Fullwidth comma – U+FF0C
+		};
+
+		const userComma = localeCommas[localeKey];
+		if (userComma) {
+			input.value = input.value.replaceAll(userComma, ',');
+		}
 
 		// Step 1: Clean the input by replacing spaces with commas and normalizing commas
 		let cleaned = input.value
