@@ -91,14 +91,14 @@
 	</p>
 
 	<p class="mb-2"><strong><i class="bi bi-check-circle-fill"></i> What the <code>Optimize</code> button does:</strong><br>
-		– Normalizes all locale-specific commas: Arabic U+060C <code>[،]</code> Japanese U+3001 <code>[、]</code> Chinese U+FF0C <code>[，]</code> to standard U+002C <code>[,]</code><br>
-		– Replaces all whitespace with commas: <code>[media file]</code> ➝ <code>[media,file]</code><br>
-		– Trims excess commas and spaces: <code>[media,, ,file,,]</code> ➝ <code>[media,file]</code><br>
-		– Shows each keyword as a colored bubble:<br>
-		&nbsp;&nbsp;&nbsp;• <strong style="color: #dc3545;">Red</strong> = duplicate, appears in title/subtitle, or found in primary language (en-US)<br>
-		&nbsp;&nbsp;&nbsp;• <strong class="text-primary">Blue</strong> = valid, unique keyword<br>
-		– Hover over a bubble to see why it's flagged.<br>
-		– Click a bubble to remove that keyword from the input field.
+		&ndash; Normalizes all locale-specific commas: Arabic <code>&#x060C;</code> (U+060C) Japanese <code>&#x3001;</code> (U+3001) Chinese <code>&#xFF0C;</code> (U+FF0C) to standard &rarr; <code>,</code> (U+002C)<br>
+		&ndash; Replaces all whitespace with commas: <code>[media file]</code> &rarr; <code>[media,file]</code><br>
+		&ndash; Trims excess commas and spaces: <code>[media,, ,file,,]</code> &rarr; <code>[media,file]</code><br>
+		&ndash; Shows each keyword as a colored bubble:<br>
+		&nbsp;&nbsp;&nbsp;&bull; <strong style="color: #dc3545;">Red</strong> = duplicate, appears in title/subtitle, or found in primary language (en-US)<br>
+		&nbsp;&nbsp;&nbsp;&bull; <strong class="text-primary">Blue</strong> = valid, unique keyword<br>
+		&ndash; Hover over a bubble to see why it's flagged.<br>
+		&ndash; Click a bubble to remove that keyword from the input field.
 	</p>
 	
 	<p class="mb-2"><strong><i class="bi bi-translate"></i> What the <code>Translate</code> button does:</strong><br>
