@@ -91,9 +91,9 @@
 	</p>
 
 	<p class="mb-2"><strong><i class="bi bi-check-circle-fill"></i> What the <code>Optimize</code> button does:</strong><br>
-		– Normalizes all locale-specific commas to standard: Arabic <code>،</code>, Japanese <code>、</code>, Chinese <code>，</code> ➝ <code>,</code><br>
-		– Replaces all whitespace with commas: <code>media file</code> ➝ <code>media,file</code><br>
-		– Trims excess commas and spaces: <code>media,, ,file,,</code> ➝ <code>media,file</code><br>
+		– Normalizes all locale-specific commas: Arabic U+060C <code>[،]</code> Japanese U+3001 <code>[、]</code> Chinese U+FF0C <code>[，]</code> to standard U+002C <code>[,]</code><br>
+		– Replaces all whitespace with commas: <code>[media file]</code> ➝ <code>[media,file]</code><br>
+		– Trims excess commas and spaces: <code>[media,, ,file,,]</code> ➝ <code>[media,file]</code><br>
 		– Shows each keyword as a colored bubble:<br>
 		&nbsp;&nbsp;&nbsp;• <strong style="color: #dc3545;">Red</strong> = duplicate, appears in title/subtitle, or found in primary language (en-US)<br>
 		&nbsp;&nbsp;&nbsp;• <strong class="text-primary">Blue</strong> = valid, unique keyword<br>
