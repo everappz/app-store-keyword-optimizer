@@ -1,0 +1,40 @@
+# App Store Keyword Optimizer
+
+> Free browser-based ASO (App Store Optimization) tool for managing iOS App Store metadata — title, subtitle, and keywords — with live character counts, duplicate detection, and Fastlane JSON support. No login, no data collection, 100% client-side.
+
+App Store Keyword Optimizer is a single-page web application at [https://appkeywords.pro](https://appkeywords.pro) that helps iOS developers and ASO professionals optimize their App Store metadata across 39 locales supported by Apple.
+
+All data is processed and stored entirely in the user's browser using localStorage. Nothing is ever sent to a server.
+
+## Features
+
+- [Keyword Optimization](https://appkeywords.pro): Normalizes locale-specific commas (Arabic, Japanese, Chinese), replaces whitespace with commas, trims duplicates, and displays each keyword as a colored bubble — red for duplicates/conflicts, blue for valid unique keywords.
+- [Primary Language Cross-Check](https://appkeywords.pro): For non-English locales, keywords are automatically checked against the en-US title, subtitle, and keywords to flag redundant entries.
+- [Live Character Counts](https://appkeywords.pro): Real-time character counters for title (30 chars), subtitle (30 chars), and keywords (100 chars) with visual warnings when limits are exceeded.
+- [JSON Import/Export](https://appkeywords.pro): Import and export all locale metadata as a single JSON file, compatible with Fastlane metadata structure.
+- [Autosave](https://appkeywords.pro): Automatically saves all inputs to browser localStorage as you type. Data persists across sessions.
+- [39 App Store Locales](https://appkeywords.pro): Supports all Apple App Store locales including en-US, ar-SA, zh-Hans, zh-Hant, ja, ko, fr-FR, de-DE, es-ES, pt-BR, ru, and 28 more.
+- [Dark/Light Theme](https://appkeywords.pro): Automatic theme detection with manual toggle. Persists user preference.
+- [32 UI Languages](https://appkeywords.pro): Full interface translation in English, Arabic, Catalan, Chinese (Simplified/Traditional), Czech, Danish, Dutch, Finnish, French, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Malay, Norwegian, Polish, Portuguese, Romanian, Russian, Slovak, Spanish, Swedish, Thai, Turkish, Ukrainian, and Vietnamese.
+
+## How to Use
+
+- [Step 1: Enter Metadata](https://appkeywords.pro): Fill in the Title, Subtitle, and Keywords fields for each locale. Start with en-US as the primary language.
+- [Step 2: Click Optimize](https://appkeywords.pro): Press the Optimize button next to any locale's Keywords field. It cleans the input and shows colored keyword bubbles indicating duplicates or conflicts.
+- [Step 3: Review Bubbles](https://appkeywords.pro): Red bubbles indicate problems — hover to see why (duplicate, already in title/subtitle, or present in en-US). Blue bubbles are valid. Click any bubble to remove that keyword.
+- [Step 4: Export](https://appkeywords.pro): Click "Export to JSON" to download all metadata as a JSON file compatible with Fastlane.
+- [Step 5: Import](https://appkeywords.pro): Click "Import from JSON" to load metadata from a previously exported JSON file or Fastlane output.
+
+## Fastlane Integration
+
+- [meta_to_json_dict.sh](https://appkeywords.pro/scripts/meta_to_json_dict.sh): Shell script that exports Fastlane metadata directories (name.txt, subtitle.txt, keywords.txt) into a single JSON file for import into this tool.
+- [json_dict_to_meta.sh](https://appkeywords.pro/scripts/json_dict_to_meta.sh): Shell script that takes the exported JSON and writes it back into Fastlane metadata directory structure.
+
+## Technical Details
+
+- [Source Code](https://github.com/everappz/app-store-keyword-optimizer): Open-source on GitHub. Single-file HTML application with no build step, no dependencies beyond Bootstrap 5.3.6 and Bootstrap Icons.
+- [Privacy](https://appkeywords.pro): Zero data collection. All processing happens client-side in the browser. No cookies, no analytics, no server calls.
+
+## Optional
+
+- [EVERAPPZ SL](https://www.everappz.com/): Creator and maintainer of the tool.

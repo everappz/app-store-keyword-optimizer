@@ -1,2 +1,5 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://appkeywords.pro/sitemap.xml
+Llms-txt: https://appkeywords.pro/llms.txt
