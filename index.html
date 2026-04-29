@@ -133,7 +133,7 @@
 			--success: #10b981;
 			--danger: #ef4444;
 			--input-bg: #ffffff;
-			--warning: #d97706;
+			--warning: #eab308;
 			--radius-sm: 8px;
 			--radius-md: 12px;
 		}
@@ -150,7 +150,7 @@
 				--success: #34d399;
 				--danger: #f87171;
 				--input-bg: #1a1d27;
-				--warning: #fbbf24;
+				--warning: #facc15;
 			}
 		}
 
@@ -165,7 +165,7 @@
 			--success: #34d399;
 			--danger: #f87171;
 			--input-bg: #1a1d27;
-			--warning: #fbbf24;
+			--warning: #facc15;
 		}
 
 		[data-theme="light"] {
@@ -179,7 +179,7 @@
 			--success: #10b981;
 			--danger: #ef4444;
 			--input-bg: #ffffff;
-			--warning: #d97706;
+			--warning: #eab308;
 		}
 
 		/* ===== Base ===== */
@@ -354,6 +354,10 @@
 			border-color: var(--danger) !important;
 		}
 
+		.input-warning-cross {
+			border-color: var(--warning) !important;
+		}
+
 		/* ===== Buttons ===== */
 		.action-buttons {
 			display: grid;
@@ -460,6 +464,10 @@
 
 		.badge-invalid {
 			background-color: var(--danger) !important;
+		}
+
+		.badge-cross {
+			background-color: var(--warning) !important;
 		}
 
 		/* ===== Locale Sections ===== */
@@ -834,6 +842,8 @@
 			aboutDisclaimerTitle: "Disclaimer",
 			aboutOptimizeDesc: '\u2013 Normalizes all locale-specific commas: Arabic <code>[\u060C]</code> (U+060C) Japanese <code>[\u3001]</code> (U+3001) Chinese <code>[\uFF0C]</code> (U+FF0C) to standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Replaces all whitespace with commas: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Trims excess commas and spaces: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Shows each keyword as a colored bubble:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Red</strong> = duplicate, appears in title/subtitle, or found in primary language (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blue</strong> = valid, unique keyword<br>\u2013 Hover over a bubble to see why it\u2019s flagged.<br>\u2013 Click a bubble to remove that keyword from the input field.',
 			aboutPrimaryCheckDesc: 'For all non-en locales, keywords are also checked against en-US fields (title, subtitle, keywords).<br>For example, if <code>download</code> is used in the en-US title and again in the es-ES keywords, it will be marked.',
+			aboutUniqueWordsTitle: 'Unique words validation',
+			aboutUniqueWordsDesc: 'Title and subtitle fields are validated in real time for word uniqueness:<br>\u2013 <strong style="color: var(--danger);">Duplicate words</strong>: if a word appears more than once in the same field (e.g. <code>Cloud music player for cloud</code>), the field is highlighted red.<br>\u2013 <strong style="color: var(--danger);">Subtitle \u2194 Title overlap</strong>: if the subtitle contains a word already used in the title of the same locale, it is flagged.<br>\u2013 <strong style="color: var(--danger);">Cross-locale overlap</strong>: for non-English locales, title and subtitle words are checked against the primary language (en-US) title, subtitle, and keywords. Matching words are flagged.<br>\u2013 <strong>Similar locales</strong> (e.g. en-US / en-AU, fr-FR / fr-CA) are exempt from cross-locale checks.<br>\u2013 Hover over a highlighted field to see the specific reason.',
 			aboutImportDesc: 'Load metadata from a previously exported file.<br><em>Example structure:</em>',
 			aboutExportDesc: "Saves all current inputs to a downloadable JSON file.",
 			aboutClearDesc: "Removes all text fields and clears local storage. This action cannot be undone.",
@@ -859,6 +869,13 @@
 			tooltipInMainTitle: "This keyword is also present in the title of the primary language (en-US)",
 			tooltipInMainSubtitle: "This keyword is also present in the subtitle of the primary language (en-US)",
 			tooltipInMainKeywords: "This keyword is also present in the keywords of the primary language (en-US)",
+			tooltipLengthExceeded: 'Content length exceeds the allowed limit',
+			tooltipTitleDuplicate: 'Title contains duplicate words',
+			tooltipSubtitleDuplicate: 'Subtitle contains duplicate words',
+			tooltipSubtitleWordInTitle: 'Subtitle contains words that already exist in the title',
+			tooltipFieldInBaseTitle: 'Contains words from the primary language (en-US) title',
+			tooltipFieldInBaseSubtitle: 'Contains words from the primary language (en-US) subtitle',
+			tooltipFieldInBaseKeywords: 'Contains words from the primary language (en-US) keywords',
 			footerEdit: "Edit this page on GitHub \u2192",
 			confirmClear: "Are you sure you want to clear all metadata and reset the form?"
 		},
@@ -878,6 +895,8 @@
 			aboutDisclaimerTitle: "إخلاء المسؤولية",
 			aboutOptimizeDesc: '\u2013 يقوم بتوحيد جميع الفواصل الخاصة باللغات: العربية <code>[\u060C]</code> (U+060C) اليابانية <code>[\u3001]</code> (U+3001) الصينية <code>[\uFF0C]</code> (U+FF0C) إلى الفاصلة القياسية \u2192 <code>[,]</code> (U+002C)<br>\u2013 يستبدل جميع المسافات بفواصل: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 يزيل الفواصل والمسافات الزائدة: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 يعرض كل كلمة مفتاحية كفقاعة ملونة:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">أحمر</strong> = مكرر، أو موجود في العنوان/العنوان الفرعي، أو موجود في اللغة الأساسية (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">أزرق</strong> = كلمة مفتاحية صالحة وفريدة<br>\u2013 مرر الماوس فوق فقاعة لمعرفة سبب تمييزها.<br>\u2013 انقر على فقاعة لإزالة تلك الكلمة المفتاحية من حقل الإدخال.',
 			aboutPrimaryCheckDesc: 'لجميع اللغات غير الإنجليزية، يتم أيضًا فحص الكلمات المفتاحية مقابل حقول en-US (العنوان، العنوان الفرعي، الكلمات المفتاحية).<br>على سبيل المثال، إذا تم استخدام <code>download</code> في عنوان en-US ومرة أخرى في كلمات es-ES المفتاحية، فسيتم تمييزها.',
+			aboutUniqueWordsTitle: 'التحقق من تفرد الكلمات',
+			aboutUniqueWordsDesc: 'يتم التحقق من حقول العنوان والعنوان الفرعي في الوقت الفعلي لتفرد الكلمات:<br>\u2013 <strong style="color: var(--danger);">كلمات مكررة</strong>: إذا ظهرت كلمة أكثر من مرة في نفس الحقل (مثلاً <code>Cloud music player for cloud</code>)، يتم تمييز الحقل باللون الأحمر.<br>\u2013 <strong style="color: var(--danger);">تداخل العنوان الفرعي \u2194 العنوان</strong>: إذا كان العنوان الفرعي يحتوي على كلمة مستخدمة بالفعل في عنوان نفس اللغة، يتم تمييزها.<br>\u2013 <strong style="color: var(--danger);">تداخل عبر اللغات</strong>: بالنسبة للغات غير الإنجليزية، يتم فحص كلمات العنوان والعنوان الفرعي مقابل عنوان اللغة الأساسية (en-US) والعنوان الفرعي والكلمات المفتاحية. يتم تمييز الكلمات المتطابقة.<br>\u2013 <strong>اللغات المتشابهة</strong> (مثلاً en-US / en-AU، fr-FR / fr-CA) معفاة من فحوصات التداخل عبر اللغات.<br>\u2013 مرر الماوس فوق الحقل المميز لمعرفة السبب المحدد.',
 			aboutImportDesc: 'تحميل البيانات الوصفية من ملف تم تصديره مسبقًا.<br><em>مثال على البنية:</em>',
 			aboutExportDesc: "يحفظ جميع المدخلات الحالية في ملف JSON قابل للتنزيل.",
 			aboutClearDesc: "يزيل جميع حقول النص ويمسح التخزين المحلي. لا يمكن التراجع عن هذا الإجراء.",
@@ -903,6 +922,13 @@
 			tooltipInMainTitle: "هذه الكلمة موجودة أيضًا في عنوان اللغة الأساسية (en-US)",
 			tooltipInMainSubtitle: "هذه الكلمة موجودة أيضًا في العنوان الفرعي للغة الأساسية (en-US)",
 			tooltipInMainKeywords: "هذه الكلمة موجودة أيضًا في كلمات اللغة الأساسية (en-US)",
+			tooltipLengthExceeded: 'طول المحتوى يتجاوز الحد المسموح',
+			tooltipTitleDuplicate: 'العنوان يحتوي على كلمات مكررة',
+			tooltipSubtitleDuplicate: 'العنوان الفرعي يحتوي على كلمات مكررة',
+			tooltipSubtitleWordInTitle: 'العنوان الفرعي يحتوي على كلمات موجودة بالفعل في العنوان',
+			tooltipFieldInBaseTitle: 'يحتوي على كلمات من عنوان اللغة الأساسية (en-US)',
+			tooltipFieldInBaseSubtitle: 'يحتوي على كلمات من العنوان الفرعي للغة الأساسية (en-US)',
+			tooltipFieldInBaseKeywords: 'يحتوي على كلمات من الكلمات المفتاحية للغة الأساسية (en-US)',
 			footerEdit: "تعديل هذه الصفحة على GitHub \u2190",
 			confirmClear: "هل أنت متأكد أنك تريد مسح جميع البيانات وإعادة تعيين النموذج؟"
 		},
@@ -922,6 +948,8 @@
 			aboutDisclaimerTitle: "Avís legal",
 			aboutOptimizeDesc: '\u2013 Normalitza totes les comes específiques de cada idioma: àrab <code>[\u060C]</code> (U+060C) japonès <code>[\u3001]</code> (U+3001) xinès <code>[\uFF0C]</code> (U+FF0C) a estàndard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Substitueix tots els espais per comes: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Retalla les comes i espais excessius: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Mostra cada paraula clau com una bombolla de color:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Vermell</strong> = duplicat, apareix al títol/subtítol, o trobat a l\u2019idioma principal (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blau</strong> = paraula clau vàlida i única<br>\u2013 Passa el ratolí per sobre d\u2019una bombolla per veure per què està marcada.<br>\u2013 Fes clic en una bombolla per eliminar aquella paraula clau del camp d\u2019entrada.',
 			aboutPrimaryCheckDesc: 'Per a tots els idiomes que no siguin en, les paraules clau també es comproven amb els camps d\u2019en-US (títol, subtítol, paraules clau).<br>Per exemple, si <code>download</code> s\u2019utilitza al títol d\u2019en-US i de nou a les paraules clau d\u2019es-ES, es marcarà.',
+			aboutUniqueWordsTitle: 'Validació de paraules úniques',
+			aboutUniqueWordsDesc: 'Els camps de títol i subtítol es validen en temps real per a la unicitat de les paraules:<br>\u2013 <strong style="color: var(--danger);">Paraules duplicades</strong>: si una paraula apareix més d\u2019una vegada al mateix camp (p. ex. <code>Cloud music player for cloud</code>), el camp es ressalta en vermell.<br>\u2013 <strong style="color: var(--danger);">Solapament Subtítol \u2194 Títol</strong>: si el subtítol conté una paraula ja utilitzada al títol de la mateixa localització, es marca.<br>\u2013 <strong style="color: var(--danger);">Solapament entre localitzacions</strong>: per a les localitzacions no angleses, les paraules del títol i subtítol es comproven amb el títol, subtítol i paraules clau de l\u2019idioma principal (en-US). Les paraules coincidents es marquen.<br>\u2013 <strong>Localitzacions similars</strong> (p. ex. en-US / en-AU, fr-FR / fr-CA) estan exemptes de les comprovacions entre localitzacions.<br>\u2013 Passeu el ratolí per sobre d\u2019un camp ressaltat per veure el motiu específic.',
 			aboutImportDesc: 'Carrega metadades d\u2019un fitxer exportat prèviament.<br><em>Exemple d\u2019estructura:</em>',
 			aboutExportDesc: "Desa totes les entrades actuals en un fitxer JSON descarregable.",
 			aboutClearDesc: "Elimina tots els camps de text i esborra l\u2019emmagatzematge local. Aquesta acció no es pot desfer.",
@@ -947,6 +975,13 @@
 			tooltipInMainTitle: "Aquesta paraula clau també es troba al títol de l'idioma principal (en-US)",
 			tooltipInMainSubtitle: "Aquesta paraula clau també es troba al subtítol de l'idioma principal (en-US)",
 			tooltipInMainKeywords: "Aquesta paraula clau també es troba a les paraules clau de l'idioma principal (en-US)",
+			tooltipLengthExceeded: 'La longitud del contingut supera el límit permès',
+			tooltipTitleDuplicate: 'El títol conté paraules duplicades',
+			tooltipSubtitleDuplicate: 'El subtítol conté paraules duplicades',
+			tooltipSubtitleWordInTitle: 'El subtítol conté paraules que ja existeixen al títol',
+			tooltipFieldInBaseTitle: 'Conté paraules del títol de l\u2019idioma principal (en-US)',
+			tooltipFieldInBaseSubtitle: 'Conté paraules del subtítol de l\u2019idioma principal (en-US)',
+			tooltipFieldInBaseKeywords: 'Conté paraules de les paraules clau de l\u2019idioma principal (en-US)',
 			footerEdit: "Editar aquesta pàgina a GitHub \u2192",
 			confirmClear: "Estàs segur que vols esborrar totes les dades i reiniciar el formulari?"
 		},
@@ -966,6 +1001,8 @@
 			aboutDisclaimerTitle: "免责声明",
 			aboutOptimizeDesc: '\u2013 将所有特定语言的逗号标准化：阿拉伯语 <code>[\u060C]</code> (U+060C) 日语 <code>[\u3001]</code> (U+3001) 中文 <code>[\uFF0C]</code> (U+FF0C) 转换为标准逗号 \u2192 <code>[,]</code> (U+002C)<br>\u2013 将所有空格替换为逗号：<code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 修剪多余的逗号和空格：<code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 将每个关键词显示为彩色气泡：<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">红色</strong> = 重复、出现在标题/副标题中，或在主要语言 (en-US) 中找到<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">蓝色</strong> = 有效的唯一关键词<br>\u2013 将鼠标悬停在气泡上可查看标记原因。<br>\u2013 点击气泡可从输入字段中移除该关键词。',
 			aboutPrimaryCheckDesc: '对于所有非英语语言，关键词还会与 en-US 字段（标题、副标题、关键词）进行交叉检查。<br>例如，如果 <code>download</code> 在 en-US 标题中使用，又在 es-ES 关键词中使用，则会被标记。',
+			aboutUniqueWordsTitle: '唯一词验证',
+			aboutUniqueWordsDesc: '标题和副标题字段会实时验证词的唯一性：<br>\u2013 <strong style="color: var(--danger);">重复词</strong>：如果一个词在同一字段中出现多次（例如 <code>Cloud music player for cloud</code>），该字段将以红色高亮显示。<br>\u2013 <strong style="color: var(--danger);">副标题 \u2194 标题重叠</strong>：如果副标题包含同一语言标题中已使用的词，将被标记。<br>\u2013 <strong style="color: var(--danger);">跨语言重叠</strong>：对于非英语语言，标题和副标题的词会与主要语言 (en-US) 的标题、副标题和关键词进行对比检查。匹配的词将被标记。<br>\u2013 <strong>相似语言</strong>（例如 en-US / en-AU、fr-FR / fr-CA）免于跨语言检查。<br>\u2013 将鼠标悬停在高亮字段上以查看具体原因。',
 			aboutImportDesc: '从之前导出的文件加载元数据。<br><em>示例结构：</em>',
 			aboutExportDesc: "将所有当前输入保存为可下载的 JSON 文件。",
 			aboutClearDesc: "删除所有文本字段并清除本地存储。此操作无法撤消。",
@@ -991,6 +1028,13 @@
 			tooltipInMainTitle: "此关键词也存在于主要语言 (en-US) 的标题中",
 			tooltipInMainSubtitle: "此关键词也存在于主要语言 (en-US) 的副标题中",
 			tooltipInMainKeywords: "此关键词也存在于主要语言 (en-US) 的关键词中",
+			tooltipLengthExceeded: '内容长度超出允许的限制',
+			tooltipTitleDuplicate: '标题包含重复词',
+			tooltipSubtitleDuplicate: '副标题包含重复词',
+			tooltipSubtitleWordInTitle: '副标题包含标题中已存在的词',
+			tooltipFieldInBaseTitle: '包含主要语言 (en-US) 标题中的词',
+			tooltipFieldInBaseSubtitle: '包含主要语言 (en-US) 副标题中的词',
+			tooltipFieldInBaseKeywords: '包含主要语言 (en-US) 关键词中的词',
 			footerEdit: "在 GitHub 上编辑此页面 \u2192",
 			confirmClear: "您确定要清除所有数据并重置表单吗？"
 		},
@@ -1010,6 +1054,8 @@
 			aboutDisclaimerTitle: "免責聲明",
 			aboutOptimizeDesc: '\u2013 將所有特定語言的逗號標準化：阿拉伯語 <code>[\u060C]</code> (U+060C) 日語 <code>[\u3001]</code> (U+3001) 中文 <code>[\uFF0C]</code> (U+FF0C) 轉換為標準逗號 \u2192 <code>[,]</code> (U+002C)<br>\u2013 將所有空格替換為逗號：<code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 修剪多餘的逗號和空格：<code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 將每個關鍵字顯示為彩色氣泡：<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">紅色</strong> = 重複、出現在標題/副標題中，或在主要語言 (en-US) 中找到<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">藍色</strong> = 有效的唯一關鍵字<br>\u2013 將滑鼠懸停在氣泡上可查看標記原因。<br>\u2013 點擊氣泡可從輸入欄位中移除該關鍵字。',
 			aboutPrimaryCheckDesc: '對於所有非英語語言，關鍵字還會與 en-US 欄位（標題、副標題、關鍵字）進行交叉檢查。<br>例如，如果 <code>download</code> 在 en-US 標題中使用，又在 es-ES 關鍵字中使用，則會被標記。',
+			aboutUniqueWordsTitle: '唯一詞驗證',
+			aboutUniqueWordsDesc: '標題和副標題欄位會即時驗證詞的唯一性：<br>\u2013 <strong style="color: var(--danger);">重複詞</strong>：如果一個詞在同一欄位中出現多次（例如 <code>Cloud music player for cloud</code>），該欄位將以紅色醒目顯示。<br>\u2013 <strong style="color: var(--danger);">副標題 \u2194 標題重疊</strong>：如果副標題包含同一語言標題中已使用的詞，將被標記。<br>\u2013 <strong style="color: var(--danger);">跨語言重疊</strong>：對於非英語語言，標題和副標題的詞會與主要語言 (en-US) 的標題、副標題和關鍵字進行對比檢查。匹配的詞將被標記。<br>\u2013 <strong>相似語言</strong>（例如 en-US / en-AU、fr-FR / fr-CA）免於跨語言檢查。<br>\u2013 將滑鼠懸停在醒目顯示的欄位上以查看具體原因。',
 			aboutImportDesc: '從先前匯出的檔案載入中繼資料。<br><em>範例結構：</em>',
 			aboutExportDesc: "將所有目前的輸入儲存為可下載的 JSON 檔案。",
 			aboutClearDesc: "移除所有文字欄位並清除本機儲存。此操作無法復原。",
@@ -1035,6 +1081,13 @@
 			tooltipInMainTitle: "此關鍵字也存在於主要語言 (en-US) 的標題中",
 			tooltipInMainSubtitle: "此關鍵字也存在於主要語言 (en-US) 的副標題中",
 			tooltipInMainKeywords: "此關鍵字也存在於主要語言 (en-US) 的關鍵字中",
+			tooltipLengthExceeded: '內容長度超出允許的限制',
+			tooltipTitleDuplicate: '標題包含重複詞',
+			tooltipSubtitleDuplicate: '副標題包含重複詞',
+			tooltipSubtitleWordInTitle: '副標題包含標題中已存在的詞',
+			tooltipFieldInBaseTitle: '包含主要語言 (en-US) 標題中的詞',
+			tooltipFieldInBaseSubtitle: '包含主要語言 (en-US) 副標題中的詞',
+			tooltipFieldInBaseKeywords: '包含主要語言 (en-US) 關鍵字中的詞',
 			footerEdit: "在 GitHub 上編輯此頁面 \u2192",
 			confirmClear: "您確定要清除所有資料並重設表單嗎？"
 		},
@@ -1054,6 +1107,8 @@
 			aboutDisclaimerTitle: "Prohlášení",
 			aboutOptimizeDesc: '\u2013 Normalizuje všechny čárky specifické pro daný jazyk: arabské <code>[\u060C]</code> (U+060C) japonské <code>[\u3001]</code> (U+3001) čínské <code>[\uFF0C]</code> (U+FF0C) na standardní \u2192 <code>[,]</code> (U+002C)<br>\u2013 Nahrazuje všechny mezery čárkami: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Ořezává nadbytečné čárky a mezery: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Zobrazuje každé klíčové slovo jako barevnou bublinu:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Červená</strong> = duplicitní, vyskytuje se v názvu/podtitulku nebo nalezeno v primárním jazyce (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Modrá</strong> = platné, unikátní klíčové slovo<br>\u2013 Najeďte myší na bublinu a zjistěte, proč je označena.<br>\u2013 Klikněte na bublinu pro odstranění klíčového slova ze vstupního pole.',
 			aboutPrimaryCheckDesc: 'Pro všechny jiné než anglické jazyky jsou klíčová slova také kontrolována oproti polím en-US (název, podtitulek, klíčová slova).<br>Například pokud je <code>download</code> použito v názvu en-US a znovu v klíčových slovech es-ES, bude označeno.',
+			aboutUniqueWordsTitle: 'Validace unikátních slov',
+			aboutUniqueWordsDesc: 'Pole názvu a podtitulku jsou v reálném čase validována na unikátnost slov:<br>\u2013 <strong style="color: var(--danger);">Duplicitní slova</strong>: pokud se slovo objeví více než jednou ve stejném poli (např. <code>Cloud music player for cloud</code>), pole je zvýrazněno červeně.<br>\u2013 <strong style="color: var(--danger);">Překryv Podtitulek \u2194 Název</strong>: pokud podtitulek obsahuje slovo již použité v názvu stejného jazyka, je označeno.<br>\u2013 <strong style="color: var(--danger);">Překryv mezi jazyky</strong>: pro neanglické jazyky jsou slova názvu a podtitulku kontrolována oproti názvu, podtitulku a klíčovým slovům primárního jazyka (en-US). Shodná slova jsou označena.<br>\u2013 <strong>Podobné jazyky</strong> (např. en-US / en-AU, fr-FR / fr-CA) jsou osvobozeny od kontrol překryvu mezi jazyky.<br>\u2013 Najeďte myší na zvýrazněné pole pro zobrazení konkrétního důvodu.',
 			aboutImportDesc: 'Načte metadata z dříve exportovaného souboru.<br><em>Příklad struktury:</em>',
 			aboutExportDesc: "Uloží všechny aktuální vstupy do stahovatelného souboru JSON.",
 			aboutClearDesc: "Odstraní všechna textová pole a vymaže místní úložiště. Tuto akci nelze vrátit zpět.",
@@ -1079,6 +1134,13 @@
 			tooltipInMainTitle: "Toto klíčové slovo je také přítomno v názvu primárního jazyka (en-US)",
 			tooltipInMainSubtitle: "Toto klíčové slovo je také přítomno v podtitulku primárního jazyka (en-US)",
 			tooltipInMainKeywords: "Toto klíčové slovo je také přítomno v klíčových slovech primárního jazyka (en-US)",
+			tooltipLengthExceeded: 'Délka obsahu překračuje povolený limit',
+			tooltipTitleDuplicate: 'Název obsahuje duplicitní slova',
+			tooltipSubtitleDuplicate: 'Podtitulek obsahuje duplicitní slova',
+			tooltipSubtitleWordInTitle: 'Podtitulek obsahuje slova, která již existují v názvu',
+			tooltipFieldInBaseTitle: 'Obsahuje slova z názvu primárního jazyka (en-US)',
+			tooltipFieldInBaseSubtitle: 'Obsahuje slova z podtitulku primárního jazyka (en-US)',
+			tooltipFieldInBaseKeywords: 'Obsahuje slova z klíčových slov primárního jazyka (en-US)',
 			footerEdit: "Upravit tuto stránku na GitHubu \u2192",
 			confirmClear: "Opravdu chcete vymazat všechna data a resetovat formulář?"
 		},
@@ -1098,6 +1160,8 @@
 			aboutDisclaimerTitle: "Ansvarsfraskrivelse",
 			aboutOptimizeDesc: '\u2013 Normaliserer alle sprogspecifikke kommaer: arabisk <code>[\u060C]</code> (U+060C) japansk <code>[\u3001]</code> (U+3001) kinesisk <code>[\uFF0C]</code> (U+FF0C) til standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Erstatter alle mellemrum med kommaer: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Trimmer overflødige kommaer og mellemrum: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Viser hvert søgeord som en farvet boble:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Rød</strong> = duplikat, findes i titel/undertitel, eller fundet i det primære sprog (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blå</strong> = gyldigt, unikt søgeord<br>\u2013 Hold musen over en boble for at se, hvorfor den er markeret.<br>\u2013 Klik på en boble for at fjerne det søgeord fra inputfeltet.',
 			aboutPrimaryCheckDesc: 'For alle ikke-engelske sprog kontrolleres søgeord også mod en-US-felter (titel, undertitel, søgeord).<br>For eksempel, hvis <code>download</code> bruges i en-US-titlen og igen i es-ES-søgeordene, vil det blive markeret.',
+			aboutUniqueWordsTitle: 'Validering af unikke ord',
+			aboutUniqueWordsDesc: 'Titel- og undertitelfelter valideres i realtid for ordets unikhed:<br>\u2013 <strong style="color: var(--danger);">Duplikerede ord</strong>: hvis et ord optræder mere end én gang i det samme felt (f.eks. <code>Cloud music player for cloud</code>), fremhæves feltet rødt.<br>\u2013 <strong style="color: var(--danger);">Undertitel \u2194 Titel overlap</strong>: hvis undertitlen indeholder et ord, der allerede er brugt i titlen for samme sprog, markeres det.<br>\u2013 <strong style="color: var(--danger);">Overlap på tværs af sprog</strong>: for ikke-engelske sprog kontrolleres titel- og undertitelord mod det primære sprogs (en-US) titel, undertitel og søgeord. Matchende ord markeres.<br>\u2013 <strong>Lignende sprog</strong> (f.eks. en-US / en-AU, fr-FR / fr-CA) er undtaget fra kontroller på tværs af sprog.<br>\u2013 Hold musen over et fremhævet felt for at se den specifikke årsag.',
 			aboutImportDesc: 'Indlæs metadata fra en tidligere eksporteret fil.<br><em>Eksempel på struktur:</em>',
 			aboutExportDesc: "Gemmer alle aktuelle input i en downloadbar JSON-fil.",
 			aboutClearDesc: "Fjerner alle tekstfelter og rydder lokal lagring. Denne handling kan ikke fortrydes.",
@@ -1123,6 +1187,13 @@
 			tooltipInMainTitle: "Dette søgeord findes også i titlen for det primære sprog (en-US)",
 			tooltipInMainSubtitle: "Dette søgeord findes også i undertitlen for det primære sprog (en-US)",
 			tooltipInMainKeywords: "Dette søgeord findes også i søgeordene for det primære sprog (en-US)",
+			tooltipLengthExceeded: 'Indholdslængden overstiger den tilladte grænse',
+			tooltipTitleDuplicate: 'Titlen indeholder duplikerede ord',
+			tooltipSubtitleDuplicate: 'Undertitlen indeholder duplikerede ord',
+			tooltipSubtitleWordInTitle: 'Undertitlen indeholder ord, der allerede findes i titlen',
+			tooltipFieldInBaseTitle: 'Indeholder ord fra det primære sprogs (en-US) titel',
+			tooltipFieldInBaseSubtitle: 'Indeholder ord fra det primære sprogs (en-US) undertitel',
+			tooltipFieldInBaseKeywords: 'Indeholder ord fra det primære sprogs (en-US) søgeord',
 			footerEdit: "Rediger denne side på GitHub \u2192",
 			confirmClear: "Er du sikker på, at du vil rydde alle data og nulstille formularen?"
 		},
@@ -1142,6 +1213,8 @@
 			aboutDisclaimerTitle: "Disclaimer",
 			aboutOptimizeDesc: '\u2013 Normaliseert alle taalspecifieke komma\u2019s: Arabisch <code>[\u060C]</code> (U+060C) Japans <code>[\u3001]</code> (U+3001) Chinees <code>[\uFF0C]</code> (U+FF0C) naar standaard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Vervangt alle spaties door komma\u2019s: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Verwijdert overtollige komma\u2019s en spaties: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Toont elk trefwoord als een gekleurde bubbel:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Rood</strong> = duplicaat, komt voor in titel/ondertitel, of gevonden in de primaire taal (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blauw</strong> = geldig, uniek trefwoord<br>\u2013 Beweeg over een bubbel om te zien waarom het is gemarkeerd.<br>\u2013 Klik op een bubbel om dat trefwoord uit het invoerveld te verwijderen.',
 			aboutPrimaryCheckDesc: 'Voor alle niet-Engelse talen worden trefwoorden ook gecontroleerd tegen en-US-velden (titel, ondertitel, trefwoorden).<br>Als bijvoorbeeld <code>download</code> wordt gebruikt in de en-US-titel en opnieuw in de es-ES-trefwoorden, wordt het gemarkeerd.',
+			aboutUniqueWordsTitle: 'Validatie van unieke woorden',
+			aboutUniqueWordsDesc: 'Titel- en ondertitelvelden worden in real-time gevalideerd op woorduniciteit:<br>\u2013 <strong style="color: var(--danger);">Dubbele woorden</strong>: als een woord meer dan eens in hetzelfde veld voorkomt (bijv. <code>Cloud music player for cloud</code>), wordt het veld rood gemarkeerd.<br>\u2013 <strong style="color: var(--danger);">Ondertitel \u2194 Titel overlap</strong>: als de ondertitel een woord bevat dat al in de titel van dezelfde taal wordt gebruikt, wordt het gemarkeerd.<br>\u2013 <strong style="color: var(--danger);">Overlap tussen talen</strong>: voor niet-Engelse talen worden titel- en ondertitelwoorden gecontroleerd tegen de titel, ondertitel en trefwoorden van de primaire taal (en-US). Overeenkomende woorden worden gemarkeerd.<br>\u2013 <strong>Vergelijkbare talen</strong> (bijv. en-US / en-AU, fr-FR / fr-CA) zijn vrijgesteld van controles tussen talen.<br>\u2013 Beweeg de muis over een gemarkeerd veld om de specifieke reden te zien.',
 			aboutImportDesc: 'Laad metadata uit een eerder ge\u00ebxporteerd bestand.<br><em>Voorbeeldstructuur:</em>',
 			aboutExportDesc: "Slaat alle huidige invoer op in een downloadbaar JSON-bestand.",
 			aboutClearDesc: "Verwijdert alle tekstvelden en wist de lokale opslag. Deze actie kan niet ongedaan worden gemaakt.",
@@ -1167,6 +1240,13 @@
 			tooltipInMainTitle: "Dit trefwoord komt ook voor in de titel van de primaire taal (en-US)",
 			tooltipInMainSubtitle: "Dit trefwoord komt ook voor in de ondertitel van de primaire taal (en-US)",
 			tooltipInMainKeywords: "Dit trefwoord komt ook voor in de trefwoorden van de primaire taal (en-US)",
+			tooltipLengthExceeded: 'De lengte van de inhoud overschrijdt de toegestane limiet',
+			tooltipTitleDuplicate: 'De titel bevat dubbele woorden',
+			tooltipSubtitleDuplicate: 'De ondertitel bevat dubbele woorden',
+			tooltipSubtitleWordInTitle: 'De ondertitel bevat woorden die al in de titel voorkomen',
+			tooltipFieldInBaseTitle: 'Bevat woorden uit de titel van de primaire taal (en-US)',
+			tooltipFieldInBaseSubtitle: 'Bevat woorden uit de ondertitel van de primaire taal (en-US)',
+			tooltipFieldInBaseKeywords: 'Bevat woorden uit de trefwoorden van de primaire taal (en-US)',
 			footerEdit: "Bewerk deze pagina op GitHub \u2192",
 			confirmClear: "Weet je zeker dat je alle gegevens wilt wissen en het formulier wilt resetten?"
 		},
@@ -1186,6 +1266,8 @@
 			aboutDisclaimerTitle: "Vastuuvapauslauseke",
 			aboutOptimizeDesc: '\u2013 Normalisoi kaikki kielikohtaiset pilkut: arabia <code>[\u060C]</code> (U+060C) japani <code>[\u3001]</code> (U+3001) kiina <code>[\uFF0C]</code> (U+FF0C) standardiksi \u2192 <code>[,]</code> (U+002C)<br>\u2013 Korvaa kaikki välilyönnit pilkuilla: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Karsii ylimääräiset pilkut ja välilyönnit: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Näyttää jokaisen avainsanan värillisenä kuplana:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Punainen</strong> = kaksoiskappale, esiintyy otsikossa/alaotsikossa tai löytyy ensisijaisesta kielestä (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Sininen</strong> = kelvollinen, ainutlaatuinen avainsana<br>\u2013 Vie hiiri kuplan päälle nähdäksesi, miksi se on merkitty.<br>\u2013 Napsauta kuplaa poistaaksesi kyseisen avainsanan syöttökentästä.',
 			aboutPrimaryCheckDesc: 'Kaikilla muilla kuin englanninkielisillä kielillä avainsanat tarkistetaan myös en-US-kenttiä (otsikko, alaotsikko, avainsanat) vasten.<br>Esimerkiksi jos <code>download</code> on käytössä en-US-otsikossa ja uudelleen es-ES-avainsanoissa, se merkitään.',
+			aboutUniqueWordsTitle: 'Uniikkien sanojen validointi',
+			aboutUniqueWordsDesc: 'Otsikko- ja alaotsikkokentät validoidaan reaaliajassa sanojen uniikkiuden osalta:<br>\u2013 <strong style="color: var(--danger);">Duplikaattisanat</strong>: jos sana esiintyy useammin kuin kerran samassa kentässä (esim. <code>Cloud music player for cloud</code>), kenttä korostetaan punaisella.<br>\u2013 <strong style="color: var(--danger);">Alaotsikko \u2194 Otsikko päällekkäisyys</strong>: jos alaotsikko sisältää sanan, joka on jo käytetty saman kielen otsikossa, se merkitään.<br>\u2013 <strong style="color: var(--danger);">Kielten välinen päällekkäisyys</strong>: muille kuin englanninkielisille kielille otsikon ja alaotsikon sanat tarkistetaan ensisijaisen kielen (en-US) otsikkoa, alaotsikkoa ja avainsanoja vasten. Vastaavat sanat merkitään.<br>\u2013 <strong>Samankaltaiset kielet</strong> (esim. en-US / en-AU, fr-FR / fr-CA) on vapautettu kielten välisistä tarkistuksista.<br>\u2013 Vie hiiri korostetun kentän päälle nähdäksesi tarkan syyn.',
 			aboutImportDesc: 'Lataa metatiedot aiemmin viedystä tiedostosta.<br><em>Esimerkkirakenteesta:</em>',
 			aboutExportDesc: "Tallentaa kaikki nykyiset syötteet ladattavaan JSON-tiedostoon.",
 			aboutClearDesc: "Poistaa kaikki tekstikentät ja tyhjentää paikallisen tallennustilan. Tätä toimintoa ei voi kumota.",
@@ -1211,6 +1293,13 @@
 			tooltipInMainTitle: "Tämä avainsana on myös ensisijaisen kielen (en-US) otsikossa",
 			tooltipInMainSubtitle: "Tämä avainsana on myös ensisijaisen kielen (en-US) alaotsikossa",
 			tooltipInMainKeywords: "Tämä avainsana on myös ensisijaisen kielen (en-US) avainsanoissa",
+			tooltipLengthExceeded: 'Sisällön pituus ylittää sallitun rajan',
+			tooltipTitleDuplicate: 'Otsikko sisältää duplikaattisanoja',
+			tooltipSubtitleDuplicate: 'Alaotsikko sisältää duplikaattisanoja',
+			tooltipSubtitleWordInTitle: 'Alaotsikko sisältää sanoja, jotka ovat jo otsikossa',
+			tooltipFieldInBaseTitle: 'Sisältää sanoja ensisijaisen kielen (en-US) otsikosta',
+			tooltipFieldInBaseSubtitle: 'Sisältää sanoja ensisijaisen kielen (en-US) alaotsikosta',
+			tooltipFieldInBaseKeywords: 'Sisältää sanoja ensisijaisen kielen (en-US) avainsanoista',
 			footerEdit: "Muokkaa tätä sivua GitHubissa \u2192",
 			confirmClear: "Haluatko varmasti tyhjentää kaikki tiedot ja nollata lomakkeen?"
 		},
@@ -1230,6 +1319,8 @@
 			aboutDisclaimerTitle: "Avertissement",
 			aboutOptimizeDesc: '\u2013 Normalise toutes les virgules spécifiques aux langues : arabe <code>[\u060C]</code> (U+060C) japonais <code>[\u3001]</code> (U+3001) chinois <code>[\uFF0C]</code> (U+FF0C) vers le standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Remplace tous les espaces par des virgules : <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Supprime les virgules et espaces excessifs : <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Affiche chaque mot-clé sous forme de bulle colorée :<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Rouge</strong> = doublon, apparaît dans le titre/sous-titre, ou trouvé dans la langue principale (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Bleu</strong> = mot-clé valide et unique<br>\u2013 Survolez une bulle pour voir pourquoi elle est marquée.<br>\u2013 Cliquez sur une bulle pour supprimer ce mot-clé du champ de saisie.',
 			aboutPrimaryCheckDesc: 'Pour toutes les langues autres que l\u2019anglais, les mots-clés sont également vérifiés par rapport aux champs en-US (titre, sous-titre, mots-clés).<br>Par exemple, si <code>download</code> est utilisé dans le titre en-US et à nouveau dans les mots-clés es-ES, il sera marqué.',
+			aboutUniqueWordsTitle: 'Validation des mots uniques',
+			aboutUniqueWordsDesc: 'Les champs de titre et de sous-titre sont validés en temps réel pour l\u2019unicité des mots :<br>\u2013 <strong style="color: var(--danger);">Mots en double</strong> : si un mot apparaît plus d\u2019une fois dans le même champ (par ex. <code>Cloud music player for cloud</code>), le champ est surligné en rouge.<br>\u2013 <strong style="color: var(--danger);">Chevauchement Sous-titre \u2194 Titre</strong> : si le sous-titre contient un mot déjà utilisé dans le titre de la même langue, il est signalé.<br>\u2013 <strong style="color: var(--danger);">Chevauchement inter-langues</strong> : pour les langues non anglaises, les mots du titre et du sous-titre sont vérifiés par rapport au titre, sous-titre et mots-clés de la langue principale (en-US). Les mots correspondants sont signalés.<br>\u2013 <strong>Langues similaires</strong> (par ex. en-US / en-AU, fr-FR / fr-CA) sont exemptées des vérifications inter-langues.<br>\u2013 Survolez un champ surligné pour voir la raison spécifique.',
 			aboutImportDesc: 'Charger les métadonnées à partir d\u2019un fichier précédemment exporté.<br><em>Exemple de structure :</em>',
 			aboutExportDesc: "Enregistre toutes les saisies actuelles dans un fichier JSON téléchargeable.",
 			aboutClearDesc: "Supprime tous les champs de texte et efface le stockage local. Cette action ne peut pas être annulée.",
@@ -1255,6 +1346,13 @@
 			tooltipInMainTitle: "Ce mot-clé est également présent dans le titre de la langue principale (en-US)",
 			tooltipInMainSubtitle: "Ce mot-clé est également présent dans le sous-titre de la langue principale (en-US)",
 			tooltipInMainKeywords: "Ce mot-clé est également présent dans les mots-clés de la langue principale (en-US)",
+			tooltipLengthExceeded: 'La longueur du contenu dépasse la limite autorisée',
+			tooltipTitleDuplicate: 'Le titre contient des mots en double',
+			tooltipSubtitleDuplicate: 'Le sous-titre contient des mots en double',
+			tooltipSubtitleWordInTitle: 'Le sous-titre contient des mots qui existent déjà dans le titre',
+			tooltipFieldInBaseTitle: 'Contient des mots du titre de la langue principale (en-US)',
+			tooltipFieldInBaseSubtitle: 'Contient des mots du sous-titre de la langue principale (en-US)',
+			tooltipFieldInBaseKeywords: 'Contient des mots des mots-clés de la langue principale (en-US)',
 			footerEdit: "Modifier cette page sur GitHub \u2192",
 			confirmClear: "Êtes-vous sûr de vouloir effacer toutes les données et réinitialiser le formulaire ?"
 		},
@@ -1274,6 +1372,8 @@
 			aboutDisclaimerTitle: "Haftungsausschluss",
 			aboutOptimizeDesc: '\u2013 Normalisiert alle sprachspezifischen Kommas: Arabisch <code>[\u060C]</code> (U+060C) Japanisch <code>[\u3001]</code> (U+3001) Chinesisch <code>[\uFF0C]</code> (U+FF0C) zum Standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Ersetzt alle Leerzeichen durch Kommas: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Entfernt überflüssige Kommas und Leerzeichen: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Zeigt jedes Schlüsselwort als farbige Blase an:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Rot</strong> = Duplikat, erscheint im Titel/Untertitel oder in der Primärsprache (en-US) gefunden<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blau</strong> = gültiges, einzigartiges Schlüsselwort<br>\u2013 Fahren Sie mit der Maus über eine Blase, um zu sehen, warum sie markiert ist.<br>\u2013 Klicken Sie auf eine Blase, um das Schlüsselwort aus dem Eingabefeld zu entfernen.',
 			aboutPrimaryCheckDesc: 'Für alle nicht-englischen Sprachen werden Schlüsselwörter auch gegen en-US-Felder (Titel, Untertitel, Schlüsselwörter) geprüft.<br>Wenn beispielsweise <code>download</code> im en-US-Titel und erneut in den es-ES-Schlüsselwörtern verwendet wird, wird es markiert.',
+			aboutUniqueWordsTitle: 'Validierung einzigartiger Wörter',
+			aboutUniqueWordsDesc: 'Titel- und Untertitelfelder werden in Echtzeit auf Wortunikheit überprüft:<br>\u2013 <strong style="color: var(--danger);">Doppelte Wörter</strong>: Wenn ein Wort mehr als einmal im selben Feld vorkommt (z. B. <code>Cloud music player for cloud</code>), wird das Feld rot hervorgehoben.<br>\u2013 <strong style="color: var(--danger);">Untertitel \u2194 Titel Überschneidung</strong>: Wenn der Untertitel ein Wort enthält, das bereits im Titel derselben Sprache verwendet wird, wird es markiert.<br>\u2013 <strong style="color: var(--danger);">Sprachübergreifende Überschneidung</strong>: Für nicht-englische Sprachen werden Titel- und Untertitelwörter gegen den Titel, Untertitel und die Schlüsselwörter der Primärsprache (en-US) geprüft. Übereinstimmende Wörter werden markiert.<br>\u2013 <strong>Ähnliche Sprachen</strong> (z. B. en-US / en-AU, fr-FR / fr-CA) sind von sprachübergreifenden Prüfungen ausgenommen.<br>\u2013 Bewegen Sie die Maus über ein hervorgehobenes Feld, um den spezifischen Grund zu sehen.',
 			aboutImportDesc: 'Metadaten aus einer zuvor exportierten Datei laden.<br><em>Beispielstruktur:</em>',
 			aboutExportDesc: "Speichert alle aktuellen Eingaben in einer herunterladbaren JSON-Datei.",
 			aboutClearDesc: "Entfernt alle Textfelder und löscht den lokalen Speicher. Diese Aktion kann nicht rückgängig gemacht werden.",
@@ -1299,6 +1399,13 @@
 			tooltipInMainTitle: "Dieses Schlüsselwort ist auch im Titel der Primärsprache (en-US) vorhanden",
 			tooltipInMainSubtitle: "Dieses Schlüsselwort ist auch im Untertitel der Primärsprache (en-US) vorhanden",
 			tooltipInMainKeywords: "Dieses Schlüsselwort ist auch in den Schlüsselwörtern der Primärsprache (en-US) vorhanden",
+			tooltipLengthExceeded: 'Die Inhaltslänge überschreitet das zulässige Limit',
+			tooltipTitleDuplicate: 'Der Titel enthält doppelte Wörter',
+			tooltipSubtitleDuplicate: 'Der Untertitel enthält doppelte Wörter',
+			tooltipSubtitleWordInTitle: 'Der Untertitel enthält Wörter, die bereits im Titel vorhanden sind',
+			tooltipFieldInBaseTitle: 'Enthält Wörter aus dem Titel der Primärsprache (en-US)',
+			tooltipFieldInBaseSubtitle: 'Enthält Wörter aus dem Untertitel der Primärsprache (en-US)',
+			tooltipFieldInBaseKeywords: 'Enthält Wörter aus den Schlüsselwörtern der Primärsprache (en-US)',
 			footerEdit: "Diese Seite auf GitHub bearbeiten \u2192",
 			confirmClear: "Sind Sie sicher, dass Sie alle Daten löschen und das Formular zurücksetzen möchten?"
 		},
@@ -1318,6 +1425,8 @@
 			aboutDisclaimerTitle: "Αποποίηση ευθυνών",
 			aboutOptimizeDesc: '\u2013 Κανονικοποιεί όλα τα γλωσσικά κόμματα: Αραβικά <code>[\u060C]</code> (U+060C) Ιαπωνικά <code>[\u3001]</code> (U+3001) Κινεζικά <code>[\uFF0C]</code> (U+FF0C) σε τυπικό \u2192 <code>[,]</code> (U+002C)<br>\u2013 Αντικαθιστά όλα τα κενά με κόμματα: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Αφαιρεί τα περιττά κόμματα και κενά: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Εμφανίζει κάθε λέξη-κλειδί ως χρωματιστή φυσαλίδα:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Κόκκινο</strong> = διπλότυπο, εμφανίζεται στον τίτλο/υπότιτλο ή βρέθηκε στην κύρια γλώσσα (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Μπλε</strong> = έγκυρη, μοναδική λέξη-κλειδί<br>\u2013 Τοποθετήστε τον δείκτη πάνω από μια φυσαλίδα για να δείτε γιατί είναι επισημασμένη.<br>\u2013 Κάντε κλικ σε μια φυσαλίδα για να αφαιρέσετε αυτή τη λέξη-κλειδί από το πεδίο εισαγωγής.',
 			aboutPrimaryCheckDesc: 'Για όλες τις μη αγγλικές γλώσσες, οι λέξεις-κλειδιά ελέγχονται επίσης σε σχέση με τα πεδία en-US (τίτλος, υπότιτλος, λέξεις-κλειδιά).<br>Για παράδειγμα, αν το <code>download</code> χρησιμοποιείται στον τίτλο en-US και ξανά στις λέξεις-κλειδιά es-ES, θα επισημανθεί.',
+			aboutUniqueWordsTitle: 'Επικύρωση μοναδικών λέξεων',
+			aboutUniqueWordsDesc: 'Τα πεδία τίτλου και υπότιτλου επικυρώνονται σε πραγματικό χρόνο για τη μοναδικότητα λέξεων:<br>\u2013 <strong style="color: var(--danger);">Διπλότυπες λέξεις</strong>: αν μια λέξη εμφανίζεται περισσότερο από μία φορά στο ίδιο πεδίο (π.χ. <code>Cloud music player for cloud</code>), το πεδίο επισημαίνεται με κόκκινο.<br>\u2013 <strong style="color: var(--danger);">Επικάλυψη Υπότιτλος \u2194 Τίτλος</strong>: αν ο υπότιτλος περιέχει μια λέξη που χρησιμοποιείται ήδη στον τίτλο της ίδιας γλώσσας, επισημαίνεται.<br>\u2013 <strong style="color: var(--danger);">Διαγλωσσική επικάλυψη</strong>: για μη αγγλικές γλώσσες, οι λέξεις τίτλου και υπότιτλου ελέγχονται σε σχέση με τον τίτλο, υπότιτλο και λέξεις-κλειδιά της κύριας γλώσσας (en-US). Οι αντίστοιχες λέξεις επισημαίνονται.<br>\u2013 <strong>Παρόμοιες γλώσσες</strong> (π.χ. en-US / en-AU, fr-FR / fr-CA) εξαιρούνται από τους διαγλωσσικούς ελέγχους.<br>\u2013 Τοποθετήστε τον κέρσορα πάνω σε ένα επισημασμένο πεδίο για να δείτε τον συγκεκριμένο λόγο.',
 			aboutImportDesc: 'Φόρτωση μεταδεδομένων από ένα αρχείο που εξήχθη προηγουμένως.<br><em>Παράδειγμα δομής:</em>',
 			aboutExportDesc: "Αποθηκεύει όλες τις τρέχουσες εισόδους σε ένα αρχείο JSON με δυνατότητα λήψης.",
 			aboutClearDesc: "Αφαιρεί όλα τα πεδία κειμένου και διαγράφει τον τοπικό αποθηκευτικό χώρο. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
@@ -1343,6 +1452,13 @@
 			tooltipInMainTitle: "Αυτή η λέξη-κλειδί υπάρχει επίσης στον τίτλο της κύριας γλώσσας (en-US)",
 			tooltipInMainSubtitle: "Αυτή η λέξη-κλειδί υπάρχει επίσης στον υπότιτλο της κύριας γλώσσας (en-US)",
 			tooltipInMainKeywords: "Αυτή η λέξη-κλειδί υπάρχει επίσης στις λέξεις-κλειδιά της κύριας γλώσσας (en-US)",
+			tooltipLengthExceeded: 'Το μήκος του περιεχομένου υπερβαίνει το επιτρεπόμενο όριο',
+			tooltipTitleDuplicate: 'Ο τίτλος περιέχει διπλότυπες λέξεις',
+			tooltipSubtitleDuplicate: 'Ο υπότιτλος περιέχει διπλότυπες λέξεις',
+			tooltipSubtitleWordInTitle: 'Ο υπότιτλος περιέχει λέξεις που υπάρχουν ήδη στον τίτλο',
+			tooltipFieldInBaseTitle: 'Περιέχει λέξεις από τον τίτλο της κύριας γλώσσας (en-US)',
+			tooltipFieldInBaseSubtitle: 'Περιέχει λέξεις από τον υπότιτλο της κύριας γλώσσας (en-US)',
+			tooltipFieldInBaseKeywords: 'Περιέχει λέξεις από τις λέξεις-κλειδιά της κύριας γλώσσας (en-US)',
 			footerEdit: "Επεξεργασία αυτής της σελίδας στο GitHub \u2192",
 			confirmClear: "Είστε σίγουροι ότι θέλετε να διαγράψετε όλα τα δεδομένα και να επαναφέρετε τη φόρμα;"
 		},
@@ -1362,6 +1478,8 @@
 			aboutDisclaimerTitle: "הצהרת אחריות",
 			aboutOptimizeDesc: '\u2013 מנרמל את כל הפסיקים הספציפיים לשפה: ערבית <code>[\u060C]</code> (U+060C) יפנית <code>[\u3001]</code> (U+3001) סינית <code>[\uFF0C]</code> (U+FF0C) לסטנדרטי \u2192 <code>[,]</code> (U+002C)<br>\u2013 מחליף את כל הרווחים בפסיקים: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 מסיר פסיקים ורווחים עודפים: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 מציג כל מילת מפתח כבועה צבעונית:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">אדום</strong> = כפול, מופיע בכותרת/כותרת משנה, או נמצא בשפה הראשית (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">כחול</strong> = מילת מפתח תקפה וייחודית<br>\u2013 העבר את העכבר מעל בועה כדי לראות מדוע היא מסומנת.<br>\u2013 לחץ על בועה כדי להסיר את מילת המפתח משדה הקלט.',
 			aboutPrimaryCheckDesc: 'עבור כל השפות שאינן אנגלית, מילות מפתח נבדקות גם מול שדות en-US (כותרת, כותרת משנה, מילות מפתח).<br>לדוגמה, אם <code>download</code> משמש בכותרת en-US ושוב במילות המפתח של es-ES, הוא יסומן.',
+			aboutUniqueWordsTitle: 'אימות מילים ייחודיות',
+			aboutUniqueWordsDesc: 'שדות הכותרת וכותרת המשנה מאומתים בזמן אמת לייחודיות מילים:<br>\u2013 <strong style="color: var(--danger);">מילים כפולות</strong>: אם מילה מופיעה יותר מפעם אחת באותו שדה (למשל <code>Cloud music player for cloud</code>), השדה מודגש באדום.<br>\u2013 <strong style="color: var(--danger);">חפיפה כותרת משנה \u2194 כותרת</strong>: אם כותרת המשנה מכילה מילה שכבר נמצאת בשימוש בכותרת של אותו שפה, היא מסומנת.<br>\u2013 <strong style="color: var(--danger);">חפיפה בין שפות</strong>: עבור שפות שאינן אנגלית, מילות הכותרת וכותרת המשנה נבדקות מול הכותרת, כותרת המשנה ומילות המפתח של השפה הראשית (en-US). מילים תואמות מסומנות.<br>\u2013 <strong>שפות דומות</strong> (למשל en-US / en-AU, fr-FR / fr-CA) פטורות מבדיקות חפיפה בין שפות.<br>\u2013 רחף מעל שדה מודגש כדי לראות את הסיבה הספציפית.',
 			aboutImportDesc: 'טעינת מטא-נתונים מקובץ שיוצא בעבר.<br><em>דוגמה למבנה:</em>',
 			aboutExportDesc: "שומר את כל הקלטים הנוכחיים לקובץ JSON להורדה.",
 			aboutClearDesc: "מסיר את כל שדות הטקסט ומנקה את האחסון המקומי. לא ניתן לבטל פעולה זו.",
@@ -1387,6 +1505,13 @@
 			tooltipInMainTitle: "מילת מפתח זו קיימת גם בכותרת של השפה הראשית (en-US)",
 			tooltipInMainSubtitle: "מילת מפתח זו קיימת גם בכותרת המשנה של השפה הראשית (en-US)",
 			tooltipInMainKeywords: "מילת מפתח זו קיימת גם במילות המפתח של השפה הראשית (en-US)",
+			tooltipLengthExceeded: 'אורך התוכן חורג מהמגבלה המותרת',
+			tooltipTitleDuplicate: 'הכותרת מכילה מילים כפולות',
+			tooltipSubtitleDuplicate: 'כותרת המשנה מכילה מילים כפולות',
+			tooltipSubtitleWordInTitle: 'כותרת המשנה מכילה מילים שכבר קיימות בכותרת',
+			tooltipFieldInBaseTitle: 'מכיל מילים מהכותרת של השפה הראשית (en-US)',
+			tooltipFieldInBaseSubtitle: 'מכיל מילים מכותרת המשנה של השפה הראשית (en-US)',
+			tooltipFieldInBaseKeywords: 'מכיל מילים ממילות המפתח של השפה הראשית (en-US)',
 			footerEdit: "\u2190 עריכת דף זה ב-GitHub",
 			confirmClear: "האם אתה בטוח שברצונך למחוק את כל הנתונים ולאפס את הטופס?"
 		},
@@ -1406,6 +1531,8 @@
 			aboutDisclaimerTitle: "अस्वीकरण",
 			aboutOptimizeDesc: '\u2013 सभी भाषा-विशिष्ट अल्पविरामों को सामान्य करता है: अरबी <code>[\u060C]</code> (U+060C) जापानी <code>[\u3001]</code> (U+3001) चीनी <code>[\uFF0C]</code> (U+FF0C) को मानक में \u2192 <code>[,]</code> (U+002C)<br>\u2013 सभी रिक्त स्थानों को अल्पविरामों से बदलता है: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 अतिरिक्त अल्पविराम और रिक्त स्थान हटाता है: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 प्रत्येक कीवर्ड को रंगीन बुलबुले के रूप में दिखाता है:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">लाल</strong> = डुप्लिकेट, शीर्षक/उपशीर्षक में दिखाई देता है, या प्राथमिक भाषा (en-US) में पाया गया<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">नीला</strong> = मान्य, अद्वितीय कीवर्ड<br>\u2013 यह जानने के लिए कि इसे क्यों चिह्नित किया गया है, बुलबुले पर माउस घुमाएँ।<br>\u2013 उस कीवर्ड को इनपुट फ़ील्ड से हटाने के लिए बुलबुले पर क्लिक करें।',
 			aboutPrimaryCheckDesc: 'सभी गैर-अंग्रेज़ी भाषाओं के लिए, कीवर्ड की जाँच en-US फ़ील्ड (शीर्षक, उपशीर्षक, कीवर्ड) के विरुद्ध भी की जाती है।<br>उदाहरण के लिए, यदि <code>download</code> en-US शीर्षक में और फिर es-ES कीवर्ड में उपयोग किया जाता है, तो इसे चिह्नित किया जाएगा।',
+			aboutUniqueWordsTitle: 'अद्वितीय शब्दों की पुष्टि',
+			aboutUniqueWordsDesc: 'शीर्षक और उपशीर्षक फ़ील्ड को शब्द विशिष्टता के लिए वास्तविक समय में सत्यापित किया जाता है:<br>\u2013 <strong style="color: var(--danger);">डुप्लिकेट शब्द</strong>: यदि कोई शब्द एक ही फ़ील्ड में एक से अधिक बार दिखाई देता है (जैसे <code>Cloud music player for cloud</code>), तो फ़ील्ड लाल रंग में हाइलाइट होती है।<br>\u2013 <strong style="color: var(--danger);">उपशीर्षक \u2194 शीर्षक ओवरलैप</strong>: यदि उपशीर्षक में कोई शब्द है जो उसी भाषा के शीर्षक में पहले से उपयोग हो रहा है, तो उसे चिह्नित किया जाता है।<br>\u2013 <strong style="color: var(--danger);">क्रॉस-लोकेल ओवरलैप</strong>: गैर-अंग्रेज़ी भाषाओं के लिए, शीर्षक और उपशीर्षक के शब्दों को प्राथमिक भाषा (en-US) के शीर्षक, उपशीर्षक और कीवर्ड से जाँचा जाता है। मेल खाने वाले शब्दों को चिह्नित किया जाता है।<br>\u2013 <strong>समान भाषाएँ</strong> (जैसे en-US / en-AU, fr-FR / fr-CA) क्रॉस-लोकेल जाँच से छूट प्राप्त हैं।<br>\u2013 विशिष्ट कारण देखने के लिए हाइलाइट किए गए फ़ील्ड पर माउस घुमाएँ।',
 			aboutImportDesc: 'पहले निर्यात की गई फ़ाइल से मेटाडेटा लोड करें।<br><em>उदाहरण संरचना:</em>',
 			aboutExportDesc: "सभी वर्तमान इनपुट को एक डाउनलोड करने योग्य JSON फ़ाइल में सहेजता है।",
 			aboutClearDesc: "सभी टेक्स्ट फ़ील्ड हटाता है और स्थानीय संग्रहण साफ़ करता है। यह क्रिया पूर्ववत नहीं की जा सकती।",
@@ -1431,6 +1558,13 @@
 			tooltipInMainTitle: "यह कीवर्ड प्राथमिक भाषा (en-US) के शीर्षक में भी मौजूद है",
 			tooltipInMainSubtitle: "यह कीवर्ड प्राथमिक भाषा (en-US) के उपशीर्षक में भी मौजूद है",
 			tooltipInMainKeywords: "यह कीवर्ड प्राथमिक भाषा (en-US) के कीवर्ड में भी मौजूद है",
+			tooltipLengthExceeded: 'सामग्री की लंबाई अनुमत सीमा से अधिक है',
+			tooltipTitleDuplicate: 'शीर्षक में डुप्लिकेट शब्द हैं',
+			tooltipSubtitleDuplicate: 'उपशीर्षक में डुप्लिकेट शब्द हैं',
+			tooltipSubtitleWordInTitle: 'उपशीर्षक में ऐसे शब्द हैं जो पहले से शीर्षक में मौजूद हैं',
+			tooltipFieldInBaseTitle: 'प्राथमिक भाषा (en-US) के शीर्षक के शब्द शामिल हैं',
+			tooltipFieldInBaseSubtitle: 'प्राथमिक भाषा (en-US) के उपशीर्षक के शब्द शामिल हैं',
+			tooltipFieldInBaseKeywords: 'प्राथमिक भाषा (en-US) के कीवर्ड के शब्द शामिल हैं',
 			footerEdit: "इस पेज को GitHub पर संपादित करें \u2192",
 			confirmClear: "क्या आप सभी डेटा मिटाना और फ़ॉर्म रीसेट करना चाहते हैं?"
 		},
@@ -1450,6 +1584,8 @@
 			aboutDisclaimerTitle: "Jogi nyilatkozat",
 			aboutOptimizeDesc: '\u2013 Normalizálja az összes nyelvspecifikus vesszőt: arab <code>[\u060C]</code> (U+060C) japán <code>[\u3001]</code> (U+3001) kínai <code>[\uFF0C]</code> (U+FF0C) szabványosra \u2192 <code>[,]</code> (U+002C)<br>\u2013 Az összes szóközt vesszőkkel helyettesíti: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Eltávolítja a felesleges vesszőket és szóközöket: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Minden kulcsszót színes buborékként jelenít meg:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Piros</strong> = duplikált, megjelenik a címben/alcímben, vagy megtalálható az elsődleges nyelvben (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Kék</strong> = érvényes, egyedi kulcsszó<br>\u2013 Vigye az egeret egy buborék fölé, hogy megtudja, miért van megjelölve.<br>\u2013 Kattintson egy buborékra a kulcsszó eltávolításához a beviteli mezőből.',
 			aboutPrimaryCheckDesc: 'Minden nem angol nyelv esetében a kulcsszavakat az en-US mezőkkel (cím, alcím, kulcsszavak) is összehasonlítja.<br>Például, ha a <code>download</code> az en-US címben és újra az es-ES kulcsszavakban szerepel, megjelölésre kerül.',
+			aboutUniqueWordsTitle: 'Egyedi szavak validálása',
+			aboutUniqueWordsDesc: 'A cím és alcím mezők valós időben validálódnak a szavak egyediségére:<br>\u2013 <strong style="color: var(--danger);">Ismétlődő szavak</strong>: ha egy szó többször fordul elő ugyanabban a mezőben (pl. <code>Cloud music player for cloud</code>), a mező pirosan kiemelésre kerül.<br>\u2013 <strong style="color: var(--danger);">Alcím \u2194 Cím átfedés</strong>: ha az alcím tartalmaz egy szót, ami már szerepel ugyanazon nyelv címében, megjelölésre kerül.<br>\u2013 <strong style="color: var(--danger);">Nyelvek közötti átfedés</strong>: nem angol nyelveknél a cím és alcím szavait összehasonlítja az elsődleges nyelv (en-US) címével, alcímével és kulcsszavaival. Az egyező szavak megjelölésre kerülnek.<br>\u2013 <strong>Hasonló nyelvek</strong> (pl. en-US / en-AU, fr-FR / fr-CA) mentesülnek a nyelvek közötti ellenőrzésektől.<br>\u2013 Vigye az egeret a kiemelt mező fölé a konkrét ok megtekintéséhez.',
 			aboutImportDesc: 'Metaadatok betöltése egy korábban exportált fájlból.<br><em>Példa struktúra:</em>',
 			aboutExportDesc: "Az összes jelenlegi bemenetet letölthető JSON-fájlba menti.",
 			aboutClearDesc: "Eltávolítja az összes szövegmezőt és törli a helyi tárolót. Ez a művelet nem vonható vissza.",
@@ -1475,6 +1611,13 @@
 			tooltipInMainTitle: "Ez a kulcsszó az elsődleges nyelv (en-US) címében is megtalálható",
 			tooltipInMainSubtitle: "Ez a kulcsszó az elsődleges nyelv (en-US) alcímében is megtalálható",
 			tooltipInMainKeywords: "Ez a kulcsszó az elsődleges nyelv (en-US) kulcsszavaiban is megtalálható",
+			tooltipLengthExceeded: 'A tartalom hossza meghaladja a megengedett korlátot',
+			tooltipTitleDuplicate: 'A cím ismétlődő szavakat tartalmaz',
+			tooltipSubtitleDuplicate: 'Az alcím ismétlődő szavakat tartalmaz',
+			tooltipSubtitleWordInTitle: 'Az alcím olyan szavakat tartalmaz, amelyek már léteznek a címben',
+			tooltipFieldInBaseTitle: 'Az elsődleges nyelv (en-US) címéből származó szavakat tartalmaz',
+			tooltipFieldInBaseSubtitle: 'Az elsődleges nyelv (en-US) alcíméből származó szavakat tartalmaz',
+			tooltipFieldInBaseKeywords: 'Az elsődleges nyelv (en-US) kulcsszavaiból származó szavakat tartalmaz',
 			footerEdit: "Oldal szerkesztése a GitHubon \u2192",
 			confirmClear: "Biztosan törölni szeretné az összes adatot és visszaállítani az űrlapot?"
 		},
@@ -1494,6 +1637,8 @@
 			aboutDisclaimerTitle: "Penafian",
 			aboutOptimizeDesc: '\u2013 Menormalkan semua koma khusus lokal: Arab <code>[\u060C]</code> (U+060C) Jepang <code>[\u3001]</code> (U+3001) Cina <code>[\uFF0C]</code> (U+FF0C) ke standar \u2192 <code>[,]</code> (U+002C)<br>\u2013 Mengganti semua spasi dengan koma: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Memangkas koma dan spasi berlebih: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Menampilkan setiap kata kunci sebagai gelembung berwarna:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Merah</strong> = duplikat, muncul di judul/subjudul, atau ditemukan di bahasa utama (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Biru</strong> = kata kunci unik yang valid<br>\u2013 Arahkan kursor ke gelembung untuk melihat alasan ditandai.<br>\u2013 Klik gelembung untuk menghapus kata kunci tersebut dari kolom input.',
 			aboutPrimaryCheckDesc: 'Untuk semua lokal non-en, kata kunci juga diperiksa terhadap kolom en-US (judul, subjudul, kata kunci).<br>Misalnya, jika <code>download</code> digunakan di judul en-US dan lagi di kata kunci es-ES, itu akan ditandai.',
+			aboutUniqueWordsTitle: 'Validasi kata unik',
+			aboutUniqueWordsDesc: 'Kolom judul dan subjudul divalidasi secara real-time untuk keunikan kata:<br>\u2013 <strong style="color: var(--danger);">Kata duplikat</strong>: jika sebuah kata muncul lebih dari sekali di kolom yang sama (misalnya <code>Cloud music player for cloud</code>), kolom tersebut disorot merah.<br>\u2013 <strong style="color: var(--danger);">Tumpang tindih Subjudul \u2194 Judul</strong>: jika subjudul mengandung kata yang sudah digunakan di judul lokal yang sama, kata tersebut ditandai.<br>\u2013 <strong style="color: var(--danger);">Tumpang tindih lintas lokal</strong>: untuk lokal non-Inggris, kata-kata judul dan subjudul diperiksa terhadap judul, subjudul, dan kata kunci bahasa utama (en-US). Kata yang cocok ditandai.<br>\u2013 <strong>Lokal serupa</strong> (misalnya en-US / en-AU, fr-FR / fr-CA) dikecualikan dari pemeriksaan lintas lokal.<br>\u2013 Arahkan kursor ke kolom yang disorot untuk melihat alasan spesifik.',
 			aboutImportDesc: 'Muat metadata dari file yang sebelumnya diekspor.<br><em>Contoh struktur:</em>',
 			aboutExportDesc: "Menyimpan semua input saat ini ke file JSON yang dapat diunduh.",
 			aboutClearDesc: "Menghapus semua kolom teks dan membersihkan penyimpanan lokal. Tindakan ini tidak dapat dibatalkan.",
@@ -1519,6 +1664,13 @@
 			tooltipInMainTitle: "Kata kunci ini juga ada di judul bahasa utama (en-US)",
 			tooltipInMainSubtitle: "Kata kunci ini juga ada di subjudul bahasa utama (en-US)",
 			tooltipInMainKeywords: "Kata kunci ini juga ada di kata kunci bahasa utama (en-US)",
+			tooltipLengthExceeded: 'Panjang konten melebihi batas yang diizinkan',
+			tooltipTitleDuplicate: 'Judul mengandung kata duplikat',
+			tooltipSubtitleDuplicate: 'Subjudul mengandung kata duplikat',
+			tooltipSubtitleWordInTitle: 'Subjudul mengandung kata yang sudah ada di judul',
+			tooltipFieldInBaseTitle: 'Mengandung kata dari judul bahasa utama (en-US)',
+			tooltipFieldInBaseSubtitle: 'Mengandung kata dari subjudul bahasa utama (en-US)',
+			tooltipFieldInBaseKeywords: 'Mengandung kata dari kata kunci bahasa utama (en-US)',
 			footerEdit: "Edit halaman ini di GitHub \u2192",
 			confirmClear: "Apakah Anda yakin ingin menghapus semua data dan mengatur ulang formulir?"
 		},
@@ -1538,6 +1690,8 @@
 			aboutDisclaimerTitle: "Dichiarazione di non responsabilità",
 			aboutOptimizeDesc: '\u2013 Normalizza tutte le virgole specifiche per la lingua: arabo <code>[\u060C]</code> (U+060C) giapponese <code>[\u3001]</code> (U+3001) cinese <code>[\uFF0C]</code> (U+FF0C) allo standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Sostituisce tutti gli spazi con virgole: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Rimuove virgole e spazi in eccesso: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Mostra ogni parola chiave come una bolla colorata:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Rosso</strong> = duplicata, appare nel titolo/sottotitolo o trovata nella lingua principale (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blu</strong> = parola chiave valida e unica<br>\u2013 Passa il mouse su una bolla per vedere perché è segnalata.<br>\u2013 Clicca su una bolla per rimuovere quella parola chiave dal campo di input.',
 			aboutPrimaryCheckDesc: 'Per tutte le lingue non-en, le parole chiave vengono anche verificate rispetto ai campi en-US (titolo, sottotitolo, parole chiave).<br>Ad esempio, se <code>download</code> è usato nel titolo en-US e di nuovo nelle parole chiave es-ES, verrà contrassegnato.',
+			aboutUniqueWordsTitle: 'Validazione parole uniche',
+			aboutUniqueWordsDesc: 'I campi titolo e sottotitolo vengono validati in tempo reale per l\u2019unicità delle parole:<br>\u2013 <strong style="color: var(--danger);">Parole duplicate</strong>: se una parola appare più di una volta nello stesso campo (es. <code>Cloud music player for cloud</code>), il campo viene evidenziato in rosso.<br>\u2013 <strong style="color: var(--danger);">Sovrapposizione Sottotitolo \u2194 Titolo</strong>: se il sottotitolo contiene una parola già utilizzata nel titolo della stessa lingua, viene segnalata.<br>\u2013 <strong style="color: var(--danger);">Sovrapposizione tra lingue</strong>: per le lingue non inglesi, le parole del titolo e del sottotitolo vengono verificate rispetto al titolo, sottotitolo e parole chiave della lingua principale (en-US). Le parole corrispondenti vengono segnalate.<br>\u2013 <strong>Lingue simili</strong> (es. en-US / en-AU, fr-FR / fr-CA) sono esenti dai controlli tra lingue.<br>\u2013 Passa il mouse su un campo evidenziato per vedere il motivo specifico.',
 			aboutImportDesc: 'Carica metadati da un file precedentemente esportato.<br><em>Esempio di struttura:</em>',
 			aboutExportDesc: "Salva tutti gli input correnti in un file JSON scaricabile.",
 			aboutClearDesc: "Rimuove tutti i campi di testo e cancella la memoria locale. Questa azione non può essere annullata.",
@@ -1563,6 +1717,13 @@
 			tooltipInMainTitle: "Questa parola chiave è presente anche nel titolo della lingua principale (en-US)",
 			tooltipInMainSubtitle: "Questa parola chiave è presente anche nel sottotitolo della lingua principale (en-US)",
 			tooltipInMainKeywords: "Questa parola chiave è presente anche nelle parole chiave della lingua principale (en-US)",
+			tooltipLengthExceeded: 'La lunghezza del contenuto supera il limite consentito',
+			tooltipTitleDuplicate: 'Il titolo contiene parole duplicate',
+			tooltipSubtitleDuplicate: 'Il sottotitolo contiene parole duplicate',
+			tooltipSubtitleWordInTitle: 'Il sottotitolo contiene parole già presenti nel titolo',
+			tooltipFieldInBaseTitle: 'Contiene parole dal titolo della lingua principale (en-US)',
+			tooltipFieldInBaseSubtitle: 'Contiene parole dal sottotitolo della lingua principale (en-US)',
+			tooltipFieldInBaseKeywords: 'Contiene parole dalle parole chiave della lingua principale (en-US)',
 			footerEdit: "Modifica questa pagina su GitHub \u2192",
 			confirmClear: "Sei sicuro di voler cancellare tutti i dati e reimpostare il modulo?"
 		},
@@ -1582,6 +1743,8 @@
 			aboutDisclaimerTitle: "免責事項",
 			aboutOptimizeDesc: '\u2013 すべてのロケール固有のカンマを正規化: アラビア語 <code>[\u060C]</code> (U+060C) 日本語 <code>[\u3001]</code> (U+3001) 中国語 <code>[\uFF0C]</code> (U+FF0C) を標準 \u2192 <code>[,]</code> (U+002C) に変換<br>\u2013 すべての空白をカンマに置換: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 余分なカンマとスペースを削除: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 各キーワードを色付きバブルで表示:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">赤</strong> = 重複、タイトル/サブタイトルに存在、または主要言語 (en-US) で検出<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">青</strong> = 有効でユニークなキーワード<br>\u2013 バブルにマウスを合わせると、フラグの理由が表示されます。<br>\u2013 バブルをクリックすると、入力フィールドからそのキーワードが削除されます。',
 			aboutPrimaryCheckDesc: 'すべての非 en ロケールでは、キーワードは en-US フィールド（タイトル、サブタイトル、キーワード）に対してもチェックされます。<br>例えば、<code>download</code> が en-US のタイトルで使用され、es-ES のキーワードでも使用されている場合、マークされます。',
+			aboutUniqueWordsTitle: 'ユニークな単語の検証',
+			aboutUniqueWordsDesc: 'タイトルとサブタイトルのフィールドは、単語の一意性についてリアルタイムで検証されます：<br>\u2013 <strong style="color: var(--danger);">重複する単語</strong>：同じフィールドに単語が複数回出現する場合（例：<code>Cloud music player for cloud</code>）、フィールドが赤くハイライトされます。<br>\u2013 <strong style="color: var(--danger);">サブタイトル \u2194 タイトルの重複</strong>：サブタイトルに同じロケールのタイトルで既に使用されている単語が含まれている場合、フラグが立てられます。<br>\u2013 <strong style="color: var(--danger);">クロスロケールの重複</strong>：英語以外のロケールでは、タイトルとサブタイトルの単語が主要言語 (en-US) のタイトル、サブタイトル、キーワードに対してチェックされます。一致する単語にはフラグが立てられます。<br>\u2013 <strong>類似ロケール</strong>（例：en-US / en-AU、fr-FR / fr-CA）はクロスロケールチェックの対象外です。<br>\u2013 ハイライトされたフィールドにカーソルを合わせると、具体的な理由が表示されます。',
 			aboutImportDesc: '以前エクスポートしたファイルからメタデータを読み込みます。<br><em>構造の例:</em>',
 			aboutExportDesc: "現在のすべての入力をダウンロード可能な JSON ファイルに保存します。",
 			aboutClearDesc: "すべてのテキストフィールドを削除し、ローカルストレージをクリアします。この操作は元に戻せません。",
@@ -1607,6 +1770,13 @@
 			tooltipInMainTitle: "このキーワードは主要言語 (en-US) のタイトルにも存在します",
 			tooltipInMainSubtitle: "このキーワードは主要言語 (en-US) のサブタイトルにも存在します",
 			tooltipInMainKeywords: "このキーワードは主要言語 (en-US) のキーワードにも存在します",
+			tooltipLengthExceeded: 'コンテンツの長さが許可された制限を超えています',
+			tooltipTitleDuplicate: 'タイトルに重複する単語が含まれています',
+			tooltipSubtitleDuplicate: 'サブタイトルに重複する単語が含まれています',
+			tooltipSubtitleWordInTitle: 'サブタイトルにタイトルに既に存在する単語が含まれています',
+			tooltipFieldInBaseTitle: '主要言語 (en-US) のタイトルの単語が含まれています',
+			tooltipFieldInBaseSubtitle: '主要言語 (en-US) のサブタイトルの単語が含まれています',
+			tooltipFieldInBaseKeywords: '主要言語 (en-US) のキーワードの単語が含まれています',
 			footerEdit: "GitHub でこのページを編集 \u2192",
 			confirmClear: "すべてのデータを消去してフォームをリセットしてもよろしいですか？"
 		},
@@ -1626,6 +1796,8 @@
 			aboutDisclaimerTitle: "면책 조항",
 			aboutOptimizeDesc: '\u2013 모든 로케일별 쉼표를 정규화: 아랍어 <code>[\u060C]</code> (U+060C) 일본어 <code>[\u3001]</code> (U+3001) 중국어 <code>[\uFF0C]</code> (U+FF0C) 를 표준 \u2192 <code>[,]</code> (U+002C) 으로 변환<br>\u2013 모든 공백을 쉼표로 대체: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 초과 쉼표와 공백 제거: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 각 키워드를 색상 버블로 표시:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">빨간색</strong> = 중복, 제목/부제목에 존재, 또는 기본 언어 (en-US)에서 발견됨<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">파란색</strong> = 유효하고 고유한 키워드<br>\u2013 버블 위에 마우스를 올리면 표시 이유를 확인할 수 있습니다.<br>\u2013 버블을 클릭하면 입력 필드에서 해당 키워드가 제거됩니다.',
 			aboutPrimaryCheckDesc: '모든 비 en 로케일의 경우, 키워드는 en-US 필드(제목, 부제목, 키워드)에 대해서도 검사됩니다.<br>예를 들어, <code>download</code>가 en-US 제목에서 사용되고 es-ES 키워드에서도 사용되면 표시됩니다.',
+			aboutUniqueWordsTitle: '고유 단어 검증',
+			aboutUniqueWordsDesc: '제목 및 부제목 필드는 단어 고유성에 대해 실시간으로 검증됩니다:<br>\u2013 <strong style="color: var(--danger);">중복 단어</strong>: 같은 필드에 단어가 두 번 이상 나타나면 (예: <code>Cloud music player for cloud</code>), 필드가 빨간색으로 강조됩니다.<br>\u2013 <strong style="color: var(--danger);">부제목 \u2194 제목 겹침</strong>: 부제목에 같은 로케일 제목에서 이미 사용된 단어가 포함되어 있으면 표시됩니다.<br>\u2013 <strong style="color: var(--danger);">크로스 로케일 겹침</strong>: 영어가 아닌 로케일의 경우, 제목과 부제목 단어가 기본 언어 (en-US) 제목, 부제목 및 키워드와 대조 검사됩니다. 일치하는 단어가 표시됩니다.<br>\u2013 <strong>유사 로케일</strong> (예: en-US / en-AU, fr-FR / fr-CA)은 크로스 로케일 검사에서 제외됩니다.<br>\u2013 강조된 필드 위에 마우스를 올려 구체적인 이유를 확인하세요.',
 			aboutImportDesc: '이전에 내보낸 파일에서 메타데이터를 불러옵니다.<br><em>구조 예시:</em>',
 			aboutExportDesc: "현재 모든 입력 내용을 다운로드 가능한 JSON 파일로 저장합니다.",
 			aboutClearDesc: "모든 텍스트 필드를 제거하고 로컬 저장소를 지웁니다. 이 작업은 취소할 수 없습니다.",
@@ -1651,6 +1823,13 @@
 			tooltipInMainTitle: "이 키워드는 기본 언어 (en-US) 제목에도 존재합니다",
 			tooltipInMainSubtitle: "이 키워드는 기본 언어 (en-US) 부제목에도 존재합니다",
 			tooltipInMainKeywords: "이 키워드는 기본 언어 (en-US) 키워드에도 존재합니다",
+			tooltipLengthExceeded: '콘텐츠 길이가 허용된 제한을 초과합니다',
+			tooltipTitleDuplicate: '제목에 중복 단어가 포함되어 있습니다',
+			tooltipSubtitleDuplicate: '부제목에 중복 단어가 포함되어 있습니다',
+			tooltipSubtitleWordInTitle: '부제목에 제목에 이미 존재하는 단어가 포함되어 있습니다',
+			tooltipFieldInBaseTitle: '기본 언어 (en-US) 제목의 단어가 포함되어 있습니다',
+			tooltipFieldInBaseSubtitle: '기본 언어 (en-US) 부제목의 단어가 포함되어 있습니다',
+			tooltipFieldInBaseKeywords: '기본 언어 (en-US) 키워드의 단어가 포함되어 있습니다',
 			footerEdit: "GitHub에서 이 페이지 편집 \u2192",
 			confirmClear: "모든 데이터를 삭제하고 양식을 초기화하시겠습니까?"
 		},
@@ -1670,6 +1849,8 @@
 			aboutDisclaimerTitle: "Penafian",
 			aboutOptimizeDesc: '\u2013 Menormalkan semua koma khusus tempatan: Arab <code>[\u060C]</code> (U+060C) Jepun <code>[\u3001]</code> (U+3001) Cina <code>[\uFF0C]</code> (U+FF0C) kepada standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Menggantikan semua ruang kosong dengan koma: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Memangkas koma dan ruang yang berlebihan: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Menunjukkan setiap kata kunci sebagai gelembung berwarna:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Merah</strong> = pendua, muncul dalam tajuk/sari kata, atau ditemui dalam bahasa utama (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Biru</strong> = kata kunci unik yang sah<br>\u2013 Tuding pada gelembung untuk melihat sebab ia ditanda.<br>\u2013 Klik gelembung untuk membuang kata kunci tersebut daripada medan input.',
 			aboutPrimaryCheckDesc: 'Untuk semua lokal bukan en, kata kunci juga disemak terhadap medan en-US (tajuk, sari kata, kata kunci).<br>Contohnya, jika <code>download</code> digunakan dalam tajuk en-US dan sekali lagi dalam kata kunci es-ES, ia akan ditanda.',
+			aboutUniqueWordsTitle: 'Pengesahan perkataan unik',
+			aboutUniqueWordsDesc: 'Medan tajuk dan sari kata disahkan dalam masa nyata untuk keunikan perkataan:<br>\u2013 <strong style="color: var(--danger);">Perkataan berganda</strong>: jika perkataan muncul lebih daripada sekali dalam medan yang sama (contohnya <code>Cloud music player for cloud</code>), medan tersebut diserlahkan merah.<br>\u2013 <strong style="color: var(--danger);">Pertindihan Sari kata \u2194 Tajuk</strong>: jika sari kata mengandungi perkataan yang sudah digunakan dalam tajuk lokal yang sama, ia ditanda.<br>\u2013 <strong style="color: var(--danger);">Pertindihan merentas lokal</strong>: untuk lokal bukan Inggeris, perkataan tajuk dan sari kata disemak terhadap tajuk, sari kata dan kata kunci bahasa utama (en-US). Perkataan yang sepadan ditanda.<br>\u2013 <strong>Lokal serupa</strong> (contohnya en-US / en-AU, fr-FR / fr-CA) dikecualikan daripada semakan merentas lokal.<br>\u2013 Tuding kursor ke atas medan yang diserlahkan untuk melihat sebab khusus.',
 			aboutImportDesc: 'Muatkan metadata daripada fail yang dieksport sebelum ini.<br><em>Contoh struktur:</em>',
 			aboutExportDesc: "Menyimpan semua input semasa ke fail JSON yang boleh dimuat turun.",
 			aboutClearDesc: "Membuang semua medan teks dan membersihkan storan setempat. Tindakan ini tidak boleh dibuat asal.",
@@ -1695,6 +1876,13 @@
 			tooltipInMainTitle: "Kata kunci ini juga terdapat dalam tajuk bahasa utama (en-US)",
 			tooltipInMainSubtitle: "Kata kunci ini juga terdapat dalam sari kata bahasa utama (en-US)",
 			tooltipInMainKeywords: "Kata kunci ini juga terdapat dalam kata kunci bahasa utama (en-US)",
+			tooltipLengthExceeded: 'Panjang kandungan melebihi had yang dibenarkan',
+			tooltipTitleDuplicate: 'Tajuk mengandungi perkataan berganda',
+			tooltipSubtitleDuplicate: 'Sari kata mengandungi perkataan berganda',
+			tooltipSubtitleWordInTitle: 'Sari kata mengandungi perkataan yang sudah wujud dalam tajuk',
+			tooltipFieldInBaseTitle: 'Mengandungi perkataan daripada tajuk bahasa utama (en-US)',
+			tooltipFieldInBaseSubtitle: 'Mengandungi perkataan daripada sari kata bahasa utama (en-US)',
+			tooltipFieldInBaseKeywords: 'Mengandungi perkataan daripada kata kunci bahasa utama (en-US)',
 			footerEdit: "Edit halaman ini di GitHub \u2192",
 			confirmClear: "Adakah anda pasti mahu memadam semua data dan menetapkan semula borang?"
 		},
@@ -1714,6 +1902,8 @@
 			aboutDisclaimerTitle: "Ansvarsfraskrivelse",
 			aboutOptimizeDesc: '\u2013 Normaliserer alle lokalspesifikke kommaer: arabisk <code>[\u060C]</code> (U+060C) japansk <code>[\u3001]</code> (U+3001) kinesisk <code>[\uFF0C]</code> (U+FF0C) til standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Erstatter alle mellomrom med kommaer: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Fjerner overflødige kommaer og mellomrom: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Viser hvert søkeord som en farget boble:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Rød</strong> = duplikat, finnes i tittel/undertittel, eller funnet i primærspråk (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blå</strong> = gyldig, unikt søkeord<br>\u2013 Hold musepekeren over en boble for å se hvorfor den er flagget.<br>\u2013 Klikk på en boble for å fjerne søkeordet fra inndatafeltet.',
 			aboutPrimaryCheckDesc: 'For alle ikke-en-lokaler sjekkes søkeord også mot en-US-feltene (tittel, undertittel, søkeord).<br>For eksempel, hvis <code>download</code> brukes i en-US-tittelen og igjen i es-ES-søkeordene, vil det bli markert.',
+			aboutUniqueWordsTitle: 'Validering av unike ord',
+			aboutUniqueWordsDesc: 'Tittel- og undertittelfelt valideres i sanntid for ordets unikhet:<br>\u2013 <strong style="color: var(--danger);">Dupliserte ord</strong>: hvis et ord forekommer mer enn én gang i samme felt (f.eks. <code>Cloud music player for cloud</code>), utheves feltet rødt.<br>\u2013 <strong style="color: var(--danger);">Undertittel \u2194 Tittel overlapping</strong>: hvis undertittelen inneholder et ord som allerede er brukt i tittelen for samme språk, markeres det.<br>\u2013 <strong style="color: var(--danger);">Overlapping på tvers av språk</strong>: for ikke-engelske språk sjekkes tittel- og undertittelord mot primærspråkets (en-US) tittel, undertittel og søkeord. Matchende ord markeres.<br>\u2013 <strong>Lignende språk</strong> (f.eks. en-US / en-AU, fr-FR / fr-CA) er unntatt fra kontroller på tvers av språk.<br>\u2013 Hold musen over et uthevet felt for å se den spesifikke årsaken.',
 			aboutImportDesc: 'Last inn metadata fra en tidligere eksportert fil.<br><em>Eksempel på struktur:</em>',
 			aboutExportDesc: "Lagrer alle gjeldende inndata til en nedlastbar JSON-fil.",
 			aboutClearDesc: "Fjerner alle tekstfelt og tømmer lokal lagring. Denne handlingen kan ikke angres.",
@@ -1739,6 +1929,13 @@
 			tooltipInMainTitle: "Dette søkeordet finnes også i tittelen for primærspråket (en-US)",
 			tooltipInMainSubtitle: "Dette søkeordet finnes også i undertittelen for primærspråket (en-US)",
 			tooltipInMainKeywords: "Dette søkeordet finnes også i søkeordene for primærspråket (en-US)",
+			tooltipLengthExceeded: 'Innholdslengden overskrider den tillatte grensen',
+			tooltipTitleDuplicate: 'Tittelen inneholder dupliserte ord',
+			tooltipSubtitleDuplicate: 'Undertittelen inneholder dupliserte ord',
+			tooltipSubtitleWordInTitle: 'Undertittelen inneholder ord som allerede finnes i tittelen',
+			tooltipFieldInBaseTitle: 'Inneholder ord fra primærspråkets (en-US) tittel',
+			tooltipFieldInBaseSubtitle: 'Inneholder ord fra primærspråkets (en-US) undertittel',
+			tooltipFieldInBaseKeywords: 'Inneholder ord fra primærspråkets (en-US) søkeord',
 			footerEdit: "Rediger denne siden på GitHub \u2192",
 			confirmClear: "Er du sikker på at du vil slette alle data og tilbakestille skjemaet?"
 		},
@@ -1758,6 +1955,8 @@
 			aboutDisclaimerTitle: "Zastrzeżenie",
 			aboutOptimizeDesc: '\u2013 Normalizuje wszystkie przecinki specyficzne dla lokalizacji: arabski <code>[\u060C]</code> (U+060C) japoński <code>[\u3001]</code> (U+3001) chiński <code>[\uFF0C]</code> (U+FF0C) na standardowy \u2192 <code>[,]</code> (U+002C)<br>\u2013 Zastępuje wszystkie spacje przecinkami: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Usuwa nadmiarowe przecinki i spacje: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Wyświetla każde słowo kluczowe jako kolorowy dymek:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Czerwony</strong> = duplikat, występuje w tytule/podtytule lub znaleziony w języku głównym (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Niebieski</strong> = prawidłowe, unikalne słowo kluczowe<br>\u2013 Najedź na dymek, aby zobaczyć powód oznaczenia.<br>\u2013 Kliknij dymek, aby usunąć to słowo kluczowe z pola wprowadzania.',
 			aboutPrimaryCheckDesc: 'Dla wszystkich lokalizacji innych niż en, słowa kluczowe są również sprawdzane względem pól en-US (tytuł, podtytuł, słowa kluczowe).<br>Na przykład, jeśli <code>download</code> jest użyte w tytule en-US i ponownie w słowach kluczowych es-ES, zostanie oznaczone.',
+			aboutUniqueWordsTitle: 'Walidacja unikalnych słów',
+			aboutUniqueWordsDesc: 'Pola tytułu i podtytułu są walidowane w czasie rzeczywistym pod kątem unikalności słów:<br>\u2013 <strong style="color: var(--danger);">Zduplikowane słowa</strong>: jeśli słowo pojawia się więcej niż raz w tym samym polu (np. <code>Cloud music player for cloud</code>), pole jest podświetlone na czerwono.<br>\u2013 <strong style="color: var(--danger);">Nakładanie się Podtytuł \u2194 Tytuł</strong>: jeśli podtytuł zawiera słowo już użyte w tytule tego samego języka, zostaje oznaczone.<br>\u2013 <strong style="color: var(--danger);">Nakładanie się między językami</strong>: dla języków innych niż angielski, słowa tytułu i podtytułu są sprawdzane względem tytułu, podtytułu i słów kluczowych języka głównego (en-US). Pasujące słowa są oznaczane.<br>\u2013 <strong>Podobne języki</strong> (np. en-US / en-AU, fr-FR / fr-CA) są zwolnione ze sprawdzeń między językami.<br>\u2013 Najedź kursorem na podświetlone pole, aby zobaczyć konkretny powód.',
 			aboutImportDesc: 'Załaduj metadane z wcześniej wyeksportowanego pliku.<br><em>Przykładowa struktura:</em>',
 			aboutExportDesc: "Zapisuje wszystkie bieżące dane wejściowe do pliku JSON do pobrania.",
 			aboutClearDesc: "Usuwa wszystkie pola tekstowe i czyści pamięć lokalną. Tej czynności nie można cofnąć.",
@@ -1783,6 +1982,13 @@
 			tooltipInMainTitle: "To słowo kluczowe występuje również w tytule języka głównego (en-US)",
 			tooltipInMainSubtitle: "To słowo kluczowe występuje również w podtytule języka głównego (en-US)",
 			tooltipInMainKeywords: "To słowo kluczowe występuje również w słowach kluczowych języka głównego (en-US)",
+			tooltipLengthExceeded: 'Długość treści przekracza dozwolony limit',
+			tooltipTitleDuplicate: 'Tytuł zawiera zduplikowane słowa',
+			tooltipSubtitleDuplicate: 'Podtytuł zawiera zduplikowane słowa',
+			tooltipSubtitleWordInTitle: 'Podtytuł zawiera słowa, które już istnieją w tytule',
+			tooltipFieldInBaseTitle: 'Zawiera słowa z tytułu języka głównego (en-US)',
+			tooltipFieldInBaseSubtitle: 'Zawiera słowa z podtytułu języka głównego (en-US)',
+			tooltipFieldInBaseKeywords: 'Zawiera słowa ze słów kluczowych języka głównego (en-US)',
 			footerEdit: "Edytuj tę stronę na GitHubie \u2192",
 			confirmClear: "Czy na pewno chcesz wyczyścić wszystkie dane i zresetować formularz?"
 		},
@@ -1802,6 +2008,8 @@
 			aboutDisclaimerTitle: "Aviso legal",
 			aboutOptimizeDesc: '\u2013 Normaliza todas as vírgulas específicas de localidade: árabe <code>[\u060C]</code> (U+060C) japonês <code>[\u3001]</code> (U+3001) chinês <code>[\uFF0C]</code> (U+FF0C) para o padrão \u2192 <code>[,]</code> (U+002C)<br>\u2013 Substitui todos os espaços por vírgulas: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Remove vírgulas e espaços em excesso: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Exibe cada palavra-chave como uma bolha colorida:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Vermelho</strong> = duplicada, aparece no título/subtítulo, ou encontrada no idioma principal (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Azul</strong> = palavra-chave válida e única<br>\u2013 Passe o mouse sobre uma bolha para ver o motivo da sinalização.<br>\u2013 Clique em uma bolha para remover essa palavra-chave do campo de entrada.',
 			aboutPrimaryCheckDesc: 'Para todas as localidades não-en, as palavras-chave também são verificadas em relação aos campos en-US (título, subtítulo, palavras-chave).<br>Por exemplo, se <code>download</code> for usado no título en-US e novamente nas palavras-chave es-ES, será marcado.',
+			aboutUniqueWordsTitle: 'Validação de palavras únicas',
+			aboutUniqueWordsDesc: 'Os campos de título e subtítulo são validados em tempo real quanto à unicidade das palavras:<br>\u2013 <strong style="color: var(--danger);">Palavras duplicadas</strong>: se uma palavra aparece mais de uma vez no mesmo campo (ex. <code>Cloud music player for cloud</code>), o campo é destacado em vermelho.<br>\u2013 <strong style="color: var(--danger);">Sobreposição Subtítulo \u2194 Título</strong>: se o subtítulo contém uma palavra já usada no título da mesma localidade, ela é sinalizada.<br>\u2013 <strong style="color: var(--danger);">Sobreposição entre localidades</strong>: para localidades não inglesas, as palavras do título e subtítulo são verificadas em relação ao título, subtítulo e palavras-chave do idioma principal (en-US). Palavras correspondentes são sinalizadas.<br>\u2013 <strong>Localidades semelhantes</strong> (ex. en-US / en-AU, fr-FR / fr-CA) são isentas de verificações entre localidades.<br>\u2013 Passe o mouse sobre um campo destacado para ver o motivo específico.',
 			aboutImportDesc: 'Carregue metadados de um arquivo exportado anteriormente.<br><em>Exemplo de estrutura:</em>',
 			aboutExportDesc: "Salva todas as entradas atuais em um arquivo JSON para download.",
 			aboutClearDesc: "Remove todos os campos de texto e limpa o armazenamento local. Esta ação não pode ser desfeita.",
@@ -1827,6 +2035,13 @@
 			tooltipInMainTitle: "Esta palavra-chave também está presente no título do idioma principal (en-US)",
 			tooltipInMainSubtitle: "Esta palavra-chave também está presente no subtítulo do idioma principal (en-US)",
 			tooltipInMainKeywords: "Esta palavra-chave também está presente nas palavras-chave do idioma principal (en-US)",
+			tooltipLengthExceeded: 'O comprimento do conteúdo excede o limite permitido',
+			tooltipTitleDuplicate: 'O título contém palavras duplicadas',
+			tooltipSubtitleDuplicate: 'O subtítulo contém palavras duplicadas',
+			tooltipSubtitleWordInTitle: 'O subtítulo contém palavras que já existem no título',
+			tooltipFieldInBaseTitle: 'Contém palavras do título do idioma principal (en-US)',
+			tooltipFieldInBaseSubtitle: 'Contém palavras do subtítulo do idioma principal (en-US)',
+			tooltipFieldInBaseKeywords: 'Contém palavras das palavras-chave do idioma principal (en-US)',
 			footerEdit: "Editar esta página no GitHub \u2192",
 			confirmClear: "Tem certeza de que deseja limpar todos os dados e redefinir o formulário?"
 		},
@@ -1846,6 +2061,8 @@
 			aboutDisclaimerTitle: "Declinare a responsabilității",
 			aboutOptimizeDesc: '\u2013 Normalizează toate virgulele specifice localității: arabă <code>[\u060C]</code> (U+060C) japoneză <code>[\u3001]</code> (U+3001) chineză <code>[\uFF0C]</code> (U+FF0C) la standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Înlocuiește toate spațiile cu virgule: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Elimină virgulele și spațiile în exces: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Afișează fiecare cuvânt cheie ca un balon colorat:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Roșu</strong> = duplicat, apare în titlu/subtitlu sau găsit în limba principală (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Albastru</strong> = cuvânt cheie valid, unic<br>\u2013 Treceți cursorul peste un balon pentru a vedea de ce este marcat.<br>\u2013 Faceți clic pe un balon pentru a elimina acel cuvânt cheie din câmpul de introducere.',
 			aboutPrimaryCheckDesc: 'Pentru toate localitățile non-en, cuvintele cheie sunt verificate și față de câmpurile en-US (titlu, subtitlu, cuvinte cheie).<br>De exemplu, dacă <code>download</code> este folosit în titlul en-US și din nou în cuvintele cheie es-ES, va fi marcat.',
+			aboutUniqueWordsTitle: 'Validarea cuvintelor unice',
+			aboutUniqueWordsDesc: 'Câmpurile de titlu și subtitlu sunt validate în timp real pentru unicitatea cuvintelor:<br>\u2013 <strong style="color: var(--danger);">Cuvinte duplicate</strong>: dacă un cuvânt apare de mai multe ori în același câmp (de ex. <code>Cloud music player for cloud</code>), câmpul este evidențiat cu roșu.<br>\u2013 <strong style="color: var(--danger);">Suprapunere Subtitlu \u2194 Titlu</strong>: dacă subtitlul conține un cuvânt deja folosit în titlul aceleiași limbi, acesta este semnalat.<br>\u2013 <strong style="color: var(--danger);">Suprapunere între limbi</strong>: pentru limbile non-engleze, cuvintele din titlu și subtitlu sunt verificate față de titlul, subtitlul și cuvintele cheie ale limbii principale (en-US). Cuvintele care se potrivesc sunt semnalate.<br>\u2013 <strong>Limbi similare</strong> (de ex. en-US / en-AU, fr-FR / fr-CA) sunt scutite de verificările între limbi.<br>\u2013 Treceți cursorul peste un câmp evidențiat pentru a vedea motivul specific.',
 			aboutImportDesc: 'Încărcați metadate dintr-un fișier exportat anterior.<br><em>Exemplu de structură:</em>',
 			aboutExportDesc: "Salvează toate datele de intrare curente într-un fișier JSON descărcabil.",
 			aboutClearDesc: "Elimină toate câmpurile de text și șterge stocarea locală. Această acțiune nu poate fi anulată.",
@@ -1871,6 +2088,13 @@
 			tooltipInMainTitle: "Acest cuvânt cheie este prezent și în titlul limbii principale (en-US)",
 			tooltipInMainSubtitle: "Acest cuvânt cheie este prezent și în subtitlul limbii principale (en-US)",
 			tooltipInMainKeywords: "Acest cuvânt cheie este prezent și în cuvintele cheie ale limbii principale (en-US)",
+			tooltipLengthExceeded: 'Lungimea conținutului depășește limita permisă',
+			tooltipTitleDuplicate: 'Titlul conține cuvinte duplicate',
+			tooltipSubtitleDuplicate: 'Subtitlul conține cuvinte duplicate',
+			tooltipSubtitleWordInTitle: 'Subtitlul conține cuvinte care există deja în titlu',
+			tooltipFieldInBaseTitle: 'Conține cuvinte din titlul limbii principale (en-US)',
+			tooltipFieldInBaseSubtitle: 'Conține cuvinte din subtitlul limbii principale (en-US)',
+			tooltipFieldInBaseKeywords: 'Conține cuvinte din cuvintele cheie ale limbii principale (en-US)',
 			footerEdit: "Editează această pagină pe GitHub \u2192",
 			confirmClear: "Sunteți sigur că doriți să ștergeți toate datele și să resetați formularul?"
 		},
@@ -1890,6 +2114,8 @@
 			aboutDisclaimerTitle: "Отказ от ответственности",
 			aboutOptimizeDesc: '\u2013 Нормализует все локальные запятые: арабская <code>[\u060C]</code> (U+060C) японская <code>[\u3001]</code> (U+3001) китайская <code>[\uFF0C]</code> (U+FF0C) в стандартную \u2192 <code>[,]</code> (U+002C)<br>\u2013 Заменяет все пробелы запятыми: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Удаляет лишние запятые и пробелы: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Отображает каждое ключевое слово в виде цветного пузырька:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Красный</strong> = дубликат, присутствует в заголовке/подзаголовке или найдено в основном языке (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Синий</strong> = допустимое уникальное ключевое слово<br>\u2013 Наведите курсор на пузырёк, чтобы увидеть причину отметки.<br>\u2013 Нажмите на пузырёк, чтобы удалить это ключевое слово из поля ввода.',
 			aboutPrimaryCheckDesc: 'Для всех локалей, отличных от en, ключевые слова также проверяются по полям en-US (заголовок, подзаголовок, ключевые слова).<br>Например, если <code>download</code> используется в заголовке en-US и снова в ключевых словах es-ES, оно будет отмечено.',
+			aboutUniqueWordsTitle: 'Проверка уникальности слов',
+			aboutUniqueWordsDesc: 'Поля заголовка и подзаголовка проверяются в реальном времени на уникальность слов:<br>\u2013 <strong style="color: var(--danger);">Дублирующиеся слова</strong>: если слово встречается более одного раза в одном и том же поле (например, <code>Cloud music player for cloud</code>), поле подсвечивается красным.<br>\u2013 <strong style="color: var(--danger);">Пересечение Подзаголовок \u2194 Заголовок</strong>: если подзаголовок содержит слово, уже используемое в заголовке той же локали, оно отмечается.<br>\u2013 <strong style="color: var(--danger);">Межъязыковое пересечение</strong>: для неанглийских локалей слова заголовка и подзаголовка проверяются по заголовку, подзаголовку и ключевым словам основного языка (en-US). Совпадающие слова отмечаются.<br>\u2013 <strong>Похожие локали</strong> (например, en-US / en-AU, fr-FR / fr-CA) освобождены от межъязыковых проверок.<br>\u2013 Наведите курсор на выделенное поле, чтобы увидеть конкретную причину.',
 			aboutImportDesc: 'Загрузите метаданные из ранее экспортированного файла.<br><em>Пример структуры:</em>',
 			aboutExportDesc: "Сохраняет все текущие данные в загружаемый JSON-файл.",
 			aboutClearDesc: "Удаляет все текстовые поля и очищает локальное хранилище. Это действие нельзя отменить.",
@@ -1915,6 +2141,13 @@
 			tooltipInMainTitle: "Это ключевое слово также присутствует в заголовке основного языка (en-US)",
 			tooltipInMainSubtitle: "Это ключевое слово также присутствует в подзаголовке основного языка (en-US)",
 			tooltipInMainKeywords: "Это ключевое слово также присутствует в ключевых словах основного языка (en-US)",
+			tooltipLengthExceeded: 'Длина содержимого превышает допустимый лимит',
+			tooltipTitleDuplicate: 'Заголовок содержит повторяющиеся слова',
+			tooltipSubtitleDuplicate: 'Подзаголовок содержит повторяющиеся слова',
+			tooltipSubtitleWordInTitle: 'Подзаголовок содержит слова, которые уже есть в заголовке',
+			tooltipFieldInBaseTitle: 'Содержит слова из заголовка основного языка (en-US)',
+			tooltipFieldInBaseSubtitle: 'Содержит слова из подзаголовка основного языка (en-US)',
+			tooltipFieldInBaseKeywords: 'Содержит слова из ключевых слов основного языка (en-US)',
 			footerEdit: "Редактировать эту страницу на GitHub \u2192",
 			confirmClear: "Вы уверены, что хотите очистить все данные и сбросить форму?"
 		},
@@ -1934,6 +2167,8 @@
 			aboutDisclaimerTitle: "Vyhlásenie",
 			aboutOptimizeDesc: '\u2013 Normalizuje všetky lokálne čiarky: arabská <code>[\u060C]</code> (U+060C) japonská <code>[\u3001]</code> (U+3001) čínska <code>[\uFF0C]</code> (U+FF0C) na štandardnú \u2192 <code>[,]</code> (U+002C)<br>\u2013 Nahradí všetky medzery čiarkami: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Odstráni nadbytočné čiarky a medzery: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Zobrazí každé kľúčové slovo ako farebnú bublinu:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Červená</strong> = duplikát, vyskytuje sa v názve/podnadpise alebo nájdený v primárnom jazyku (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Modrá</strong> = platné, unikátne kľúčové slovo<br>\u2013 Podržte kurzor nad bublinou, aby ste videli dôvod označenia.<br>\u2013 Kliknite na bublinu, aby ste odstránili dané kľúčové slovo z poľa vstupu.',
 			aboutPrimaryCheckDesc: 'Pre všetky lokality iné ako en sa kľúčové slová kontrolujú aj voči poliam en-US (názov, podnadpis, kľúčové slová).<br>Napríklad, ak sa <code>download</code> používa v názve en-US a znova v kľúčových slovách es-ES, bude označený.',
+			aboutUniqueWordsTitle: 'Validácia unikátnych slov',
+			aboutUniqueWordsDesc: 'Polia názvu a podnadpisu sa v reálnom čase validujú na unikátnosť slov:<br>\u2013 <strong style="color: var(--danger);">Duplicitné slová</strong>: ak sa slovo objaví viac ako raz v tom istom poli (napr. <code>Cloud music player for cloud</code>), pole je zvýraznené červenou.<br>\u2013 <strong style="color: var(--danger);">Prekrývanie Podnadpis \u2194 Názov</strong>: ak podnadpis obsahuje slovo, ktoré je už použité v názve rovnakého jazyka, je označené.<br>\u2013 <strong style="color: var(--danger);">Prekrývanie medzi jazykmi</strong>: pre neanglické jazyky sú slová názvu a podnadpisu kontrolované voči názvu, podnadpisu a kľúčovým slovám primárneho jazyka (en-US). Zhodné slová sú označené.<br>\u2013 <strong>Podobné jazyky</strong> (napr. en-US / en-AU, fr-FR / fr-CA) sú oslobodené od kontrol prekrývania medzi jazykmi.<br>\u2013 Prejdite myšou nad zvýraznené pole pre zobrazenie konkrétneho dôvodu.',
 			aboutImportDesc: 'Načítajte metadáta z predtým exportovaného súboru.<br><em>Príklad štruktúry:</em>',
 			aboutExportDesc: "Uloží všetky aktuálne vstupy do stiahnuteľného súboru JSON.",
 			aboutClearDesc: "Odstráni všetky textové polia a vymaže lokálne úložisko. Túto akciu nemožno vrátiť späť.",
@@ -1959,6 +2194,13 @@
 			tooltipInMainTitle: "Toto kľúčové slovo sa nachádza aj v názve primárneho jazyka (en-US)",
 			tooltipInMainSubtitle: "Toto kľúčové slovo sa nachádza aj v podnadpise primárneho jazyka (en-US)",
 			tooltipInMainKeywords: "Toto kľúčové slovo sa nachádza aj v kľúčových slovách primárneho jazyka (en-US)",
+			tooltipLengthExceeded: 'Dĺžka obsahu prekračuje povolený limit',
+			tooltipTitleDuplicate: 'Názov obsahuje duplicitné slová',
+			tooltipSubtitleDuplicate: 'Podnadpis obsahuje duplicitné slová',
+			tooltipSubtitleWordInTitle: 'Podnadpis obsahuje slová, ktoré už existujú v názve',
+			tooltipFieldInBaseTitle: 'Obsahuje slová z názvu primárneho jazyka (en-US)',
+			tooltipFieldInBaseSubtitle: 'Obsahuje slová z podnadpisu primárneho jazyka (en-US)',
+			tooltipFieldInBaseKeywords: 'Obsahuje slová z kľúčových slov primárneho jazyka (en-US)',
 			footerEdit: "Upraviť túto stránku na GitHube \u2192",
 			confirmClear: "Ste si istí, že chcete vymazať všetky dáta a resetovať formulár?"
 		},
@@ -1978,6 +2220,8 @@
 			aboutDisclaimerTitle: "Descargo de responsabilidad",
 			aboutOptimizeDesc: '\u2013 Normaliza todas las comas específicas de cada idioma: árabe <code>[\u060C]</code> (U+060C) japonés <code>[\u3001]</code> (U+3001) chino <code>[\uFF0C]</code> (U+FF0C) al estándar \u2192 <code>[,]</code> (U+002C)<br>\u2013 Reemplaza todos los espacios con comas: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Elimina comas y espacios en exceso: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Muestra cada palabra clave como una burbuja de color:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Rojo</strong> = duplicada, aparece en título/subtítulo, o encontrada en el idioma principal (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Azul</strong> = palabra clave válida y única<br>\u2013 Pasa el cursor sobre una burbuja para ver por qué está marcada.<br>\u2013 Haz clic en una burbuja para eliminar esa palabra clave del campo de entrada.',
 			aboutPrimaryCheckDesc: 'Para todos los idiomas que no sean en, las palabras clave también se verifican contra los campos en-US (título, subtítulo, palabras clave).<br>Por ejemplo, si <code>download</code> se usa en el título en-US y de nuevo en las palabras clave es-ES, será marcado.',
+			aboutUniqueWordsTitle: 'Validación de palabras únicas',
+			aboutUniqueWordsDesc: 'Los campos de título y subtítulo se validan en tiempo real para la unicidad de las palabras:<br>\u2013 <strong style="color: var(--danger);">Palabras duplicadas</strong>: si una palabra aparece más de una vez en el mismo campo (ej. <code>Cloud music player for cloud</code>), el campo se resalta en rojo.<br>\u2013 <strong style="color: var(--danger);">Solapamiento Subtítulo \u2194 Título</strong>: si el subtítulo contiene una palabra ya usada en el título de la misma localidad, se marca.<br>\u2013 <strong style="color: var(--danger);">Solapamiento entre localidades</strong>: para localidades no inglesas, las palabras del título y subtítulo se verifican contra el título, subtítulo y palabras clave del idioma principal (en-US). Las palabras coincidentes se marcan.<br>\u2013 <strong>Localidades similares</strong> (ej. en-US / en-AU, fr-FR / fr-CA) están exentas de las verificaciones entre localidades.<br>\u2013 Pase el ratón sobre un campo resaltado para ver el motivo específico.',
 			aboutImportDesc: 'Carga metadatos desde un archivo exportado previamente.<br><em>Ejemplo de estructura:</em>',
 			aboutExportDesc: "Guarda todas las entradas actuales en un archivo JSON descargable.",
 			aboutClearDesc: "Elimina todos los campos de texto y borra el almacenamiento local. Esta acción no se puede deshacer.",
@@ -2003,6 +2247,13 @@
 			tooltipInMainTitle: "Esta palabra clave también está presente en el título del idioma principal (en-US)",
 			tooltipInMainSubtitle: "Esta palabra clave también está presente en el subtítulo del idioma principal (en-US)",
 			tooltipInMainKeywords: "Esta palabra clave también está presente en las palabras clave del idioma principal (en-US)",
+			tooltipLengthExceeded: 'La longitud del contenido excede el límite permitido',
+			tooltipTitleDuplicate: 'El título contiene palabras duplicadas',
+			tooltipSubtitleDuplicate: 'El subtítulo contiene palabras duplicadas',
+			tooltipSubtitleWordInTitle: 'El subtítulo contiene palabras que ya existen en el título',
+			tooltipFieldInBaseTitle: 'Contiene palabras del título del idioma principal (en-US)',
+			tooltipFieldInBaseSubtitle: 'Contiene palabras del subtítulo del idioma principal (en-US)',
+			tooltipFieldInBaseKeywords: 'Contiene palabras de las palabras clave del idioma principal (en-US)',
 			footerEdit: "Editar esta página en GitHub \u2192",
 			confirmClear: "¿Estás seguro de que quieres borrar todos los datos y restablecer el formulario?"
 		},
@@ -2022,6 +2273,8 @@
 			aboutDisclaimerTitle: "Ansvarsfriskrivning",
 			aboutOptimizeDesc: '\u2013 Normaliserar alla lokalspecifika komman: arabiska <code>[\u060C]</code> (U+060C) japanska <code>[\u3001]</code> (U+3001) kinesiska <code>[\uFF0C]</code> (U+FF0C) till standard \u2192 <code>[,]</code> (U+002C)<br>\u2013 Ersätter alla mellanslag med komman: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Tar bort överflödiga komman och mellanslag: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Visar varje sökord som en färgad bubbla:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Röd</strong> = dubblett, förekommer i titel/undertitel, eller hittad i primärspråket (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Blå</strong> = giltigt, unikt sökord<br>\u2013 Håll muspekaren över en bubbla för att se varför den är markerad.<br>\u2013 Klicka på en bubbla för att ta bort det sökordet från inmatningsfältet.',
 			aboutPrimaryCheckDesc: 'För alla icke-en-lokaler kontrolleras sökord även mot en-US-fälten (titel, undertitel, sökord).<br>Till exempel, om <code>download</code> används i en-US-titeln och igen i es-ES-sökorden, kommer det att markeras.',
+			aboutUniqueWordsTitle: 'Validering av unika ord',
+			aboutUniqueWordsDesc: 'Titel- och undertitelfält valideras i realtid för ordets unikhet:<br>\u2013 <strong style="color: var(--danger);">Duplicerade ord</strong>: om ett ord förekommer mer än en gång i samma fält (t.ex. <code>Cloud music player for cloud</code>), markeras fältet rött.<br>\u2013 <strong style="color: var(--danger);">Undertitel \u2194 Titel överlappning</strong>: om undertiteln innehåller ett ord som redan används i titeln för samma språk, flaggas det.<br>\u2013 <strong style="color: var(--danger);">Överlappning mellan språk</strong>: för icke-engelska språk kontrolleras titel- och undertitelord mot primärspråkets (en-US) titel, undertitel och sökord. Matchande ord flaggas.<br>\u2013 <strong>Liknande språk</strong> (t.ex. en-US / en-AU, fr-FR / fr-CA) är undantagna från kontroller mellan språk.<br>\u2013 Håll muspekaren över ett markerat fält för att se den specifika orsaken.',
 			aboutImportDesc: 'Ladda metadata från en tidigare exporterad fil.<br><em>Exempelstruktur:</em>',
 			aboutExportDesc: "Sparar alla aktuella inmatningar till en nedladdningsbar JSON-fil.",
 			aboutClearDesc: "Tar bort alla textfält och rensar lokal lagring. Denna åtgärd kan inte ångras.",
@@ -2047,6 +2300,13 @@
 			tooltipInMainTitle: "Detta sökord finns också i titeln för primärspråket (en-US)",
 			tooltipInMainSubtitle: "Detta sökord finns också i undertiteln för primärspråket (en-US)",
 			tooltipInMainKeywords: "Detta sökord finns också i sökorden för primärspråket (en-US)",
+			tooltipLengthExceeded: 'Innehållslängden överskrider den tillåtna gränsen',
+			tooltipTitleDuplicate: 'Titeln innehåller duplicerade ord',
+			tooltipSubtitleDuplicate: 'Undertiteln innehåller duplicerade ord',
+			tooltipSubtitleWordInTitle: 'Undertiteln innehåller ord som redan finns i titeln',
+			tooltipFieldInBaseTitle: 'Innehåller ord från primärspråkets (en-US) titel',
+			tooltipFieldInBaseSubtitle: 'Innehåller ord från primärspråkets (en-US) undertitel',
+			tooltipFieldInBaseKeywords: 'Innehåller ord från primärspråkets (en-US) sökord',
 			footerEdit: "Redigera denna sida på GitHub \u2192",
 			confirmClear: "Är du säker på att du vill radera all data och återställa formuläret?"
 		},
@@ -2066,6 +2326,8 @@
 			aboutDisclaimerTitle: "ข้อจำกัดความรับผิดชอบ",
 			aboutOptimizeDesc: '\u2013 ปรับมาตรฐานเครื่องหมายจุลภาคเฉพาะภาษาทั้งหมด: อาหรับ <code>[\u060C]</code> (U+060C) ญี่ปุ่น <code>[\u3001]</code> (U+3001) จีน <code>[\uFF0C]</code> (U+FF0C) เป็นมาตรฐาน \u2192 <code>[,]</code> (U+002C)<br>\u2013 แทนที่ช่องว่างทั้งหมดด้วยเครื่องหมายจุลภาค: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 ตัดเครื่องหมายจุลภาคและช่องว่างส่วนเกิน: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 แสดงคำค้นหาแต่ละคำเป็นฟองสี:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">แดง</strong> = ซ้ำกัน, ปรากฏในชื่อเรื่อง/ชื่อเรื่องย่อย หรือพบในภาษาหลัก (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">น้ำเงิน</strong> = คำค้นหาที่ถูกต้องและไม่ซ้ำ<br>\u2013 วางเมาส์เหนือฟองเพื่อดูสาเหตุที่ถูกทำเครื่องหมาย<br>\u2013 คลิกที่ฟองเพื่อลบคำค้นหานั้นออกจากช่องป้อนข้อมูล',
 			aboutPrimaryCheckDesc: 'สำหรับทุกภาษาที่ไม่ใช่ en คำค้นหาจะถูกตรวจสอบเทียบกับฟิลด์ en-US (ชื่อเรื่อง, ชื่อเรื่องย่อย, คำค้นหา) ด้วย<br>ตัวอย่างเช่น ถ้า <code>download</code> ถูกใช้ในชื่อเรื่อง en-US และอีกครั้งในคำค้นหา es-ES จะถูกทำเครื่องหมาย',
+			aboutUniqueWordsTitle: 'การตรวจสอบคำที่ไม่ซ้ำ',
+			aboutUniqueWordsDesc: 'ฟิลด์ชื่อเรื่องและคำบรรยายรองจะถูกตรวจสอบแบบเรียลไทม์สำหรับความเป็นเอกลักษณ์ของคำ:<br>\u2013 <strong style="color: var(--danger);">คำซ้ำ</strong>: หากคำปรากฏมากกว่าหนึ่งครั้งในฟิลด์เดียวกัน (เช่น <code>Cloud music player for cloud</code>) ฟิลด์จะถูกไฮไลท์เป็นสีแดง<br>\u2013 <strong style="color: var(--danger);">คำบรรยายรอง \u2194 ชื่อเรื่องซ้อนทับ</strong>: หากคำบรรยายรองมีคำที่ใช้แล้วในชื่อเรื่องของภาษาเดียวกัน จะถูกทำเครื่องหมาย<br>\u2013 <strong style="color: var(--danger);">การซ้อนทับข้ามภาษา</strong>: สำหรับภาษาที่ไม่ใช่ภาษาอังกฤษ คำในชื่อเรื่องและคำบรรยายรองจะถูกตรวจสอบกับชื่อเรื่อง คำบรรยายรอง และคำค้นหาของภาษาหลัก (en-US) คำที่ตรงกันจะถูกทำเครื่องหมาย<br>\u2013 <strong>ภาษาที่คล้ายกัน</strong> (เช่น en-US / en-AU, fr-FR / fr-CA) ได้รับการยกเว้นจากการตรวจสอบข้ามภาษา<br>\u2013 เลื่อนเมาส์เหนือฟิลด์ที่ไฮไลท์เพื่อดูเหตุผลเฉพาะ',
 			aboutImportDesc: 'โหลดข้อมูลเมตาจากไฟล์ที่ส่งออกก่อนหน้านี้<br><em>ตัวอย่างโครงสร้าง:</em>',
 			aboutExportDesc: "บันทึกข้อมูลที่ป้อนทั้งหมดในปัจจุบันเป็นไฟล์ JSON ที่ดาวน์โหลดได้",
 			aboutClearDesc: "ลบช่องข้อความทั้งหมดและล้างที่เก็บข้อมูลในเครื่อง การกระทำนี้ไม่สามารถยกเลิกได้",
@@ -2091,6 +2353,13 @@
 			tooltipInMainTitle: "คำค้นหานี้ยังอยู่ในชื่อเรื่องของภาษาหลัก (en-US)",
 			tooltipInMainSubtitle: "คำค้นหานี้ยังอยู่ในชื่อเรื่องย่อยของภาษาหลัก (en-US)",
 			tooltipInMainKeywords: "คำค้นหานี้ยังอยู่ในคำค้นหาของภาษาหลัก (en-US)",
+			tooltipLengthExceeded: 'ความยาวของเนื้อหาเกินขีดจำกัดที่อนุญาต',
+			tooltipTitleDuplicate: 'ชื่อเรื่องมีคำซ้ำ',
+			tooltipSubtitleDuplicate: 'คำบรรยายรองมีคำซ้ำ',
+			tooltipSubtitleWordInTitle: 'คำบรรยายรองมีคำที่มีอยู่แล้วในชื่อเรื่อง',
+			tooltipFieldInBaseTitle: 'มีคำจากชื่อเรื่องของภาษาหลัก (en-US)',
+			tooltipFieldInBaseSubtitle: 'มีคำจากคำบรรยายรองของภาษาหลัก (en-US)',
+			tooltipFieldInBaseKeywords: 'มีคำจากคำค้นหาของภาษาหลัก (en-US)',
 			footerEdit: "แก้ไขหน้านี้บน GitHub \u2192",
 			confirmClear: "คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลทั้งหมดและรีเซ็ตแบบฟอร์ม?"
 		},
@@ -2110,6 +2379,8 @@
 			aboutDisclaimerTitle: "Sorumluluk reddi",
 			aboutOptimizeDesc: '\u2013 Tüm yerel ayara özgü virgülleri normalleştirir: Arapça <code>[\u060C]</code> (U+060C) Japonca <code>[\u3001]</code> (U+3001) Çince <code>[\uFF0C]</code> (U+FF0C) standarda \u2192 <code>[,]</code> (U+002C)<br>\u2013 Tüm boşlukları virgüllerle değiştirir: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Fazla virgül ve boşlukları kırpar: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Her anahtar kelimeyi renkli bir balon olarak gösterir:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Kırmızı</strong> = tekrar, başlık/alt başlıkta mevcut veya ana dilde (en-US) bulundu<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Mavi</strong> = geçerli, benzersiz anahtar kelime<br>\u2013 Neden işaretlendiğini görmek için balonun üzerine gelin.<br>\u2013 O anahtar kelimeyi giriş alanından kaldırmak için balona tıklayın.',
 			aboutPrimaryCheckDesc: 'Tüm en olmayan yerel ayarlar için anahtar kelimeler en-US alanlarına (başlık, alt başlık, anahtar kelimeler) karşı da kontrol edilir.<br>Örneğin, <code>download</code> en-US başlığında ve tekrar es-ES anahtar kelimelerinde kullanılıyorsa işaretlenir.',
+			aboutUniqueWordsTitle: 'Benzersiz kelime doğrulaması',
+			aboutUniqueWordsDesc: 'Başlık ve alt başlık alanları, kelime benzersizliği için gerçek zamanlı olarak doğrulanır:<br>\u2013 <strong style="color: var(--danger);">Yinelenen kelimeler</strong>: bir kelime aynı alanda birden fazla kez görünüyorsa (ör. <code>Cloud music player for cloud</code>), alan kırmızıyla vurgulanır.<br>\u2013 <strong style="color: var(--danger);">Alt başlık \u2194 Başlık çakışması</strong>: alt başlık, aynı yerel ayarın başlığında zaten kullanılan bir kelime içeriyorsa işaretlenir.<br>\u2013 <strong style="color: var(--danger);">Yerel ayarlar arası çakışma</strong>: İngilizce olmayan yerel ayarlar için başlık ve alt başlık kelimeleri, ana dilin (en-US) başlık, alt başlık ve anahtar kelimelerine karşı kontrol edilir. Eşleşen kelimeler işaretlenir.<br>\u2013 <strong>Benzer yerel ayarlar</strong> (ör. en-US / en-AU, fr-FR / fr-CA) yerel ayarlar arası kontrollerden muaftır.<br>\u2013 Belirli nedeni görmek için vurgulanan alanın üzerine gelin.',
 			aboutImportDesc: 'Daha önce dışa aktarılmış bir dosyadan meta verileri yükleyin.<br><em>Örnek yapı:</em>',
 			aboutExportDesc: "Tüm mevcut girişleri indirilebilir bir JSON dosyasına kaydeder.",
 			aboutClearDesc: "Tüm metin alanlarını kaldırır ve yerel depolamayı temizler. Bu işlem geri alınamaz.",
@@ -2135,6 +2406,13 @@
 			tooltipInMainTitle: "Bu anahtar kelime ana dilin (en-US) başlığında da mevcut",
 			tooltipInMainSubtitle: "Bu anahtar kelime ana dilin (en-US) alt başlığında da mevcut",
 			tooltipInMainKeywords: "Bu anahtar kelime ana dilin (en-US) anahtar kelimelerinde de mevcut",
+			tooltipLengthExceeded: 'İçerik uzunluğu izin verilen sınırı aşıyor',
+			tooltipTitleDuplicate: 'Başlık yinelenen kelimeler içeriyor',
+			tooltipSubtitleDuplicate: 'Alt başlık yinelenen kelimeler içeriyor',
+			tooltipSubtitleWordInTitle: 'Alt başlık, başlıkta zaten var olan kelimeler içeriyor',
+			tooltipFieldInBaseTitle: 'Ana dilin (en-US) başlığından kelimeler içeriyor',
+			tooltipFieldInBaseSubtitle: 'Ana dilin (en-US) alt başlığından kelimeler içeriyor',
+			tooltipFieldInBaseKeywords: 'Ana dilin (en-US) anahtar kelimelerinden kelimeler içeriyor',
 			footerEdit: "Bu sayfayı GitHub'da düzenle \u2192",
 			confirmClear: "Tüm verileri silmek ve formu sıfırlamak istediğinizden emin misiniz?"
 		},
@@ -2154,6 +2432,8 @@
 			aboutDisclaimerTitle: "Відмова від відповідальності",
 			aboutOptimizeDesc: '\u2013 Нормалізує всі локальні коми: арабська <code>[\u060C]</code> (U+060C) японська <code>[\u3001]</code> (U+3001) китайська <code>[\uFF0C]</code> (U+FF0C) до стандартної \u2192 <code>[,]</code> (U+002C)<br>\u2013 Замінює всі пробіли комами: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Видаляє зайві коми та пробіли: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Показує кожне ключове слово як кольорову бульбашку:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Червоний</strong> = дублікат, з\u2019являється в заголовку/підзаголовку або знайдено в основній мові (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Синій</strong> = дійсне, унікальне ключове слово<br>\u2013 Наведіть курсор на бульбашку, щоб побачити причину позначення.<br>\u2013 Натисніть на бульбашку, щоб видалити це ключове слово з поля введення.',
 			aboutPrimaryCheckDesc: 'Для всіх локалей, відмінних від en, ключові слова також перевіряються відносно полів en-US (заголовок, підзаголовок, ключові слова).<br>Наприклад, якщо <code>download</code> використовується в заголовку en-US і знову в ключових словах es-ES, воно буде позначене.',
+			aboutUniqueWordsTitle: 'Перевірка унікальності слів',
+			aboutUniqueWordsDesc: 'Поля заголовка та підзаголовка перевіряються в реальному часі на унікальність слів:<br>\u2013 <strong style="color: var(--danger);">Дублікати слів</strong>: якщо слово зустрічається більше одного разу в тому ж полі (наприклад, <code>Cloud music player for cloud</code>), поле підсвічується червоним.<br>\u2013 <strong style="color: var(--danger);">Перетин Підзаголовок \u2194 Заголовок</strong>: якщо підзаголовок містить слово, яке вже використовується в заголовку тієї ж локалі, воно позначається.<br>\u2013 <strong style="color: var(--danger);">Міжмовний перетин</strong>: для неанглійських локалей слова заголовка та підзаголовка перевіряються відносно заголовка, підзаголовка та ключових слів основної мови (en-US). Збіжні слова позначаються.<br>\u2013 <strong>Схожі локалі</strong> (наприклад, en-US / en-AU, fr-FR / fr-CA) звільнені від міжмовних перевірок.<br>\u2013 Наведіть курсор на виділене поле, щоб побачити конкретну причину.',
 			aboutImportDesc: 'Завантажте метадані з раніше експортованого файлу.<br><em>Приклад структури:</em>',
 			aboutExportDesc: "Зберігає всі поточні дані у файл JSON для завантаження.",
 			aboutClearDesc: "Видаляє всі текстові поля та очищає локальне сховище. Цю дію неможливо скасувати.",
@@ -2179,6 +2459,13 @@
 			tooltipInMainTitle: "Це ключове слово також присутнє в заголовку основної мови (en-US)",
 			tooltipInMainSubtitle: "Це ключове слово також присутнє в підзаголовку основної мови (en-US)",
 			tooltipInMainKeywords: "Це ключове слово також присутнє в ключових словах основної мови (en-US)",
+			tooltipLengthExceeded: 'Довжина вмісту перевищує допустиму межу',
+			tooltipTitleDuplicate: 'Заголовок містить повторювані слова',
+			tooltipSubtitleDuplicate: 'Підзаголовок містить повторювані слова',
+			tooltipSubtitleWordInTitle: 'Підзаголовок містить слова, які вже є в заголовку',
+			tooltipFieldInBaseTitle: 'Містить слова із заголовка основної мови (en-US)',
+			tooltipFieldInBaseSubtitle: 'Містить слова із підзаголовка основної мови (en-US)',
+			tooltipFieldInBaseKeywords: 'Містить слова із ключових слів основної мови (en-US)',
 			footerEdit: "Редагувати цю сторінку на GitHub \u2192",
 			confirmClear: "Ви впевнені, що хочете очистити всі дані та скинути форму?"
 		},
@@ -2198,6 +2485,8 @@
 			aboutDisclaimerTitle: "Tuyên bố miễn trừ",
 			aboutOptimizeDesc: '\u2013 Chuẩn hóa tất cả dấu phẩy theo ngôn ngữ: tiếng Ả Rập <code>[\u060C]</code> (U+060C) tiếng Nhật <code>[\u3001]</code> (U+3001) tiếng Trung <code>[\uFF0C]</code> (U+FF0C) thành chuẩn \u2192 <code>[,]</code> (U+002C)<br>\u2013 Thay thế tất cả khoảng trắng bằng dấu phẩy: <code>[media file]</code> \u2192 <code>[media,file]</code><br>\u2013 Loại bỏ dấu phẩy và khoảng trắng thừa: <code>[media,, ,file,,]</code> \u2192 <code>[media,file]</code><br>\u2013 Hiển thị mỗi từ khóa dưới dạng bong bóng màu:<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--danger);">Đỏ</strong> = trùng lặp, xuất hiện trong tiêu đề/phụ đề, hoặc có trong ngôn ngữ chính (en-US)<br>\u00a0\u00a0\u00a0\u2022 <strong style="color: var(--accent);">Xanh</strong> = từ khóa hợp lệ, duy nhất<br>\u2013 Di chuột qua bong bóng để xem lý do bị đánh dấu.<br>\u2013 Nhấp vào bong bóng để xóa từ khóa đó khỏi trường nhập.',
 			aboutPrimaryCheckDesc: 'Đối với tất cả ngôn ngữ không phải en, từ khóa cũng được kiểm tra đối chiếu với các trường en-US (tiêu đề, phụ đề, từ khóa).<br>Ví dụ, nếu <code>download</code> được sử dụng trong tiêu đề en-US và lại trong từ khóa es-ES, nó sẽ được đánh dấu.',
+			aboutUniqueWordsTitle: 'Xác thực từ duy nhất',
+			aboutUniqueWordsDesc: 'Các trường tiêu đề và phụ đề được xác thực theo thời gian thực về tính duy nhất của từ:<br>\u2013 <strong style="color: var(--danger);">Từ trùng lặp</strong>: nếu một từ xuất hiện nhiều hơn một lần trong cùng một trường (ví dụ: <code>Cloud music player for cloud</code>), trường sẽ được đánh dấu đỏ.<br>\u2013 <strong style="color: var(--danger);">Trùng lặp Phụ đề \u2194 Tiêu đề</strong>: nếu phụ đề chứa một từ đã được sử dụng trong tiêu đề của cùng ngôn ngữ, nó sẽ được gắn cờ.<br>\u2013 <strong style="color: var(--danger);">Trùng lặp liên ngôn ngữ</strong>: đối với các ngôn ngữ không phải tiếng Anh, các từ trong tiêu đề và phụ đề được kiểm tra đối chiếu với tiêu đề, phụ đề và từ khóa của ngôn ngữ chính (en-US). Các từ trùng khớp được gắn cờ.<br>\u2013 <strong>Ngôn ngữ tương tự</strong> (ví dụ: en-US / en-AU, fr-FR / fr-CA) được miễn kiểm tra liên ngôn ngữ.<br>\u2013 Di chuột qua trường được đánh dấu để xem lý do cụ thể.',
 			aboutImportDesc: 'Tải siêu dữ liệu từ tệp đã xuất trước đó.<br><em>Cấu trúc ví dụ:</em>',
 			aboutExportDesc: "Lưu tất cả dữ liệu nhập hiện tại vào tệp JSON có thể tải xuống.",
 			aboutClearDesc: "Xóa tất cả trường văn bản và xóa bộ nhớ cục bộ. Hành động này không thể hoàn tác.",
@@ -2223,6 +2512,13 @@
 			tooltipInMainTitle: "Từ khóa này cũng có trong tiêu đề của ngôn ngữ chính (en-US)",
 			tooltipInMainSubtitle: "Từ khóa này cũng có trong phụ đề của ngôn ngữ chính (en-US)",
 			tooltipInMainKeywords: "Từ khóa này cũng có trong từ khóa của ngôn ngữ chính (en-US)",
+			tooltipLengthExceeded: 'Độ dài nội dung vượt quá giới hạn cho phép',
+			tooltipTitleDuplicate: 'Tiêu đề chứa các từ trùng lặp',
+			tooltipSubtitleDuplicate: 'Phụ đề chứa các từ trùng lặp',
+			tooltipSubtitleWordInTitle: 'Phụ đề chứa các từ đã tồn tại trong tiêu đề',
+			tooltipFieldInBaseTitle: 'Chứa các từ từ tiêu đề của ngôn ngữ chính (en-US)',
+			tooltipFieldInBaseSubtitle: 'Chứa các từ từ phụ đề của ngôn ngữ chính (en-US)',
+			tooltipFieldInBaseKeywords: 'Chứa các từ từ từ khóa của ngôn ngữ chính (en-US)',
 			footerEdit: "Chỉnh sửa trang này trên GitHub \u2192",
 			confirmClear: "Bạn có chắc chắn muốn xóa tất cả dữ liệu và đặt lại biểu mẫu không?"
 		}
@@ -2272,6 +2568,9 @@
 				optimize(localeKey);
 			}
 		});
+
+		// Re-validate title/subtitle so tooltip text uses new language
+		validateAllTitleSubtitle();
 	}
 
 	document.getElementById('langSelect').addEventListener('change', (e) => {
@@ -2335,6 +2634,7 @@
 					}
 				}
 			}
+			validateAllTitleSubtitle();
 		} catch (e) {
 			console.warn('Failed to load from localStorage');
 		}
@@ -2377,8 +2677,14 @@
 			el.className = 'char-count';
 		});
 
-		document.querySelectorAll('.input-warning').forEach(el => {
-			el.classList.remove('input-warning');
+		document.querySelectorAll('.input-warning, .input-warning-cross').forEach(el => {
+			const tip = bootstrap.Tooltip.getInstance(el);
+			if (tip) tip.dispose();
+			el.classList.remove('input-warning', 'input-warning-cross');
+			el.removeAttribute('data-bs-toggle');
+			el.removeAttribute('data-bs-html');
+			el.removeAttribute('data-bs-placement');
+			el.removeAttribute('title');
 		});
 
 		document.querySelectorAll('[id^="bubbles-"]').forEach(container => {
@@ -2427,6 +2733,7 @@
 						}
 					}
 				}
+				validateAllTitleSubtitle();
 			} catch (err) {
 				alert('Invalid JSON file');
 			}
@@ -2475,6 +2782,9 @@
 	   ======================================================================== */
 	const locales = [
 		{ key: "en-US", name: "English (U.S.)" },
+		{ key: "en-AU", name: "English (Australia)" },
+		{ key: "en-CA", name: "English (Canada)" },
+		{ key: "en-GB", name: "English (U.K.)" },
 		{ key: "ar-SA", name: "Arabic" },
 		{ key: "bn-BD", name: "Bengali" },
 		{ key: "ca", name: "Catalan" },
@@ -2484,9 +2794,6 @@
 		{ key: "cs", name: "Czech" },
 		{ key: "da", name: "Danish" },
 		{ key: "nl-NL", name: "Dutch" },
-		{ key: "en-AU", name: "English (Australia)" },
-		{ key: "en-CA", name: "English (Canada)" },
-		{ key: "en-GB", name: "English (U.K.)" },
 		{ key: "fi", name: "Finnish" },
 		{ key: "fr-FR", name: "French" },
 		{ key: "fr-CA", name: "French (Canada)" },
@@ -2565,12 +2872,22 @@
 	document.addEventListener('input', function (e) {
 		if (e.target.matches('.locale-title')) {
 			updateLength(e.target, 30, `count-title-${e.target.dataset.key}`);
+			validateField(e.target.dataset.key, 'title');
+			// Also re-validate this locale's subtitle (it checks against title)
+			validateField(e.target.dataset.key, 'subtitle');
+			// If en-US changed, re-validate all other locales
+			if (e.target.dataset.key === 'en-US') validateAllTitleSubtitle();
 		}
 		if (e.target.matches('.locale-subtitle')) {
 			updateLength(e.target, 30, `count-subtitle-${e.target.dataset.key}`);
+			validateField(e.target.dataset.key, 'subtitle');
+			// If en-US changed, re-validate all other locales
+			if (e.target.dataset.key === 'en-US') validateAllTitleSubtitle();
 		}
 		if (e.target.matches('.locale-keywords')) {
 			updateLength(e.target, 100, `count-keywords-${e.target.dataset.key}`);
+			// If en-US keywords changed, re-validate all other locales
+			if (e.target.dataset.key === 'en-US') validateAllTitleSubtitle();
 		}
 	});
 
@@ -2590,12 +2907,114 @@
 		return { enTitle, enSubtitle, enKeywords: enKeywords.split(',').map(k => k.trim()).filter(Boolean) };
 	}
 
+	/* ========================================================================
+	   Title / Subtitle Validation
+	   ======================================================================== */
+	function tt(key) {
+		const t = translations[currentLang] || translations.en;
+		return t[key] || translations.en[key] || '';
+	}
+
+	function areSimilarLocales(a, b) {
+		return a.split('-')[0] === b.split('-')[0];
+	}
+
+	function getFieldWords(text) {
+		return text.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+	}
+
+	function validateField(localeKey, fieldType) {
+		const input = document.querySelector(`.locale-${fieldType}[data-key="${localeKey}"]`);
+		if (!input) return;
+		const text = input.value;
+		const words = getFieldWords(text);
+		const localErrors = [];
+		const crossErrors = [];
+
+		// Length check (local error)
+		const maxLen = fieldType === 'keywords' ? 100 : 30;
+		if (text.length > maxLen) {
+			localErrors.push(tt('tooltipLengthExceeded'));
+		}
+
+		if (words.length > 0) {
+			// Duplicate words check (local error)
+			const wordCounts = {};
+			words.forEach(w => { wordCounts[w] = (wordCounts[w] || 0) + 1; });
+			const duplicates = Object.keys(wordCounts).filter(w => wordCounts[w] > 1);
+			if (duplicates.length > 0) {
+				const msgKey = fieldType === 'title' ? 'tooltipTitleDuplicate' : 'tooltipSubtitleDuplicate';
+				localErrors.push(tt(msgKey) + ': ' + duplicates.join(', '));
+			}
+
+			// Subtitle: check against same locale title (local error)
+			if (fieldType === 'subtitle') {
+				const titleText = document.querySelector(`.locale-title[data-key="${localeKey}"]`)?.value || '';
+				const titleWords = getFieldWords(titleText);
+				const overlap = [...new Set(words.filter(w => titleWords.includes(w)))];
+				if (overlap.length > 0) {
+					localErrors.push(tt('tooltipSubtitleWordInTitle') + ': ' + overlap.join(', '));
+				}
+			}
+
+			// Cross-locale check against en-US (cross-locale warning, subtitle only)
+			if (fieldType === 'subtitle' && localeKey !== 'en-US' && !areSimilarLocales(localeKey, 'en-US')) {
+				const baseTitle = getFieldWords(document.querySelector('.locale-title[data-key="en-US"]')?.value || '');
+				const baseSubtitle = getFieldWords(document.querySelector('.locale-subtitle[data-key="en-US"]')?.value || '');
+				const baseKeywords = (document.querySelector('.locale-keywords[data-key="en-US"]')?.value || '')
+					.toLowerCase().split(',').map(k => k.trim()).filter(Boolean);
+
+				const inBaseTitle = [...new Set(words.filter(w => baseTitle.includes(w)))];
+				const inBaseSubtitle = [...new Set(words.filter(w => baseSubtitle.includes(w)))];
+				const inBaseKeywords = [...new Set(words.filter(w => baseKeywords.includes(w)))];
+
+				if (inBaseTitle.length > 0) crossErrors.push(tt('tooltipFieldInBaseTitle') + ': ' + inBaseTitle.join(', '));
+				if (inBaseSubtitle.length > 0) crossErrors.push(tt('tooltipFieldInBaseSubtitle') + ': ' + inBaseSubtitle.join(', '));
+				if (inBaseKeywords.length > 0) crossErrors.push(tt('tooltipFieldInBaseKeywords') + ': ' + inBaseKeywords.join(', '));
+			}
+		}
+
+		// Apply validation state
+		const existingTip = bootstrap.Tooltip.getInstance(input);
+		if (existingTip) existingTip.dispose();
+
+		const allMessages = [...localErrors, ...crossErrors];
+
+		input.classList.remove('input-warning', 'input-warning-cross');
+
+		if (localErrors.length > 0) {
+			input.classList.add('input-warning');
+		} else if (crossErrors.length > 0) {
+			input.classList.add('input-warning-cross');
+		}
+
+		if (allMessages.length > 0) {
+			input.setAttribute('data-bs-toggle', 'tooltip');
+			input.setAttribute('data-bs-html', 'true');
+			input.setAttribute('data-bs-placement', 'top');
+			input.setAttribute('title', allMessages.join('\n'));
+			new bootstrap.Tooltip(input, { html: true, title: allMessages.join('<br>') });
+		} else {
+			input.removeAttribute('data-bs-toggle');
+			input.removeAttribute('data-bs-html');
+			input.removeAttribute('data-bs-placement');
+			input.removeAttribute('title');
+		}
+	}
+
+	function validateAllTitleSubtitle() {
+		locales.forEach(locale => {
+			validateField(locale.key, 'title');
+			validateField(locale.key, 'subtitle');
+		});
+	}
 
 	/* ========================================================================
 	   Original JS Logic — Optimize (with tooltip dispose fix + i18n tooltips)
 	   ======================================================================== */
 	function optimizeAll() {
 		locales.forEach(locale => optimize(locale.key));
+		validateAllTitleSubtitle();
 	}
 
 	function optimize(localeKey) {
@@ -2684,13 +3103,13 @@
 				badgeClass = 'badge-invalid';
 				tooltip = t.tooltipDuplicate;
 			} else if (inMainTitle) {
-				badgeClass = 'badge-invalid';
+				badgeClass = 'badge-cross';
 				tooltip = t.tooltipInMainTitle;
 			} else if (inMainSubtitle) {
-				badgeClass = 'badge-invalid';
+				badgeClass = 'badge-cross';
 				tooltip = t.tooltipInMainSubtitle;
 			} else if (inMainKeywords) {
-				badgeClass = 'badge-invalid';
+				badgeClass = 'badge-cross';
 				tooltip = t.tooltipInMainKeywords;
 			}
 
@@ -2708,6 +3127,10 @@
 
 			container.appendChild(badge);
 		});
+
+		// Validate title and subtitle after keyword optimization
+		validateField(localeKey, 'title');
+		validateField(localeKey, 'subtitle');
 	}
 
 
