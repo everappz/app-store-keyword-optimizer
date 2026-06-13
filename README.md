@@ -2,6 +2,8 @@
 
 🔗 **Live site**: [https://appkeywords.pro](https://appkeywords.pro)
 
+![App Store Keyword Optimizer screenshot](screenshot.png)
+
 A lightweight web-based tool to help iOS developers optimize their App Store metadata (title, subtitle, keywords). Built with Bootstrap and vanilla JavaScript, it features:
 
 - ✅ Live character counters with validation  
